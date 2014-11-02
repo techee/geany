@@ -54,6 +54,7 @@
 #include "tm_tag.h"
 #include "ui_utils.h"
 #include "utils.h"
+#include "msgwindow.h"
 
 #include "SciLexer.h"
 
@@ -370,66 +371,6 @@ GString *symbols_get_macro_list(gint lang)
 	}
 	g_ptr_array_free(ftags, TRUE);
 	return words;
-}
-
-
-/* Note: if tags is sorted, we can use bsearch or tm_tags_find() to speed this up. */
-static TMTag *
-symbols_find_tm_tag(const GPtrArray *tags, const gchar *tag_name)
-{
-	guint i;
-	g_return_val_if_fail(tags != NULL, NULL);
-
-	for (i = 0; i < tags->len; ++i)
-	{
-		if (utils_str_equal(TM_TAG(tags->pdata[i])->name, tag_name))
-			return TM_TAG(tags->pdata[i]);
-	}
-	return NULL;
-}
-
-
-static TMTag *find_source_file_tag(GPtrArray *tags_array,
-		const gchar *tag_name, guint type)
-{
-	GPtrArray *tags;
-	TMTag *tmtag;
-
-	tags = tm_tags_extract(tags_array, type);
-	if (tags != NULL)
-	{
-		tmtag = symbols_find_tm_tag(tags, tag_name);
-
-		g_ptr_array_free(tags, TRUE);
-
-		if (tmtag != NULL)
-			return tmtag;
-	}
-	return NULL;	/* not found */
-}
-
-
-static TMTag *find_workspace_tag(const gchar *tag_name, guint type)
-{
-	guint j;
-	const GPtrArray *source_files = NULL;
-
-	if (app->tm_workspace != NULL)
-		source_files = app->tm_workspace->source_files;
-
-	if (source_files != NULL)
-	{
-		for (j = 0; j < source_files->len; j++)
-		{
-			TMSourceFile *srcfile = source_files->pdata[j];
-			TMTag *tmtag;
-
-			tmtag = find_source_file_tag(srcfile->tags_array, tag_name, type);
-			if (tmtag != NULL)
-				return tmtag;
-		}
-	}
-	return NULL;	/* not found */
 }
 
 
@@ -1922,47 +1863,84 @@ static void load_user_tags(filetype_id ft_id)
 
 static gboolean goto_tag(const gchar *name, gboolean definition)
 {
-	const TMTagType forward_types = tm_tag_prototype_t | tm_tag_externvar_t;
-	TMTagType type;
-	TMTag *tmtag = NULL;
+	const gint forward_types = tm_tag_prototype_t | tm_tag_externvar_t;
+	guint type, i;
+	const GPtrArray *all_tags;
+	GPtrArray *workspace_tags;
+	gboolean found = FALSE;
 	GeanyDocument *old_doc = document_get_current();
+	TMTagAttrType attrs[] = {
+		tm_tag_attr_file_t, tm_tag_attr_line_t, 0
+	};
 
 	/* goto tag definition: all except prototypes / forward declarations / externs */
 	type = (definition) ? tm_tag_max_t - forward_types : forward_types;
 
-	/* first look in the current document */
-	if (old_doc != NULL && old_doc->tm_file)
-		tmtag = find_source_file_tag(old_doc->tm_file->tags_array, name, type);
+	all_tags = tm_workspace_find(name, type, attrs, FALSE, old_doc->file_type->lang);
 
-	/* if not found, look in the workspace */
-	if (tmtag == NULL)
-		tmtag = find_workspace_tag(name, type);
-
-	if (tmtag != NULL)
+	/* get rid of global tags */
+	workspace_tags = g_ptr_array_new();
+	for (i = 0; i < all_tags->len; i++)
 	{
-		GeanyDocument *new_doc = document_find_by_real_path(
-			tmtag->file->file_name);
-
-		if (new_doc)
-		{
-			/* If we are already on the tag line, swap definition/declaration */
-			if (new_doc == old_doc &&
-				tmtag->line == (guint)sci_get_current_line(old_doc->editor->sci) + 1)
-			{
-				if (goto_tag(name, !definition))
-					return TRUE;
-			}
-		}
-		else
-		{
-			/* not found in opened document, should open */
-			new_doc = document_open_file(tmtag->file->file_name, FALSE, NULL, NULL);
-		}
-
-		if (navqueue_goto_line(old_doc, new_doc, tmtag->line))
-			return TRUE;
+		TMTag *tag = all_tags->pdata[i];
+		
+		if (tag->file)
+			g_ptr_array_add(workspace_tags, tag);
 	}
-	return FALSE;
+	
+	if (workspace_tags->len != 0)
+	{
+		TMTag *first_tag, *last_tag;
+		
+		if (workspace_tags->len > 1)
+		{
+			msgwin_clear_tab(MSG_MESSAGE);
+			msgwin_switch_tab(MSG_MESSAGE, TRUE);
+			msgwin_set_messages_dir(NULL);
+			for (i = 0; i < workspace_tags->len; i++)
+			{
+				TMTag *tag = workspace_tags->pdata[i];
+				msgwin_msg_add(COLOR_BLACK, -1, NULL, "%s:%lu\t\t[%s]\t %s%s", tag->file->file_name, 
+					tag->line, tm_tag_type_name(tag), tag->name, tag->arglist ? tag->arglist : "");
+			}
+			found = TRUE;
+		}
+		
+		first_tag = workspace_tags->pdata[0];
+		last_tag = workspace_tags->pdata[workspace_tags->len-1];
+		if (workspace_tags->len == 1 || first_tag->file == last_tag->file)
+		{
+			gboolean swapped = FALSE;
+			GeanyDocument *new_doc = document_find_by_real_path(
+				first_tag->file->file_name);
+				
+			if (new_doc)
+			{
+				/* If we are already on the tag line, swap definition/declaration */
+				if (new_doc == old_doc &&
+					first_tag->line == (guint)sci_get_current_line(old_doc->editor->sci) + 1)
+				{
+					if (goto_tag(name, !definition))
+					{
+						found = TRUE;
+						swapped = TRUE;
+					}
+				}
+			}
+			else
+			{
+				/* not found in opened document, should open */
+				new_doc = document_open_file(first_tag->file->file_name, FALSE, NULL, NULL);
+			}
+
+			if (!swapped && navqueue_goto_line(old_doc, new_doc, first_tag->line))
+				found = TRUE;
+		}
+	}
+	
+	g_ptr_array_free(workspace_tags, TRUE);
+
+	return found;
 }
 
 
