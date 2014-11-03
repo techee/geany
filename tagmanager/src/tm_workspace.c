@@ -33,6 +33,20 @@
 #include "tm_workspace.h"
 #include "tm_tag.h"
 
+typedef struct
+{
+	TMSourceFile *source_file;
+	gchar *data;
+	gsize len;
+} FileBuffer;
+
+typedef struct
+{
+	GPtrArray *source_files;
+	gboolean finished;
+	GAsyncQueue *queue;
+} IOThreadData;
+
 static TMWorkspace *theWorkspace = NULL;
 
 
@@ -246,6 +260,24 @@ static void tm_workspace_update(void)
 }
 
 
+static gpointer io_thread_entry(gpointer user_data)
+{
+	guint i;
+	IOThreadData *thread_data = user_data;
+	
+	for (i = 0; i < thread_data->source_files->len; i++)
+	{
+		FileBuffer *file_buffer = g_slice_new(FileBuffer);
+		
+		file_buffer->source_file = thread_data->source_files->pdata[i];
+		if (!g_file_get_contents(file_buffer->source_file->file_name, &file_buffer->data, &file_buffer->len, NULL))
+			g_warning("Unable to open %s", file_buffer->source_file->file_name);
+		g_async_queue_push(thread_data->queue, file_buffer);
+	}
+	thread_data->finished = TRUE;
+}
+
+
 /** Adds multiple source files to the workspace and updates the workspace tag arrays.
  This is more efficient than calling tm_workspace_add_source_file() and
  tm_workspace_update_source_file() separately for each of the files.
@@ -253,8 +285,38 @@ static void tm_workspace_update(void)
 */
 void tm_workspace_add_source_files(GPtrArray *source_files)
 {
+	IOThreadData thread_data;
+	
+	thread_data.source_files = source_files;
+	thread_data.finished = FALSE;
+	thread_data.queue = g_async_queue_new();
+	
+	printf("fooo start\n");
+	
+	GThread *io_thread = g_thread_new ("Geany IO thread", io_thread_entry, &thread_data);
+	
+	while (g_async_queue_length(thread_data.queue) > 0 || !thread_data.finished)
+	{
+		FileBuffer *file_buffer = g_async_queue_pop(thread_data.queue);
+		tm_workspace_add_source_file(file_buffer->source_file);
+		update_source_file(file_buffer->source_file, file_buffer->data, file_buffer->len, TRUE, FALSE);
+		g_free(file_buffer->data);
+		g_slice_free(FileBuffer, file_buffer);
+	}
+	
+	g_thread_join(io_thread);
+	g_free(thread_data.queue);
+	printf("fooo end\n");
+	
+	tm_workspace_update();
+}
+
+/*
+void tm_workspace_add_source_files(GPtrArray *source_files)
+{
 	guint i;
 	
+	printf("fooo start\n");
 	for (i = 0; i < source_files->len; i++)
 	{
 		TMSourceFile *source_file = source_files->pdata[i];
@@ -262,9 +324,11 @@ void tm_workspace_add_source_files(GPtrArray *source_files)
 		tm_workspace_add_source_file(source_file);
 		update_source_file(source_file, NULL, 0, FALSE, FALSE);
 	}
+	printf("fooo end\n");
 	
 	tm_workspace_update();
 }
+*/
 
 
 /** Removes multiple source files from the workspace and updates the workspace tag
