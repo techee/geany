@@ -481,7 +481,7 @@ typedef struct UIUtilsFuncs
 	GtkWidget*	(*ui_dialog_vbox_new) (GtkDialog *dialog);
 	GtkWidget*	(*ui_frame_new_with_alignment) (const gchar *label_text, GtkWidget **alignment);
 	void		(*ui_set_statusbar) (gboolean log, const gchar *format, ...) G_GNUC_PRINTF (2, 3);
-	void		(*ui_table_add_row) (GtkTable *table, gint row, ...) G_GNUC_NULL_TERMINATED;
+	void		(*ui_table_add_row) (GtkTable *table, gint row, ...);
 	GtkWidget*	(*ui_path_box_new) (const gchar *title, GtkFileChooserAction action, GtkEntry *entry);
 	GtkWidget*	(*ui_button_new_with_image) (const gchar *stock_id, const gchar *text);
 	void		(*ui_add_document_sensitive) (GtkWidget *widget);
@@ -707,7 +707,7 @@ typedef struct StashFuncs
 			const gchar *key_name, gboolean default_value, gconstpointer widget_id);
 	void (*stash_group_add_radio_buttons)(struct StashGroup *group, gint *setting,
 			const gchar *key_name, gint default_value,
-			gconstpointer widget_id, gint enum_id, ...) G_GNUC_NULL_TERMINATED;
+			gconstpointer widget_id, gint enum_id, ...);
 	void (*stash_group_add_spin_button_integer)(struct StashGroup *group, gint *setting,
 			const gchar *key_name, gint default_value, gconstpointer widget_id);
 	void (*stash_group_add_combo_box)(struct StashGroup *group, gint *setting,
