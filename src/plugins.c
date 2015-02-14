@@ -1592,8 +1592,7 @@ static void pm_dialog_response(GtkDialog *dialog, gint response, gpointer user_d
 
 static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 {
-	GtkWidget *vbox, *vbox2, *hbox, *swin, *label, *menu_item;
-	GtkWidget *filter_hbox, *filter_entry, *filter_label;
+	GtkWidget *vbox, *vbox2, *hbox, *swin, *label, *menu_item, *filter_entry, *filter_label;
 
 	/* before showing the dialog, we need to create the list of available plugins */
 	load_all_plugins();
@@ -1621,9 +1620,6 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 	g_signal_connect(filter_entry, "changed", G_CALLBACK(on_pm_tree_filter_entry_changed_cb), NULL);
 	filter_label = gtk_label_new_with_mnemonic(_("_Filter:"));
 	gtk_label_set_mnemonic_widget(GTK_LABEL(filter_label), filter_entry);
-	filter_hbox = gtk_hbox_new(FALSE, 3);
-	gtk_box_pack_start(GTK_BOX(filter_hbox), filter_label, FALSE, FALSE, 0);
-	gtk_box_pack_start(GTK_BOX(filter_hbox), filter_entry, TRUE, TRUE, 0);
 
 	/* prepare treeview */
 	pm_widgets.tree = gtk_tree_view_new();
@@ -1663,7 +1659,8 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 	/* put it together */
 	hbox = gtk_hbox_new(FALSE, 0);
 	gtk_box_set_spacing(GTK_BOX(hbox), 6);
-	gtk_box_pack_start(GTK_BOX(hbox), filter_hbox, TRUE, TRUE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), filter_label, FALSE, FALSE, 0);
+	gtk_box_pack_start(GTK_BOX(hbox), filter_entry, TRUE, TRUE, 0);
 
 	vbox2 = gtk_vbox_new(FALSE, 3);
 	gtk_box_pack_start(GTK_BOX(vbox2), label, FALSE, FALSE, 5);
