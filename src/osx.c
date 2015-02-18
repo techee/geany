@@ -23,6 +23,27 @@
 #include "osx.h"
 
 #include "ui_utils.h"
+#include "main.h"
+
+
+static gboolean app_block_termination_cb(GtkosxApplication *app, gpointer data)
+{
+	return !main_quit();
+}
+
+
+static gboolean app_open_file_cb(GtkosxApplication *osx_app, gchar *path, gpointer user_data)
+{
+	if (g_str_has_suffix(path, ".geany"))
+	{
+		if (app->project == NULL || 
+			(g_strcmp0(path, app->project->file_name) != 0 && project_ask_close()))
+			return project_load_file_with_session(path);
+		return FALSE;
+	}
+	return document_open_file(path, FALSE, NULL, NULL) != NULL;
+}
+
 
 void osx_ui_init(void)
 {
@@ -43,6 +64,11 @@ void osx_ui_init(void)
 	gtkosx_application_set_help_menu(osx_app, GTK_MENU_ITEM(item));
 
 	gtkosx_application_set_use_quartz_accelerators(osx_app, FALSE);
+
+	g_signal_connect(osx_app, "NSApplicationBlockTermination",
+					G_CALLBACK(app_block_termination_cb), NULL);
+	g_signal_connect(osx_app, "NSApplicationOpenFile",
+					G_CALLBACK(app_open_file_cb), NULL);
 }
 
 #endif /* MAC_INTEGRATION */
