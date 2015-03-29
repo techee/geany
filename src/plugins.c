@@ -1585,13 +1585,13 @@ free_non_active_plugin(gpointer data, gpointer user_data)
 }
 
 
-/* Callback when plugin manager dialog closes, responses GTK_RESPONSE_OK and
+/* Callback when plugin manager dialog closes, responses GTK_RESPONSE_CLOSE and
  * GTK_RESPONSE_DELETE_EVENT are treated the same. */
 static void pm_dialog_response(GtkDialog *dialog, gint response, gpointer user_data)
 {
 	switch (response)
 	{
-		case GTK_RESPONSE_OK:
+		case GTK_RESPONSE_CLOSE:
 		case GTK_RESPONSE_DELETE_EVENT:
 			if (plugin_list != NULL)
 			{
@@ -1638,8 +1638,8 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 		GTK_DIALOG(pm_widgets.dialog), GTK_STOCK_PREFERENCES, PM_BUTTON_CONFIGURE);
 	pm_widgets.keybindings_button = gtk_dialog_add_button(
 		GTK_DIALOG(pm_widgets.dialog), _("Keybindings"), PM_BUTTON_KEYBINDINGS);
-	gtk_dialog_add_button(GTK_DIALOG(pm_widgets.dialog), GTK_STOCK_OK, GTK_RESPONSE_OK);
-	gtk_dialog_set_default_response(GTK_DIALOG(pm_widgets.dialog), GTK_RESPONSE_OK);
+	gtk_dialog_add_button(GTK_DIALOG(pm_widgets.dialog), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
+	gtk_dialog_set_default_response(GTK_DIALOG(pm_widgets.dialog), GTK_RESPONSE_CLOSE);
 
 	/* filter */
 	pm_widgets.filter_entry = filter_entry = gtk_entry_new();
