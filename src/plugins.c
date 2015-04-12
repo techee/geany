@@ -1225,15 +1225,18 @@ static PluginManagerWidgets pm_widgets;
 
 static void pm_update_buttons(Plugin *p)
 {
-	gboolean is_active;
-	gboolean has_configure;
-	gboolean has_help;
-	gboolean has_keybindings;
+	gboolean is_active = FALSE;
+	gboolean has_configure = FALSE;
+	gboolean has_help = FALSE;
+	gboolean has_keybindings = FALSE;
 
-	is_active = is_active_plugin(p);
-	has_configure = (p->configure || p->configure_single) && is_active;
-	has_help = p->help != NULL && is_active;
-	has_keybindings = p->key_group && p->key_group->plugin_key_count > 0 && is_active;
+	if (p != NULL)
+	{
+		is_active = is_active_plugin(p);
+		has_configure = (p->configure || p->configure_single) && is_active;
+		has_help = p->help != NULL && is_active;
+		has_keybindings = p->key_group && p->key_group->plugin_key_count > 0 && is_active;
+	}
 
 	gtk_widget_set_sensitive(pm_widgets.configure_button, has_configure);
 	gtk_widget_set_sensitive(pm_widgets.help_button, has_help);
@@ -1696,7 +1699,9 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 	gtk_widget_show_all(pm_widgets.dialog);
 	gtk_widget_show_all(pm_widgets.popup_menu);
 
-	gtk_widget_grab_focus(pm_widgets.tree);
+	/* set initial plugin buttons state, pass NULL as no plugin is selected by default */
+	pm_update_buttons(NULL);
+	gtk_widget_grab_focus(pm_widgets.filter_entry);
 }
 
 
