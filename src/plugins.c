@@ -1449,14 +1449,17 @@ static gboolean pm_tree_filter_func(GtkTreeModel *model, GtkTreeIter *iter, gpoi
 	Plugin *plugin;
 	gboolean matched;
 	const gchar *key;
-	gchar *haystack;
+	gchar *haystack, *filename;
 
 	gtk_tree_model_get(model, iter, PLUGIN_COLUMN_PLUGIN, &plugin, -1);
 	key = gtk_entry_get_text(GTK_ENTRY(pm_widgets.filter_entry));
 
-	haystack = g_strjoin(" ", plugin->info.name, plugin->info.description, plugin->info.author, NULL);
+	filename = g_path_get_basename(plugin->filename);
+	haystack = g_strjoin(" ", plugin->info.name, plugin->info.description,
+					plugin->info.author, filename, NULL);
 	matched = pm_tree_search(key, haystack);
 	g_free(haystack);
+	g_free(filename);
 
 	return matched;
 }
