@@ -665,13 +665,14 @@ static gboolean spawn_read_cb(GIOChannel *channel, GIOCondition condition, gpoin
 	if (condition & (G_IO_IN | G_IO_PRI))
 	{
 		gsize chars_read;
+		GIOStatus status;
 
 		if (line_buffer)
 		{
 			gsize n = line_buffer->len;
 
-			while ((g_io_channel_read_chars(channel, line_buffer->str + n,
-				DEFAULT_IO_LENGTH, &chars_read, NULL) == G_IO_STATUS_NORMAL))
+			while ((status = g_io_channel_read_chars(channel, line_buffer->str + n,
+				DEFAULT_IO_LENGTH, &chars_read, NULL)) != G_IO_STATUS_ERROR && status != G_IO_STATUS_EOF)
 			{
 				g_string_set_size(line_buffer, n + chars_read);
 
@@ -706,8 +707,8 @@ static gboolean spawn_read_cb(GIOChannel *channel, GIOCondition condition, gpoin
 		}
 		else
 		{
-			while (g_io_channel_read_chars(channel, buffer->str, sc->max_length,
-				&chars_read, NULL) == G_IO_STATUS_NORMAL)
+			while ((status = g_io_channel_read_chars(channel, buffer->str, sc->max_length,
+				&chars_read, NULL)) != G_IO_STATUS_ERROR && status != G_IO_STATUS_EOF)
 			{
 				g_string_set_size(buffer, chars_read);
 				/* data only, failures are reported separately below */
@@ -716,6 +717,12 @@ static gboolean spawn_read_cb(GIOChannel *channel, GIOCondition condition, gpoin
 				if (!failure)
 					break;
 			}
+		}
+
+		if (status == G_IO_STATUS_ERROR || status == G_IO_STATUS_EOF)
+		{
+			failure = TRUE;
+			condition |= G_IO_FAILURE;
 		}
 	}
 
