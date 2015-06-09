@@ -142,29 +142,43 @@ void WordList::Set(const char *s) {
 	}
 }
 
+static int cmp(const void *a, const void *b) {
+	const char *key = static_cast<const char *>(a);
+	const char *value = *static_cast<const char * const *>(b);
+	return strcmp(key, value);
+}
+
 /** Check whether a string is in the list.
  * List elements are either exact matches or prefixes.
  * Prefix elements start with '^' and match all strings that start with the rest of the element
  * so '^GTK_' matches 'GTK_X', 'GTK_MAJOR_VERSION', and 'GTK_'.
  */
 bool WordList::InList(const char *s) const {
+	int j;
 	if (0 == words)
 		return false;
-	unsigned char firstChar = s[0];
-	int j = starts[firstChar];
-	if (j >= 0) {
-		while (static_cast<unsigned char>(words[j][0]) == firstChar) {
-			if (s[1] == words[j][1]) {
-				const char *a = words[j] + 1;
-				const char *b = s + 1;
-				while (*a && *a == *b) {
-					a++;
-					b++;
+	if (len > 1000) { // approximate number where binary search gets cheaper
+		if (bsearch(s, words, len, sizeof(char *), cmp) != NULL) {
+			return true;
+		}
+	}
+	else {
+		unsigned char firstChar = s[0];
+		j = starts[firstChar];
+		if (j >= 0) {
+			while (static_cast<unsigned char>(words[j][0]) == firstChar) {
+				if (s[1] == words[j][1]) {
+					const char *a = words[j] + 1;
+					const char *b = s + 1;
+					while (*a && *a == *b) {
+						a++;
+						b++;
+					}
+					if (!*a && !*b)
+						return true;
 				}
-				if (!*a && !*b)
-					return true;
+				j++;
 			}
-			j++;
 		}
 	}
 	j = starts[static_cast<unsigned int>('^')];
