@@ -54,6 +54,8 @@
 #include "tm_tag.h"
 #include "ui_utils.h"
 #include "utils.h"
+#include "msgwindow.h"
+#include "keybindings.h"
 
 #include "SciLexer.h"
 
@@ -62,6 +64,7 @@
 #include <ctype.h>
 #include <string.h>
 #include <stdlib.h>
+#include <gdk/gdkkeysyms.h>
 
 
 static gchar **html_entities = NULL;
@@ -82,6 +85,13 @@ enum	/* Geany tag files */
 	GTF_LATEX,
 	GTF_PYTHON,
 	GTF_MAX
+};
+
+enum {
+	PIXBUF_COLUMN,
+	TEXT_COLUMN,
+	TAG_COLUMN,
+	N_COLUMNS
 };
 
 static TagFileInfo tag_file_info[GTF_MAX] =
@@ -137,6 +147,9 @@ static struct
 	GtkWidget *find_in_files;
 }
 symbol_menu;
+
+static GtkWidget *tag_goto_popup = NULL;
+static GtkWidget *tag_goto_tree_view = NULL;
 
 static void html_tags_loaded(void);
 static void load_user_tags(filetype_id ft_id);
@@ -349,66 +362,6 @@ const gchar *symbols_get_context_separator(gint ft_id)
 		default:
 			return ".";
 	}
-}
-
-
-/* Note: if tags is sorted, we can use bsearch or tm_tags_find() to speed this up. */
-static TMTag *
-symbols_find_tm_tag(const GPtrArray *tags, const gchar *tag_name)
-{
-	guint i;
-	g_return_val_if_fail(tags != NULL, NULL);
-
-	for (i = 0; i < tags->len; ++i)
-	{
-		if (utils_str_equal(TM_TAG(tags->pdata[i])->name, tag_name))
-			return TM_TAG(tags->pdata[i]);
-	}
-	return NULL;
-}
-
-
-static TMTag *find_source_file_tag(GPtrArray *tags_array,
-		const gchar *tag_name, guint type)
-{
-	GPtrArray *tags;
-	TMTag *tmtag;
-
-	tags = tm_tags_extract(tags_array, type);
-	if (tags != NULL)
-	{
-		tmtag = symbols_find_tm_tag(tags, tag_name);
-
-		g_ptr_array_free(tags, TRUE);
-
-		if (tmtag != NULL)
-			return tmtag;
-	}
-	return NULL;	/* not found */
-}
-
-
-static TMTag *find_workspace_tag(const gchar *tag_name, guint type)
-{
-	guint j;
-	const GPtrArray *source_files = NULL;
-
-	if (app->tm_workspace != NULL)
-		source_files = app->tm_workspace->source_files;
-
-	if (source_files != NULL)
-	{
-		for (j = 0; j < source_files->len; j++)
-		{
-			TMSourceFile *srcfile = source_files->pdata[j];
-			TMTag *tmtag;
-
-			tmtag = find_source_file_tag(srcfile->tags_array, tag_name, type);
-			if (tmtag != NULL)
-				return tmtag;
-		}
-	}
-	return NULL;	/* not found */
 }
 
 
@@ -1914,27 +1867,276 @@ static void load_user_tags(filetype_id ft_id)
 }
 
 
+static void on_focus_out(GtkWidget *list, GdkEventFocus *unused, gpointer *user_data)
+{
+	gtk_widget_hide(tag_goto_popup);
+}
+
+
+static void on_row_activated(GtkTreeView *tree_view, GtkTreePath *path,
+	GtkTreeViewColumn *column, gpointer user_data)
+{
+	GtkTreeModel *model = gtk_tree_view_get_model(tree_view);
+	GeanyDocument *new_doc;
+	GtkTreeIter iter;
+	TMTag *tag;
+
+	gtk_tree_model_get_iter(model, &iter, path);
+	gtk_tree_model_get(model, &iter, TAG_COLUMN, &tag, -1);
+	g_return_if_fail(tag);
+
+	new_doc = document_find_by_real_path(tag->file->file_name);
+	if (!new_doc)
+		new_doc = document_open_file(tag->file->file_name, FALSE, NULL, NULL);
+
+	if (new_doc)
+	{
+		GeanyDocument *old_doc = document_get_current();
+
+		navqueue_goto_line(old_doc, new_doc, tag->line);
+	}
+
+	gtk_widget_hide(tag_goto_popup);
+	tm_tag_unref(tag);
+}
+
+
+static gboolean on_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer user_data)
+{
+	guint state = event->state & gtk_accelerator_get_default_mod_mask();
+
+	if (event->keyval == GDK_Escape && state == 0)
+	{
+		gtk_widget_hide(tag_goto_popup);
+		keybindings_send_command(GEANY_KEY_GROUP_FOCUS, GEANY_KEYS_FOCUS_EDITOR);
+		return TRUE;
+	}
+	return FALSE;
+}
+
+
+static const gchar *get_tag_class(const TMTag *tag)
+{
+	switch (tag->type)
+	{
+		case tm_tag_prototype_t:
+		case tm_tag_method_t:
+		case tm_tag_function_t:
+			return "classviewer-method";
+		case tm_tag_variable_t:
+		case tm_tag_externvar_t:
+			return "classviewer-var";
+		case tm_tag_macro_t:
+		case tm_tag_macro_with_arg_t:
+			return "classviewer-macro";
+		case tm_tag_class_t:
+			return "classviewer-class";
+		case tm_tag_member_t:
+		case tm_tag_field_t:
+			return "classviewer-member";
+		case tm_tag_typedef_t:
+		case tm_tag_enum_t:
+		case tm_tag_union_t:
+		case tm_tag_struct_t:
+			return "classviewer-struct";
+		case tm_tag_namespace_t:
+		case tm_tag_package_t:
+			return "classviewer-namespace";
+		default:
+			break;
+	}
+	return "classviewer-struct";
+}
+
+
+static void create_goto_popup(void)
+{
+	GtkWidget *frame, *scroller;
+	GtkListStore *store;
+	GtkTreeSelection *selection;
+	GtkTreeViewColumn *column;
+	GtkCellRenderer *renderer;
+
+	tag_goto_popup = g_object_new(GTK_TYPE_WINDOW, "type", GTK_WINDOW_TOPLEVEL, NULL);
+	gtk_widget_set_can_focus(tag_goto_popup, TRUE);
+	gtk_window_set_type_hint(GTK_WINDOW(tag_goto_popup), GDK_WINDOW_TYPE_HINT_DIALOG);
+	gtk_window_set_decorated(GTK_WINDOW(tag_goto_popup), FALSE);
+	gtk_window_set_transient_for(GTK_WINDOW(tag_goto_popup), GTK_WINDOW(main_widgets.window));
+	gtk_window_set_destroy_with_parent(GTK_WINDOW(tag_goto_popup), TRUE);
+	gtk_window_set_position(GTK_WINDOW(tag_goto_popup), GTK_WIN_POS_CENTER_ON_PARENT);
+	gtk_widget_set_size_request(tag_goto_popup, 250, 150);
+
+	frame = gtk_frame_new(NULL);
+	gtk_container_add(GTK_CONTAINER(tag_goto_popup), frame);
+	gtk_frame_set_shadow_type(GTK_FRAME(frame), GTK_SHADOW_OUT);
+	gtk_container_set_border_width(GTK_CONTAINER(frame), 0);
+
+	scroller = gtk_scrolled_window_new(NULL, NULL);
+	gtk_container_set_border_width(GTK_CONTAINER(scroller), 0);
+	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroller),
+		GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
+	gtk_container_add(GTK_CONTAINER(frame), scroller);
+
+	/* TreeView and its model */
+	store = gtk_list_store_new(N_COLUMNS, GDK_TYPE_PIXBUF, G_TYPE_STRING, TM_TYPE_TAG);
+	tag_goto_tree_view = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
+	gtk_widget_set_can_focus(tag_goto_tree_view, TRUE);
+	gtk_container_add(GTK_CONTAINER(scroller), tag_goto_tree_view);
+	g_signal_connect(tag_goto_tree_view, "focus-out-event", G_CALLBACK(on_focus_out), tag_goto_popup);
+	g_signal_connect(tag_goto_tree_view, "row-activated", G_CALLBACK(on_row_activated), NULL);
+	g_signal_connect(tag_goto_tree_view, "key-press-event", G_CALLBACK(on_key_pressed), NULL);
+
+	selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tag_goto_tree_view));
+	gtk_tree_selection_set_mode(selection, GTK_SELECTION_SINGLE);
+	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(tag_goto_tree_view), FALSE);
+	gtk_tree_view_set_reorderable(GTK_TREE_VIEW(tag_goto_tree_view), FALSE);
+
+	/* Columns */
+	column = gtk_tree_view_column_new();
+	gtk_tree_view_column_set_sizing(column, GTK_TREE_VIEW_COLUMN_FIXED);
+
+	renderer = gtk_cell_renderer_pixbuf_new();
+	gtk_tree_view_column_pack_start(column, renderer, FALSE);
+	gtk_tree_view_column_add_attribute(column, renderer, "pixbuf", PIXBUF_COLUMN);
+
+	renderer = gtk_cell_renderer_text_new();
+	gtk_tree_view_column_pack_start(column, renderer, TRUE);
+	gtk_tree_view_column_add_attribute(column, renderer, "markup", TEXT_COLUMN);
+
+	gtk_tree_view_append_column(GTK_TREE_VIEW(tag_goto_tree_view), column);
+
+	gtk_widget_show_all(frame);
+}
+
+
+static void show_goto_popup(GPtrArray *tags, gboolean have_best)
+{
+	gboolean first = TRUE;
+	GtkTreePath *path;
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+	TMTag *tmtag;
+	gint i;
+
+	if (!tag_goto_popup)
+		create_goto_popup();
+
+	model = gtk_tree_view_get_model(GTK_TREE_VIEW(tag_goto_tree_view));
+	gtk_list_store_clear(GTK_LIST_STORE(model));
+
+	foreach_ptr_array(tmtag, i, tags)
+	{
+		gchar *fname = g_path_get_basename(tmtag->file->file_name);
+		gchar *text;
+
+		if (first && have_best)
+			text = g_strdup_printf("<b>%s: %lu</b>", fname, tmtag->line);
+		else
+			text = g_strdup_printf("%s: %lu", fname, tmtag->line);
+
+		gtk_list_store_insert_with_values(GTK_LIST_STORE(model), &iter, -1,
+				PIXBUF_COLUMN, get_tag_icon(get_tag_class(tmtag)),
+				TEXT_COLUMN, text,
+				TAG_COLUMN, tmtag, -1);
+
+		g_free(text);
+		g_free(fname);
+		first = FALSE;
+	}
+
+	path = gtk_tree_path_new_first();
+	gtk_tree_view_set_cursor (GTK_TREE_VIEW(tag_goto_tree_view), path, NULL, FALSE);
+	gtk_tree_path_free(path);
+
+	gtk_window_present(GTK_WINDOW(tag_goto_popup));
+}
+
+
+static gint compare_tags(gconstpointer ptr1, gconstpointer ptr2)
+{
+	gint res;
+	TMTag *t1 = *((TMTag **) ptr1);
+	TMTag *t2 = *((TMTag **) ptr2);
+
+	res = g_strcmp0(t1->file->short_name, t2->file->short_name);
+	if (res != 0)
+		return res;
+	return t1->line - t2->line;
+}
+
+
+static TMTag *find_best_goto_tag(GPtrArray *tags)
+{
+	GeanyDocument *doc = document_get_current();
+	TMTag *tag;
+	guint i;
+
+	/* first check if we have a tag in the current file */
+	foreach_ptr_array(tag, i, tags)
+	{
+		if (g_strcmp0(doc->real_path, tag->file->file_name) == 0)
+			return tag;
+	}
+
+	/* next check if we have a tag for some of the open documents */
+	foreach_ptr_array(tag, i, tags)
+	{
+		guint j;
+
+		foreach_document(j)
+		{
+			if (g_strcmp0(documents[j]->real_path, tag->file->file_name) == 0)
+				return tag;
+		}
+	}
+
+	/* next check if we have a tag for a file inside the current document's directory */
+	foreach_ptr_array(tag, i, tags)
+	{
+		gchar *dir = g_path_get_dirname(doc->real_path);
+
+		if (g_str_has_prefix(tag->file->file_name, dir))
+		{
+			g_free(dir);
+			return tag;
+		}
+		g_free(dir);
+	}
+
+	return NULL;
+}
+
+
 static gboolean goto_tag(const gchar *name, gboolean definition)
 {
 	const TMTagType forward_types = tm_tag_prototype_t | tm_tag_externvar_t;
 	TMTagType type;
 	TMTag *tmtag = NULL;
 	GeanyDocument *old_doc = document_get_current();
+	gboolean found = FALSE;
+	const GPtrArray *all_tags;
+	GPtrArray *workspace_tags;
+	guint i;
 
 	/* goto tag definition: all except prototypes / forward declarations / externs */
 	type = (definition) ? tm_tag_max_t - forward_types : forward_types;
+	all_tags = tm_workspace_find(name, type, NULL, FALSE, old_doc->file_type->lang);
 
-	/* first look in the current document */
-	if (old_doc != NULL && old_doc->tm_file)
-		tmtag = find_source_file_tag(old_doc->tm_file->tags_array, name, type);
-
-	/* if not found, look in the workspace */
-	if (tmtag == NULL)
-		tmtag = find_workspace_tag(name, type);
-
-	if (tmtag != NULL)
+	/* get rid of global tags */
+	workspace_tags = g_ptr_array_new();
+	foreach_ptr_array(tmtag, i, all_tags)
 	{
-		GeanyDocument *new_doc = document_find_by_real_path(
+		if (tmtag->file)
+			g_ptr_array_add(workspace_tags, tmtag);
+	}
+
+	if (workspace_tags->len == 1)
+	{
+		GeanyDocument *new_doc;
+		gboolean swapped = FALSE;
+		
+		tmtag = workspace_tags->pdata[0];
+		new_doc = document_find_by_real_path(
 			tmtag->file->file_name);
 
 		if (new_doc)
@@ -1944,7 +2146,10 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 				tmtag->line == (guint)sci_get_current_line(old_doc->editor->sci) + 1)
 			{
 				if (goto_tag(name, !definition))
-					return TRUE;
+				{
+					found = TRUE;
+					swapped = TRUE;
+				}
 			}
 		}
 		else
@@ -1953,10 +2158,34 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 			new_doc = document_open_file(tmtag->file->file_name, FALSE, NULL, NULL);
 		}
 
-		if (navqueue_goto_line(old_doc, new_doc, tmtag->line))
-			return TRUE;
+		if (!swapped && navqueue_goto_line(old_doc, new_doc, tmtag->line))
+			found = TRUE;
 	}
-	return FALSE;
+	else if (workspace_tags->len > 1)
+	{
+		GPtrArray *tags;
+		TMTag *tag, *best_tag;
+
+		g_ptr_array_sort(workspace_tags, compare_tags);
+		best_tag = find_best_goto_tag(workspace_tags);
+
+		tags = g_ptr_array_new();
+		if (best_tag)
+			g_ptr_array_add(tags, best_tag);
+		foreach_ptr_array(tag, i, workspace_tags)
+		{
+			if (tag != best_tag)
+				g_ptr_array_add(tags, tag);
+		}
+		show_goto_popup(tags, best_tag != 0);
+
+		g_ptr_array_free(tags, TRUE);
+		found = TRUE;
+	}
+
+	g_ptr_array_free(workspace_tags, TRUE);
+
+	return found;
 }
 
 
