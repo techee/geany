@@ -54,7 +54,6 @@
 #include "tm_tag.h"
 #include "ui_utils.h"
 #include "utils.h"
-#include "msgwindow.h"
 #include "keybindings.h"
 
 #include "SciLexer.h"
@@ -1990,7 +1989,7 @@ static void show_goto_popup(GPtrArray *tags, gboolean have_best)
 	GtkTreeModel *model;
 	GtkTreeIter iter;
 	TMTag *tmtag;
-	gint i;
+	guint i;
 
 	if (!tag_goto_popup)
 		create_goto_popup();
@@ -2094,7 +2093,7 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 
 	/* goto tag definition: all except prototypes / forward declarations / externs */
 	type = (definition) ? tm_tag_max_t - forward_types : forward_types;
-	all_tags = tm_workspace_find(name, type, NULL, FALSE, old_doc->file_type->lang);
+	all_tags = tm_workspace_find(name, NULL, type, NULL, old_doc->file_type->lang);
 
 	/* get rid of global tags */
 	workspace_tags = g_ptr_array_new();
