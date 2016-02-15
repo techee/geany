@@ -1888,37 +1888,37 @@ static gboolean on_key_pressed(GtkWidget *widget, GdkEventKey *event, gpointer u
 }
 
 
-static const gchar *get_tag_class(const TMTag *tag)
+static guint get_tag_class(const TMTag *tag)
 {
 	switch (tag->type)
 	{
 		case tm_tag_prototype_t:
 		case tm_tag_method_t:
 		case tm_tag_function_t:
-			return "classviewer-method";
+			return ICON_METHOD;
 		case tm_tag_variable_t:
 		case tm_tag_externvar_t:
-			return "classviewer-var";
+			return ICON_VAR;
 		case tm_tag_macro_t:
 		case tm_tag_macro_with_arg_t:
-			return "classviewer-macro";
+			return ICON_MACRO;
 		case tm_tag_class_t:
-			return "classviewer-class";
+			return ICON_CLASS;
 		case tm_tag_member_t:
 		case tm_tag_field_t:
-			return "classviewer-member";
+			return ICON_MEMBER;
 		case tm_tag_typedef_t:
 		case tm_tag_enum_t:
 		case tm_tag_union_t:
 		case tm_tag_struct_t:
-			return "classviewer-struct";
+			return ICON_STRUCT;
 		case tm_tag_namespace_t:
 		case tm_tag_package_t:
-			return "classviewer-namespace";
+			return ICON_NAMESPACE;
 		default:
 			break;
 	}
-	return "classviewer-struct";
+	return ICON_STRUCT;
 }
 
 
@@ -2008,7 +2008,7 @@ static void show_goto_popup(GPtrArray *tags, gboolean have_best)
 			text = g_strdup_printf("%s: %lu", fname, tmtag->line);
 
 		gtk_list_store_insert_with_values(GTK_LIST_STORE(model), &iter, -1,
-				PIXBUF_COLUMN, get_tag_icon(get_tag_class(tmtag)),
+				PIXBUF_COLUMN, symbols_icons[get_tag_class(tmtag)].pixbuf,
 				TEXT_COLUMN, text,
 				TAG_COLUMN, tmtag, -1);
 
