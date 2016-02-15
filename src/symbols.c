@@ -2003,9 +2003,9 @@ static void show_goto_popup(GPtrArray *tags, gboolean have_best)
 		gchar *text;
 
 		if (first && have_best)
-			text = g_strdup_printf("<b>%s: %lu</b>", fname, tmtag->line);
+			text = g_markup_printf_escaped("<b>%s: %lu</b>", fname, tmtag->line);
 		else
-			text = g_strdup_printf("%s: %lu", fname, tmtag->line);
+			text = g_markup_printf_escaped("%s: %lu", fname, tmtag->line);
 
 		gtk_list_store_insert_with_values(GTK_LIST_STORE(model), &iter, -1,
 				PIXBUF_COLUMN, symbols_icons[get_tag_class(tmtag)].pixbuf,
