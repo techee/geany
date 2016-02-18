@@ -2078,7 +2078,7 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 			if (tag != best_tag)
 				g_ptr_array_add(tags, tag);
 		}
-		show_goto_popup(old_doc, tags, best_tag != 0);
+		show_goto_popup(old_doc, tags, best_tag != NULL);
 
 		g_ptr_array_free(tags, TRUE);
 		found = TRUE;
