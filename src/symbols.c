@@ -2038,8 +2038,7 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 	if (workspace_tags->len == 1)
 	{
 		GeanyDocument *new_doc;
-		gboolean swapped = FALSE;
-		
+
 		tmtag = workspace_tags->pdata[0];
 		new_doc = document_find_by_real_path(
 			tmtag->file->file_name);
@@ -2051,10 +2050,7 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 				tmtag->line == (guint)sci_get_current_line(old_doc->editor->sci) + 1)
 			{
 				if (goto_tag(name, !definition))
-				{
 					found = TRUE;
-					swapped = TRUE;
-				}
 			}
 		}
 		else
@@ -2063,7 +2059,7 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 			new_doc = document_open_file(tmtag->file->file_name, FALSE, NULL, NULL);
 		}
 
-		if (!swapped && navqueue_goto_line(old_doc, new_doc, tmtag->line))
+		if (!found && navqueue_goto_line(old_doc, new_doc, tmtag->line))
 			found = TRUE;
 	}
 	else if (workspace_tags->len > 1)
