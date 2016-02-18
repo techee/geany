@@ -1830,20 +1830,15 @@ static void load_user_tags(filetype_id ft_id)
 
 static void on_goto_popup_item_activate(GtkMenuItem *item, TMTag *tag)
 {
-	GeanyDocument *new_doc;
+	GeanyDocument *new_doc, *old_doc;
 
 	g_return_if_fail(tag);
 
-	new_doc = document_find_by_real_path(tag->file->file_name);
-	if (!new_doc)
-		new_doc = document_open_file(tag->file->file_name, FALSE, NULL, NULL);
+	old_doc = document_get_current();
+	new_doc = document_open_file(tag->file->file_name, FALSE, NULL, NULL);
 
 	if (new_doc)
-	{
-		GeanyDocument *old_doc = document_get_current();
-
 		navqueue_goto_line(old_doc, new_doc, tag->line);
-	}
 }
 
 
