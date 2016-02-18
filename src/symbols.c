@@ -1842,6 +1842,7 @@ static void on_goto_popup_item_activate(GtkMenuItem *item, TMTag *tag)
 }
 
 
+/* FIXME: use the same icons as in the symbols tree defined in add_top_level_items() */
 static guint get_tag_class(const TMTag *tag)
 {
 	switch (tag->type)
