@@ -1970,9 +1970,8 @@ static gint compare_tags(gconstpointer ptr1, gconstpointer ptr2)
 }
 
 
-static TMTag *find_best_goto_tag(GPtrArray *tags)
+static TMTag *find_best_goto_tag(GeanyDocument *doc, GPtrArray *tags)
 {
-	GeanyDocument *doc = document_get_current();
 	TMTag *tag;
 	guint i;
 
@@ -2068,7 +2067,7 @@ static gboolean goto_tag(const gchar *name, gboolean definition)
 		TMTag *tag, *best_tag;
 
 		g_ptr_array_sort(workspace_tags, compare_tags);
-		best_tag = find_best_goto_tag(workspace_tags);
+		best_tag = find_best_goto_tag(old_doc, workspace_tags);
 
 		tags = g_ptr_array_new();
 		if (best_tag)
