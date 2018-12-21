@@ -157,6 +157,7 @@ test_sources = \
 	fortran_associate.f90			\
 	fortran_line_continuation.f90	\
 	func_typedef.h					\
+	geany.nsi						\
 	general.cs						\
 	hex2dec.sql						\
 	implied_program.f				\
@@ -276,7 +277,11 @@ test_sources = \
 	simple.conf						\
 	simple.d						\
 	simple.diff						\
+	simple.docbook					\
+	simple.hs						\
+	simple.hx						\
 	simple.html						\
+	simple.inp						\
 	simple.js						\
 	simple.json						\
 	simple.ksh						\
@@ -291,6 +296,7 @@ test_sources = \
 	simple.rst						\
 	simple.sh						\
 	simple.tcl						\
+	simple.vala						\
 	simple.zep						\
 	size_t_wchar_t_alias.d			\
 	size_t_wchar_t_typedef.c		\
