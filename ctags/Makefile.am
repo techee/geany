@@ -10,7 +10,6 @@ noinst_LTLIBRARIES = libctags.la
 
 parsers = \
 	parsers/abaqus.c \
-	parsers/abc.c \
 	parsers/actionscript.c \
 	parsers/asciidoc.c \
 	parsers/asm.c \

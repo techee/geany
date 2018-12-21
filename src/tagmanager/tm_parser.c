@@ -398,12 +398,6 @@ static TMParserMapEntry map_TXT2TAGS[] = {
 	{'m', tm_tag_member_t},
 };
 
-/* not in universal-ctags */
-static TMParserMapEntry map_ABC[] = {
-	{'m', tm_tag_member_t},
-	{'s', tm_tag_struct_t},
-};
-
 static TMParserMapEntry map_VERILOG[] = {
 	{'c', tm_tag_variable_t},
 	{'e', tm_tag_typedef_t},
@@ -557,7 +551,6 @@ static TMParserMap parser_map[] = {
 	MAP_ENTRY(NSIS),
 	MAP_ENTRY(MARKDOWN),
 	MAP_ENTRY(TXT2TAGS),
-	MAP_ENTRY(ABC),
 	MAP_ENTRY(VERILOG),
 	MAP_ENTRY(R),
 	MAP_ENTRY(COBOL),

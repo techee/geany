@@ -151,7 +151,7 @@ static void init_builtin_filetypes(void)
 	FT_INIT( HASKELL,    HASKELL,      "Haskell",          NULL,                      SOURCE_FILE, COMPILED );
 	FT_INIT( MARKDOWN,   MARKDOWN,     "Markdown",         NULL,                      SOURCE_FILE, MARKUP   );
 	FT_INIT( TXT2TAGS,   TXT2TAGS,     "Txt2tags",         NULL,                      SOURCE_FILE, MARKUP   );
-	FT_INIT( ABC,        ABC,          "Abc",              NULL,                      FILE,        MISC     );
+	FT_INIT( ABC,        NONE,         "Abc",              NULL,                      FILE,        MISC     );
 	FT_INIT( SH,         SH,           "Sh",               _("Shell"),                SCRIPT,      SCRIPT   );
 	FT_INIT( MAKE,       MAKEFILE,     "Make",             _("Makefile"),             NONE,        SCRIPT   );
 	FT_INIT( XML,        NONE,         "XML",              NULL,                      DOCUMENT,    MARKUP   );

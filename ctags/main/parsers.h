@@ -54,7 +54,6 @@
 	NsisParser, \
 	MarkdownParser, \
 	Txt2tagsParser, \
-	AbcParser, \
 	VerilogParser, \
 	RParser, \
 	CobolParser, \
