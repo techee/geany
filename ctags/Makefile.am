@@ -28,7 +28,6 @@ parsers = \
 	parsers/html.c \
 	parsers/jscript.c \
 	parsers/json.c \
-	parsers/latex.c \
 	parsers/lua.c \
 	parsers/make.c \
 	parsers/markdown.c \
@@ -47,6 +46,7 @@ parsers = \
 	parsers/sh.c \
 	parsers/sql.c \
 	parsers/tcl.c \
+	parsers/tex.c \
 	parsers/txt2tags.c \
 	parsers/verilog.c \
 	parsers/vhdl.c
