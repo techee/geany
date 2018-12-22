@@ -15,8 +15,8 @@
 /* Add the name of any new parser definition function here */
 /* keep src/tagmanager/tm_parser.h in sync */
 #define PARSER_LIST \
-	CParser, \
-	CppParser, \
+	CParserOld, \
+	CppParserOld, \
 	JavaParser, \
 	MakefileParser, \
 	PascalParser, \
