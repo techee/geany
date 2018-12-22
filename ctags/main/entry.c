@@ -1100,6 +1100,9 @@ static void initCtagsTag(ctagsTag *tag, const tagEntryInfo *info)
 	tag->scopeName = info->extensionFields.scopeName;
 	tag->inheritance = info->extensionFields.inheritance;
 	tag->varType = info->extensionFields.varType;
+	/* new cxx parser currently reports varType inside typeRef[1] */
+	if (!tag->varType && info->extensionFields.typeRef[1])
+		tag->varType = info->extensionFields.typeRef[1];
 	tag->access = info->extensionFields.access;
 	tag->implementation = info->extensionFields.implementation;
 	tag->kindLetter = getLanguageKind(info->langType, info->kindIndex)->letter;

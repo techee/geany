@@ -15,8 +15,8 @@
 /* Add the name of any new parser definition function here */
 /* keep src/tagmanager/tm_parser.h in sync */
 #define PARSER_LIST \
-	CParserOld, \
-	CppParserOld, \
+	CParser, \
+	CppParser, \
 	JavaParser, \
 	MakefileParser, \
 	PascalParser, \
@@ -64,6 +64,7 @@
 	GoParser, \
 	JsonParser, \
 	ZephirParser, \
-	PowerShellParser
+	PowerShellParser, \
+	CPreProParser
 
 #endif  /* CTAGS_MAIN_PARSERS_H */
