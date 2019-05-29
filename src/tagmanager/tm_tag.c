@@ -670,6 +670,10 @@ gboolean tm_tag_is_anon(const TMTag *tag)
 	guint i;
 	char dummy;
 
+	if (tag->flags & tm_tag_flag_anon_t)
+		return TRUE;
+
+	/* TODO: make all parsers report XTAG_ANONYMOUS and eliminate this code */
 	if (tag->lang == TM_PARSER_C || tag->lang == TM_PARSER_CPP)
 		return sscanf(tag->name, "anon_%*[a-z]_%u%c", &i, &dummy) == 1;
 	else if (tag->lang == TM_PARSER_FORTRAN || tag->lang == TM_PARSER_F77)
