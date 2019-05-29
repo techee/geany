@@ -676,10 +676,6 @@ gboolean tm_tag_is_anon(const TMTag *tag)
 	/* TODO: make all parsers report XTAG_ANONYMOUS and eliminate this code */
 	if (tag->lang == TM_PARSER_C || tag->lang == TM_PARSER_CPP)
 		return sscanf(tag->name, "anon_%*[a-z]_%u%c", &i, &dummy) == 1;
-	else if (tag->lang == TM_PARSER_FORTRAN || tag->lang == TM_PARSER_F77)
-		return sscanf(tag->name, "Structure#%u%c", &i, &dummy) == 1 ||
-			sscanf(tag->name, "Interface#%u%c", &i, &dummy) == 1 ||
-			sscanf(tag->name, "Enum#%u%c", &i, &dummy) == 1;
 	return FALSE;
 }
 
