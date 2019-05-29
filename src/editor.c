@@ -1847,13 +1847,7 @@ static gboolean append_calltip(GString *str, const TMTag *tag, GeanyFiletypeID f
 	{	/* usual calltips: "retval tagname (arglist)" */
 		if (tag->var_type)
 		{
-			guint i;
-
 			g_string_append(str, tag->var_type);
-			for (i = 0; i < tag->pointerOrder; i++)
-			{
-				g_string_append_c(str, '*');
-			}
 			g_string_append_c(str, ' ');
 		}
 		if (tag->scope)
