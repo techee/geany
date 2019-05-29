@@ -1,8 +1,6 @@
 # format=tagmanager
 ConstantsÌ256Ö0
 E_eÌ16384ÎConstantsÖ0
-Enum#0Ì2ÎConstantsÖ0
-Enum#1Ì2ÎConstantsÖ0
 Named1Ì2ÎConstantsÖ0
 Named2Ì2ÎConstantsÖ0
 Named3Ì2ÎConstantsÖ0
@@ -11,6 +9,8 @@ Named5Ì2ÎConstantsÖ0
 Named6Ì2ÎConstantsÖ0
 Named7Ì2ÎConstantsÖ0
 aÌ4ÎEnum#1Ö0
+anonymous1Ì2ÎConstantsÖ0
+anonymous2Ì2ÎConstantsÖ0
 bÌ4ÎEnum#1Ö0
 blackÌ4ÎEnum#0Ö0
 blueÌ4ÎEnum#0Ö0
