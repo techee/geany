@@ -90,6 +90,7 @@
 	JavaScriptParser, \
 	JsonParser, \
 	KconfigParser, \
+	KotlinParser, \
 	LdScriptParser, \
 	LispParser, \
 	LuaParser, \
