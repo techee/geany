@@ -54,7 +54,8 @@ parsers = \
 	parsers/geany_tex.c \
 	parsers/geany_txt2tags.c \
 	parsers/geany_verilog.c \
-	parsers/geany_vhdl.c
+	parsers/geany_vhdl.c \
+	parsers/kotlin.c
 
 # skip cmd.c and mini-geany.c which define main()
 libctags_la_SOURCES = \
