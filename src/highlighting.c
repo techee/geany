@@ -1040,6 +1040,7 @@ void highlighting_init_styles(guint filetype_idx, GKeyFile *config, GKeyFile *co
 		init_styleset_case(PHP);
 		init_styleset_case(PO);
 		init_styleset_case(POWERSHELL);
+		init_styleset_case(PROLOG);
 		init_styleset_case(PYTHON);
 		init_styleset_case(R);
 		init_styleset_case(RUBY);
@@ -1131,6 +1132,7 @@ void highlighting_set_styles(ScintillaObject *sci, GeanyFiletype *ft)
 		styleset_case(PHP);
 		styleset_case(PO);
 		styleset_case(POWERSHELL);
+		styleset_case(PROLOG);
 		styleset_case(PYTHON);
 		styleset_case(R);
 		styleset_case(RUBY);
@@ -1632,6 +1634,15 @@ gboolean highlighting_is_string_style(gint lexer, gint style)
 			return (style == SCE_POWERSHELL_STRING ||
 				style == SCE_POWERSHELL_CHARACTER);
 
+		case SCLEX_VISUALPROLOG:
+			return (style == SCE_VISUALPROLOG_STRING ||
+				style == SCE_VISUALPROLOG_STRING_ESCAPE ||
+				style == SCE_VISUALPROLOG_STRING_ESCAPE_ERROR ||
+				style == SCE_VISUALPROLOG_STRING_EOL_OPEN ||
+				style == SCE_VISUALPROLOG_STRING_VERBATIM ||
+				style == SCE_VISUALPROLOG_STRING_VERBATIM_SPECIAL ||
+				style == SCE_VISUALPROLOG_STRING_VERBATIM_EOL);
+
 		case SCLEX_BATCH:
 		case SCLEX_DIFF:
 		case SCLEX_LATEX:
@@ -1868,6 +1879,12 @@ gboolean highlighting_is_comment_style(gint lexer, gint style)
 		case SCLEX_GDSCRIPT:
 			return (style == SCE_GD_COMMENTLINE ||
 				style == SCE_GD_COMMENTBLOCK);
+
+		case SCLEX_VISUALPROLOG:
+			return (style == SCE_VISUALPROLOG_COMMENT_BLOCK ||
+				style == SCE_VISUALPROLOG_COMMENT_LINE ||
+				style == SCE_VISUALPROLOG_COMMENT_KEY ||
+				style == SCE_VISUALPROLOG_COMMENT_KEY_ERROR);
 	}
 	return FALSE;
 }
