@@ -167,6 +167,7 @@ typedef struct UIPrefs
 	gboolean	allow_always_save; /* if set, files can always be saved, even if unchanged */
 	gchar		*statusbar_template;
 	gboolean	new_document_after_close;
+	gboolean	symbols_categorize;
 
 	/* Menu-item related data */
 	GQueue		*recent_queue;

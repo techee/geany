@@ -114,6 +114,8 @@ typedef struct GeanyDocumentPrivate
 	GData			*data;
 	/* Text used for filtering symbol tree. */
 	gchar			*tag_filter;
+	/* Categorize tags into root groups in symbol tree. */
+	gboolean		symbols_categorize;
 }
 GeanyDocumentPrivate;
 

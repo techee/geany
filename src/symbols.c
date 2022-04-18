@@ -100,6 +100,8 @@ static struct
 	GtkWidget *find_usage;
 	GtkWidget *find_doc_usage;
 	GtkWidget *find_in_files;
+	GtkWidget *categorized_view;
+	GtkWidget *uncategorized_view;
 }
 symbol_menu;
 
@@ -975,16 +977,17 @@ static void update_tree_tags(GeanyDocument *doc, GList **tags)
 	foreach_list (item, *tags)
 	{
 		TMTag *tag = item->data;
-		GtkTreeIter *parent;
+		GtkTreeIter *parent, *parent_group;
 
-		parent = get_tag_type_iter(tag->lang, tag->type);
-		if (parent)
+		parent_group = get_tag_type_iter(tag->lang, tag->type);
+		parent = ui_prefs.symbols_categorize ? parent_group : NULL;
+		if (parent_group)
 		{
 			gboolean expand;
 			const gchar *name;
 			const gchar *parent_name;
 			gchar *tooltip;
-			GdkPixbuf *icon = get_child_icon(store, parent);
+			GdkPixbuf *icon = get_child_icon(store, parent_group);
 
 			parent_name = get_parent_name(tag);
 			if (parent_name)
@@ -997,9 +1000,10 @@ static void update_tree_tags(GeanyDocument *doc, GList **tags)
 					parent_name = NULL;
 			}
 
-			/* only expand to the iter if the parent was empty, otherwise we let the
-			 * folding as it was before (already expanded, or closed by the user) */
-			expand = ! gtk_tree_model_iter_has_child(model, parent);
+			if (parent)
+				/* only expand to the iter if the parent was empty, otherwise we let the
+				* folding as it was before (already expanded, or closed by the user) */
+				expand = ! gtk_tree_model_iter_has_child(model, parent);
 
 			/* insert the new element */
 			name = get_symbol_name(doc, tag, parent_name != NULL);
@@ -1136,6 +1140,11 @@ gboolean symbols_recreate_tag_list(GeanyDocument *doc, gint sort_mode)
 	tags = get_tag_list(doc, tm_tag_max_t);
 	if (tags == NULL)
 		return FALSE;
+
+	if (doc->priv->symbols_categorize != ui_prefs.symbols_categorize)
+		gtk_tree_store_clear(doc->priv->tag_store);
+
+	doc->priv->symbols_categorize = ui_prefs.symbols_categorize;
 
 	/* FIXME: Not sure why we detached the model here? */
 
@@ -2035,6 +2044,18 @@ static void on_symbol_tree_sort_clicked(GtkMenuItem *menuitem, gpointer user_dat
 		doc->has_tags = symbols_recreate_tag_list(doc, sort_mode);
 }
 
+static void on_symbol_tree_categorize_clicked(GtkMenuItem *menuitem, gpointer user_data)
+{
+	gboolean symbols_categorize = GPOINTER_TO_INT(user_data) > 0;
+	GeanyDocument *doc = document_get_current();
+
+	if (ignore_callback)
+		return;
+
+	ui_prefs.symbols_categorize = symbols_categorize;
+	if (doc != NULL)
+		doc->has_tags = symbols_recreate_tag_list(doc, SYMBOLS_SORT_USE_PREVIOUS);
+}
 
 static void on_symbol_tree_menu_show(GtkWidget *widget,
 		gpointer user_data)
@@ -2045,6 +2066,8 @@ static void on_symbol_tree_menu_show(GtkWidget *widget,
 	enable = doc && doc->has_tags;
 	gtk_widget_set_sensitive(symbol_menu.sort_by_name, enable);
 	gtk_widget_set_sensitive(symbol_menu.sort_by_appearance, enable);
+	gtk_widget_set_sensitive(symbol_menu.categorized_view, enable);
+	gtk_widget_set_sensitive(symbol_menu.uncategorized_view, enable);
 	gtk_widget_set_sensitive(symbol_menu.expand_all, enable);
 	gtk_widget_set_sensitive(symbol_menu.collapse_all, enable);
 	gtk_widget_set_sensitive(symbol_menu.find_usage, enable);
@@ -2059,6 +2082,11 @@ static void on_symbol_tree_menu_show(GtkWidget *widget,
 		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(symbol_menu.sort_by_name), TRUE);
 	else
 		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(symbol_menu.sort_by_appearance), TRUE);
+
+	if (ui_prefs.symbols_categorize)
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(symbol_menu.categorized_view), TRUE);
+	else
+		gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(symbol_menu.uncategorized_view), TRUE);
 
 	ignore_callback = FALSE;
 }
@@ -2142,6 +2170,24 @@ static void create_taglist_popup_menu(void)
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(on_symbol_tree_sort_clicked),
 			GINT_TO_POINTER(SYMBOLS_SORT_BY_APPEARANCE));
+
+	item = gtk_separator_menu_item_new();
+	gtk_widget_show(item);
+	gtk_container_add(GTK_CONTAINER(menu), item);
+
+	symbol_menu.categorized_view = item = gtk_radio_menu_item_new_with_mnemonic(NULL,
+		_("Ca_tegorized View"));
+	gtk_widget_show(item);
+	gtk_container_add(GTK_CONTAINER(menu), item);
+	g_signal_connect(item, "activate", G_CALLBACK(on_symbol_tree_categorize_clicked),
+			GINT_TO_POINTER(1));
+
+	symbol_menu.uncategorized_view = item = gtk_radio_menu_item_new_with_mnemonic_from_widget(
+		GTK_RADIO_MENU_ITEM(item), _("Uncate_gorized View"));
+	gtk_widget_show(item);
+	gtk_container_add(GTK_CONTAINER(menu), item);
+	g_signal_connect(item, "activate", G_CALLBACK(on_symbol_tree_categorize_clicked),
+			GINT_TO_POINTER(0));
 
 	item = gtk_separator_menu_item_new();
 	gtk_widget_show(item);
