@@ -1356,7 +1356,8 @@ static const HLStyle highlighting_styles_PROLOG[] =
 };
 static const HLKeyword highlighting_keywords_PROLOG[] =
 {
-	{ 0, "primary",	FALSE }
+	{ 0, "primary",	FALSE },
+	{ 1, "extended", FALSE }
 };
 #define highlighting_properties_PROLOG	EMPTY_PROPERTIES
 
