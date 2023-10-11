@@ -41,7 +41,7 @@ def format_tag(tagname, kind, signature, parent, return_type=None):
         parent_field = ''
 
     if return_type:
-        return_type_field = f'\ttyperef:{return_type[0]}:{return_type[1]}'
+        return_type_field = f'\ttyperef:typename:{return_type}'
     else:
         return_type_field = ''
 

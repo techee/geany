@@ -75,7 +75,7 @@ def parse_and_create_php_tags_file():
             else:
                 kind = KIND_FUNCTION
 
-            tag_list.append(format_tag(tag_name, kind, arg_list, scope, ('unknown', return_type)))
+            tag_list.append(format_tag(tag_name, kind, arg_list, scope, return_type))
             # Also create a class tag when encountering a __construct()
             if tag_name == '__construct' and scope is not None:
                 scope, tag_name = split_scope(scope)
