@@ -39,6 +39,8 @@ tertiary=BigInt Comparable Comparator Completer DateTime Deprecated Directory Do
 [lexer_properties]
 
 [settings]
+tag_parser=Java
+
 # default extension used when saving files
 extension=dart
 
