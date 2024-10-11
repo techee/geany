@@ -1690,7 +1690,9 @@ gboolean highlighting_is_string_style(gint lexer, gint style)
 
 		case SCLEX_ZIG:
 			return (style == SCE_ZIG_STRING ||
-				style == SCE_ZIG_MULTISTRING);
+				style == SCE_ZIG_MULTISTRING ||
+				style == SCE_ZIG_CHARACTER ||
+				style == SCE_ZIG_ESCAPECHAR);
 	}
 	return FALSE;
 }
