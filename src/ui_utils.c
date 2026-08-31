@@ -3249,6 +3249,14 @@ static gboolean notebook_tab_bar_scroll_cb(GtkWidget *widget, GdkEventScroll *ev
 	gpointer user_data)
 {
 	GtkNotebook *notebook = GTK_NOTEBOOK(widget);
+	GtkWidget *child = gtk_notebook_get_nth_page(notebook, gtk_notebook_get_current_page(notebook));
+	GtkWidget *event_widget = gtk_get_event_widget((GdkEvent *) event);
+
+	/* ignore scroll events from the content of the page, only the tab bar switches
+	 * tabs (impl. stolen from GTK2 tab scrolling) */
+	if (child == NULL || event_widget == NULL ||
+		event_widget == child || gtk_widget_is_ancestor(event_widget, child))
+		return FALSE;
 
 	switch (event->direction)
 	{
