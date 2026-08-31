@@ -3267,43 +3267,33 @@ static gboolean notebook_tab_bar_scroll_cb(GtkWidget *widget, GdkEventScroll *ev
 }
 
 
-static void notebook_tab_added_cb(GtkNotebook* nb, GtkWidget* child,
-	guint page_num, gpointer user_data)
+static void notebook_tab_added_cb(GtkNotebook *nb, GtkWidget *child, guint page_num,
+	gpointer user_data)
 {
-	GtkWidget *wid = gtk_notebook_get_tab_label(GTK_NOTEBOOK(nb), child);
+	GtkWidget *label = gtk_notebook_get_tab_label(nb, child);
 
-	// label needs an event box
-	if (GTK_IS_LABEL(wid))
-	{
-		GtkWidget *ebox = gtk_event_box_new();
-
-		gtk_widget_set_has_window(ebox, FALSE);
-		g_object_ref(wid);
-		// also removes wid
-		gtk_notebook_set_tab_label(nb, child, ebox);
-		gtk_container_add(GTK_CONTAINER(ebox), wid);
-		g_object_unref(wid);
-		gtk_widget_show_all(ebox);
-		wid = ebox;
-	}
-	gtk_widget_add_events(wid, GDK_SCROLL_MASK);
+	/* Tab labels which have a window of their own (event boxes for instance) get the
+	 * scroll events instead of the notebook, so they have to select them - GTK then
+	 * propagates the events up to the notebook. Plain labels are windowless and need
+	 * nothing, the event window of the notebook covers the whole tab bar. */
+	if (label != NULL)
+		gtk_widget_add_events(label, GDK_SCROLL_MASK);
 }
 
 
-/* Setup switching tab by scrolling mouse wheel - like GTK2.
- * Each tab label widget must either support events,
- * or be a label. Any labels will be reparented inside an event box. */
+/* Setup switching tab by scrolling mouse wheel - like GTK2. Applies to the tabs
+ * present at the time of the call as well as to pages added later on. */
 void ui_notebook_setup(GtkNotebook *nb)
 {
+	gint i, n;
+
+	gtk_widget_add_events(GTK_WIDGET(nb), GDK_SCROLL_MASK);
 	g_signal_connect(nb, "scroll-event",
 		G_CALLBACK(notebook_tab_bar_scroll_cb), NULL);
 	g_signal_connect(nb, "page-added",
 		G_CALLBACK(notebook_tab_added_cb), NULL);
 
-	guint n = gtk_notebook_get_n_pages(nb);
-	for (guint i = 0; i != n; i++)
-	{
-		GtkWidget *wid = gtk_notebook_get_nth_page(nb, i);
-		notebook_tab_added_cb(nb, wid, -1, NULL);
-	}
+	n = gtk_notebook_get_n_pages(nb);
+	for (i = 0; i < n; i++)
+		notebook_tab_added_cb(nb, gtk_notebook_get_nth_page(nb, i), i, NULL);
 }
