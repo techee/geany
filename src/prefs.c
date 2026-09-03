@@ -404,10 +404,30 @@ static void kb_init(KbData *kbdata, GtkWidget *kb_filter_entry)
 
 
 /* note: new 'simple' prefs should use Stash code in keyfile.c */
+/* temporary, until the preferences use GdkRGBA throughout */
+static void rgba_from_color(GdkRGBA *rgba, const GdkColor *color)
+{
+	rgba->red = color->red / 65535.0;
+	rgba->green = color->green / 65535.0;
+	rgba->blue = color->blue / 65535.0;
+	rgba->alpha = 1.0;
+}
+
+
+static void color_from_rgba(GdkColor *color, const GdkRGBA *rgba)
+{
+	color->pixel = 0;
+	color->red = rgba->red * 65535 + 0.5;
+	color->green = rgba->green * 65535 + 0.5;
+	color->blue = rgba->blue * 65535 + 0.5;
+}
+
+
 static void prefs_init_dialog(void)
 {
 	GtkWidget *widget;
 	GdkColor color = {0};
+	GdkRGBA rgba;
 
 	/* Synchronize with Stash settings */
 	prefs_action(PREF_DISPLAY);
@@ -489,8 +509,9 @@ static void prefs_init_dialog(void)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), TRUE);
 
 	utils_parse_color(editor_prefs.long_line_color, &color);
+	rgba_from_color(&rgba, &color);
 	widget = ui_lookup_widget(ui_widgets.prefs_dialog, "long_line_color");
-	gtk_color_button_set_color(GTK_COLOR_BUTTON(widget), &color);
+	gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(widget), &rgba);
 
 	widget = ui_lookup_widget(ui_widgets.prefs_dialog, "check_show_notebook_tabs");
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), interface_prefs.show_notebook_tabs);
@@ -775,10 +796,12 @@ static void prefs_init_dialog(void)
 		gtk_font_chooser_set_font(GTK_FONT_CHOOSER(widget), vc->font);
 
 		widget = ui_lookup_widget(ui_widgets.prefs_dialog, "color_fore");
-		gtk_color_button_set_color(GTK_COLOR_BUTTON(widget), &vc->colour_fore);
+		rgba_from_color(&rgba, &vc->colour_fore);
+		gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(widget), &rgba);
 
 		widget = ui_lookup_widget(ui_widgets.prefs_dialog, "color_back");
-		gtk_color_button_set_color(GTK_COLOR_BUTTON(widget), &vc->colour_back);
+		rgba_from_color(&rgba, &vc->colour_back);
+		gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(widget), &rgba);
 
 		widget = ui_lookup_widget(ui_widgets.prefs_dialog, "spin_scrollback");
 		gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget), vc->scrollback_lines);
@@ -1337,8 +1360,10 @@ on_prefs_dialog_response(GtkDialog *dialog, gint response, gpointer user_data)
 static void on_color_button_choose_cb(GtkColorButton *widget, gpointer user_data)
 {
 	GdkColor color;
+	GdkRGBA rgba;
 
-	gtk_color_button_get_color(widget, &color);
+	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(widget), &rgba);
+	color_from_rgba(&color, &rgba);
 	SETPTR(editor_prefs.long_line_color, utils_get_hex_from_color(&color));
 }
 

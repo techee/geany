@@ -908,15 +908,31 @@ static void on_term_font_set(GtkFontButton *widget, gpointer user_data)
 }
 
 
+/* temporary, until VteConfig uses GdkRGBA */
+static void color_from_rgba(GdkColor *color, const GdkRGBA *rgba)
+{
+	color->pixel = 0;
+	color->red = rgba->red * 65535 + 0.5;
+	color->green = rgba->green * 65535 + 0.5;
+	color->blue = rgba->blue * 65535 + 0.5;
+}
+
+
 static void on_term_fg_color_set(GtkColorButton *widget, gpointer user_data)
 {
-	gtk_color_button_get_color(widget, &vte_config.colour_fore);
+	GdkRGBA rgba;
+
+	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(widget), &rgba);
+	color_from_rgba(&vte_config.colour_fore, &rgba);
 }
 
 
 static void on_term_bg_color_set(GtkColorButton *widget, gpointer user_data)
 {
-	gtk_color_button_get_color(widget, &vte_config.colour_back);
+	GdkRGBA rgba;
+
+	gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(widget), &rgba);
+	color_from_rgba(&vte_config.colour_back, &rgba);
 }
 
 
