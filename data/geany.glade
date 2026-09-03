@@ -4810,7 +4810,7 @@
                       <object class="GtkEntry" id="entry_keybinding_filter">
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
-                        <property name="primary-icon-stock">gtk-find</property>
+                        <property name="primary-icon-name">edit-find</property>
                         <property name="secondary-icon-activatable">False</property>
                         <property name="vexpand">False</property>
                       </object>
@@ -7441,8 +7441,8 @@ Supported placeholders are:
                             <property name="can-focus">True</property>
                             <property name="tooltip-text" translatable="yes">Filter the symbol list using the entered text. Separate multiple filters with a space.</property>
                             <property name="invisible-char">•</property>
-                            <property name="primary-icon-stock">gtk-find</property>
-                            <property name="secondary-icon-stock">gtk-clear</property>
+                            <property name="primary-icon-name">edit-find</property>
+                            <property name="secondary-icon-name">edit-clear</property>
                             <property name="primary-icon-activatable">False</property>
                             <property name="vexpand">False</property>
                             <signal name="activate" handler="on_entry_tagfilter_activate" swapped="no"/>
@@ -7487,8 +7487,8 @@ Supported placeholders are:
                             <property name="can-focus">True</property>
                             <property name="tooltip-text" translatable="yes">Filter the document list using the entered text. Separate multiple filters with a space.</property>
                             <property name="invisible-char">•</property>
-                            <property name="primary-icon-stock">gtk-find</property>
-                            <property name="secondary-icon-stock">gtk-clear</property>
+                            <property name="primary-icon-name">edit-find</property>
+                            <property name="secondary-icon-name">edit-clear</property>
                             <property name="primary-icon-activatable">False</property>
                             <property name="vexpand">False</property>
                             <signal name="activate" handler="on_entry_docfilter_activate" swapped="no"/>
