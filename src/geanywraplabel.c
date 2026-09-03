@@ -62,7 +62,7 @@ static void geany_wrap_label_size_allocate	(GtkWidget *widget, GtkAllocation *al
 static void geany_wrap_label_set_wrap_width	(GtkWidget *widget, gint width);
 static void geany_wrap_label_label_notify	(GObject *object, GParamSpec *pspec, gpointer data);
 
-G_DEFINE_TYPE(GeanyWrapLabel, geany_wrap_label, GTK_TYPE_LABEL)
+G_DEFINE_TYPE_WITH_PRIVATE(GeanyWrapLabel, geany_wrap_label, GTK_TYPE_LABEL)
 
 
 static void geany_wrap_label_class_init(GeanyWrapLabelClass *klass)
@@ -76,15 +76,12 @@ static void geany_wrap_label_class_init(GeanyWrapLabelClass *klass)
 	widget_class->get_preferred_height = geany_wrap_label_get_preferred_height;
 	widget_class->get_preferred_height_for_width = geany_wrap_label_get_preferred_height_for_width;
 	widget_class->get_request_mode = geany_wrap_label_get_request_mode;
-
-	g_type_class_add_private(klass, sizeof (GeanyWrapLabelPrivate));
 }
 
 
 static void geany_wrap_label_init(GeanyWrapLabel *self)
 {
-	self->priv = G_TYPE_INSTANCE_GET_PRIVATE(self,
-		GEANY_WRAP_LABEL_TYPE, GeanyWrapLabelPrivate);
+	self->priv = geany_wrap_label_get_instance_private(self);
 
 	self->priv->wrap_width = 0;
 	self->priv->wrap_height = 0;
