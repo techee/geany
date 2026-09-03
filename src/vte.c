@@ -227,11 +227,11 @@ static void override_menu_key(void)
 			"gtk-menu-bar-accel", &gtk_menu_key_accel, NULL);
 
 	if (vte_config.ignore_menu_bar_accel)
-		gtk_settings_set_string_property(gtk_settings_get_default(),
-			"gtk-menu-bar-accel", "<Shift><Control><Mod1><Mod2><Mod3><Mod4><Mod5>F10", "Geany");
+		g_object_set(gtk_settings_get_default(),
+			"gtk-menu-bar-accel", "<Shift><Control><Mod1><Mod2><Mod3><Mod4><Mod5>F10", NULL);
 	else
-		gtk_settings_set_string_property(gtk_settings_get_default(),
-			"gtk-menu-bar-accel", gtk_menu_key_accel, "Geany");
+		g_object_set(gtk_settings_get_default(),
+			"gtk-menu-bar-accel", gtk_menu_key_accel, NULL);
 }
 
 
