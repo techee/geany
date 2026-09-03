@@ -1505,7 +1505,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 			_("_Directory to save files in (leave empty to use the default: %s):"), g_get_tmp_dir());
 		label = gtk_label_new_with_mnemonic(entry_dir_label_text);
 		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
-		gtk_widget_set_margin_left(label, 12);
+		gtk_widget_set_margin_start(label, 12);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 0);
 		g_free(entry_dir_label_text);
 
@@ -1524,14 +1524,14 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		hbox = gtk_hbox_new(FALSE, 6);
 		gtk_box_pack_start(GTK_BOX(hbox), entry_dir, TRUE, TRUE, 0);
 		gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
-		gtk_widget_set_margin_left(hbox, 12);
+		gtk_widget_set_margin_start(hbox, 12);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), hbox, FALSE, FALSE, 0);
 
 		help_label = gtk_label_new(
 			_("<i>The plugin will not delete the files created in this directory.</i>"));
 		gtk_label_set_use_markup(GTK_LABEL(help_label), TRUE);
 		gtk_misc_set_alignment(GTK_MISC(help_label), 0, 0.5);
-		gtk_widget_set_margin_left(help_label, 12);
+		gtk_widget_set_margin_start(help_label, 12);
 		gtk_widget_set_margin_bottom(help_label, 8);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), help_label, FALSE, FALSE, 0);
 
@@ -1548,7 +1548,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 		label = gtk_label_new_with_mnemonic(_("_Directory to save persistent untitled documents in:"));
 		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
-		gtk_widget_set_margin_left(label, 12);
+		gtk_widget_set_margin_start(label, 12);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 0);
 
 		pref_widgets.persistent_doc_entry_dir = entry_dir = gtk_entry_new();
@@ -1566,7 +1566,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
 		gtk_box_pack_start(GTK_BOX(hbox), entry_dir, TRUE, TRUE, 0);
 		gtk_box_pack_start(GTK_BOX(hbox), button, FALSE, FALSE, 0);
-		gtk_widget_set_margin_left(hbox, 12);
+		gtk_widget_set_margin_start(hbox, 12);
 
 		gtk_box_pack_start(GTK_BOX(inner_vbox), hbox, FALSE, FALSE, 0);
 
@@ -1574,7 +1574,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		label = gtk_label_new_with_mnemonic(_("Untitled document save _interval:"));
 		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
 		gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
-		gtk_widget_set_margin_left(hbox, 12);
+		gtk_widget_set_margin_start(hbox, 12);
 
 		gtk_box_pack_start(GTK_BOX(inner_vbox), hbox, FALSE, FALSE, 5);
 
@@ -1587,7 +1587,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 		gtk_box_pack_start(GTK_BOX(hbox), spin, TRUE, TRUE, 0);
 		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 5);
-		gtk_widget_set_margin_left(hbox, 12);
+		gtk_widget_set_margin_start(hbox, 12);
 
 		gtk_box_pack_start(GTK_BOX(inner_vbox), hbox, FALSE, FALSE, 0);
 
