@@ -334,8 +334,8 @@ static gboolean filetype_combo_box_set_active_filetype(GtkComboBox *combo, const
 static GtkWidget *add_file_open_extra_widget(GtkWidget *dialog)
 {
 	GtkWidget *expander, *vbox, *table, *check_hidden;
-	GtkWidget *filetype_ebox, *filetype_label, *filetype_combo;
-	GtkWidget *encoding_ebox, *encoding_label, *encoding_combo;
+	GtkWidget *filetype_label, *filetype_combo;
+	GtkWidget *encoding_label, *encoding_combo;
 
 	expander = gtk_expander_new_with_mnemonic(_("_More Options"));
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
@@ -360,13 +360,10 @@ static GtkWidget *add_file_open_extra_widget(GtkWidget *dialog)
 	gtk_table_attach(GTK_TABLE(table), encoding_label, 2, 3, 0, 1,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 4, 5);
-	/* the ebox is for the tooltip, because gtk_combo_box can't show tooltips */
-	encoding_ebox = gtk_event_box_new();
 	encoding_combo = ui_create_encodings_combo_box(TRUE, GEANY_ENCODINGS_MAX);
-	gtk_widget_set_tooltip_text(encoding_ebox,
+	gtk_widget_set_tooltip_text(encoding_combo,
 		_("Explicitly defines an encoding for the file, if it would not be detected. This is useful when you know that the encoding of a file cannot be detected correctly by Geany.\nNote if you choose multiple files, they will all be opened with the chosen encoding."));
-	gtk_container_add(GTK_CONTAINER(encoding_ebox), encoding_combo);
-	gtk_table_attach(GTK_TABLE(table), encoding_ebox, 3, 4, 0, 1,
+	gtk_table_attach(GTK_TABLE(table), encoding_combo, 3, 4, 0, 1,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 5);
 
@@ -376,13 +373,10 @@ static GtkWidget *add_file_open_extra_widget(GtkWidget *dialog)
 	gtk_table_attach(GTK_TABLE(table), filetype_label, 2, 3, 1, 2,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 4, 5);
-	/* the ebox is for the tooltip, because gtk_combo_box can't show tooltips */
-	filetype_ebox = gtk_event_box_new();
 	filetype_combo = create_filetype_combo_box();
-	gtk_widget_set_tooltip_text(filetype_ebox,
+	gtk_widget_set_tooltip_text(filetype_combo,
 		_("Explicitly defines a filetype for the file, if it would not be detected by filename extension.\nNote if you choose multiple files, they will all be opened with the chosen filetype."));
-	gtk_container_add(GTK_CONTAINER(filetype_ebox), filetype_combo);
-	gtk_table_attach(GTK_TABLE(table), filetype_ebox, 3, 4, 1, 2,
+	gtk_table_attach(GTK_TABLE(table), filetype_combo, 3, 4, 1, 2,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 5);
 
