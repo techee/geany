@@ -1193,9 +1193,6 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Startup</property>
                   </object>
-                  <packing>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="vbox41">
@@ -1402,9 +1399,6 @@
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label234">
@@ -1412,10 +1406,6 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Miscellaneous</property>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
               </object>
             </child>
@@ -1425,9 +1415,6 @@
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">General</property>
               </object>
-              <packing>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkNotebook" id="notebook6">
@@ -1827,9 +1814,6 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Interface</property>
                   </object>
-                  <packing>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="vbox54">
@@ -2164,9 +2148,6 @@
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label249">
@@ -2175,10 +2156,6 @@
                     <property name="label" translatable="yes">Notebook tabs</property>
                     <property name="use-underline">True</property>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="vbox15">
@@ -2496,9 +2473,6 @@
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">2</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label164">
@@ -2506,15 +2480,8 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Toolbar</property>
                   </object>
-                  <packing>
-                    <property name="position">2</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
               </object>
-              <packing>
-                <property name="position">1</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label157">
@@ -2522,10 +2489,6 @@
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Interface</property>
               </object>
-              <packing>
-                <property name="position">1</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkNotebook" id="notebook4">
@@ -2777,9 +2740,6 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Features</property>
                   </object>
-                  <packing>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="vbox40">
@@ -3065,9 +3025,6 @@
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label232">
@@ -3075,10 +3032,6 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Indentation</property>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="vbox39">
@@ -3420,9 +3373,6 @@
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">2</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label226">
@@ -3430,10 +3380,6 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Completions</property>
                   </object>
-                  <packing>
-                    <property name="position">2</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkBox" id="vbox24">
@@ -3817,9 +3763,6 @@
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">3</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="label213">
@@ -3827,15 +3770,8 @@
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Display</property>
                   </object>
-                  <packing>
-                    <property name="position">3</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
               </object>
-              <packing>
-                <property name="position">2</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label95">
@@ -3843,10 +3779,6 @@
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Editor</property>
               </object>
-              <packing>
-                <property name="position">2</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkBox" id="vbox18">
@@ -4129,13 +4061,14 @@
                               <object class="GtkLabel" id="label147">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="ypad">7</property>
                                 <property name="label" translatable="yes">Recent files list length:</property>
                                 <property name="mnemonic-widget">spin_mru</property>
                                 <property name="xalign">0</property>
                                 <property name="hexpand">False</property>
                                 <property name="vexpand">False</property>
                                 <property name="valign">center</property>
+                                <property name="margin-top">7</property>
+                                <property name="margin-bottom">7</property>
                               </object>
                               <packing>
                                 <property name="left-attach">0</property>
@@ -4213,9 +4146,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">3</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label174">
@@ -4223,10 +4153,6 @@
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Files</property>
               </object>
-              <packing>
-                <property name="position">3</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkBox" id="vbox23">
@@ -4523,9 +4449,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">4</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label96">
@@ -4533,10 +4456,6 @@
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Tools</property>
               </object>
-              <packing>
-                <property name="position">4</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkBox" id="vbox49">
@@ -4851,9 +4770,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">5</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label119">
@@ -4861,10 +4777,6 @@
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Templates</property>
               </object>
-              <packing>
-                <property name="position">5</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkFrame" id="frame22">
@@ -4943,9 +4855,6 @@
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">6</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label151">
@@ -4953,10 +4862,6 @@
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Keybindings</property>
               </object>
-              <packing>
-                <property name="position">6</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkFrame" id="frame41">
@@ -5178,9 +5083,6 @@ Supported placeholders are:
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">7</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label201">
@@ -5188,10 +5090,6 @@ Supported placeholders are:
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Printing</property>
               </object>
-              <packing>
-                <property name="position">7</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkFrame" id="frame_term">
@@ -5509,9 +5407,6 @@ Supported placeholders are:
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">8</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label138">
@@ -5519,10 +5414,6 @@ Supported placeholders are:
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Terminal</property>
               </object>
-              <packing>
-                <property name="position">8</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkFrame" id="frame24">
@@ -5609,9 +5500,6 @@ Supported placeholders are:
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">9</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label1">
@@ -5619,10 +5507,6 @@ Supported placeholders are:
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Various</property>
               </object>
-              <packing>
-                <property name="position">9</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
           </object>
         </child>
@@ -7591,9 +7475,6 @@ Supported placeholders are:
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes">Symbols</property>
                       </object>
-                      <packing>
-                        <property name="tab-fill">False</property>
-                      </packing>
                     </child>
                     <child>
                       <object class="GtkBox" id="vbox47">
@@ -7632,9 +7513,6 @@ Supported placeholders are:
                           </object>
                         </child>
                       </object>
-                      <packing>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
                     <child type="tab">
                       <object class="GtkLabel" id="label136">
@@ -7642,10 +7520,6 @@ Supported placeholders are:
                         <property name="can-focus">False</property>
                         <property name="label" translatable="yes">Documents</property>
                       </object>
-                      <packing>
-                        <property name="position">1</property>
-                        <property name="tab-fill">False</property>
-                      </packing>
                     </child>
                   </object>
                   <packing>
@@ -7700,9 +7574,6 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Status</property>
                   </object>
-                  <packing>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow3">
@@ -7719,9 +7590,6 @@ Supported placeholders are:
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="notebook_info_label_compiler">
@@ -7729,10 +7597,6 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Compiler</property>
                   </object>
-                  <packing>
-                    <property name="position">1</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow5">
@@ -7749,9 +7613,6 @@ Supported placeholders are:
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">2</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="notebook_info_label_msg">
@@ -7759,10 +7620,6 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Messages</property>
                   </object>
-                  <packing>
-                    <property name="position">2</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
                 <child>
                   <object class="GtkScrolledWindow" id="scrolledwindow6">
@@ -7777,9 +7634,6 @@ Supported placeholders are:
                       </object>
                     </child>
                   </object>
-                  <packing>
-                    <property name="position">3</property>
-                  </packing>
                 </child>
                 <child type="tab">
                   <object class="GtkLabel" id="notebook_info_label_scribble">
@@ -7787,10 +7641,6 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Scribble</property>
                   </object>
-                  <packing>
-                    <property name="position">3</property>
-                    <property name="tab-fill">False</property>
-                  </packing>
                 </child>
               </object>
               <packing>
@@ -8085,9 +7935,6 @@ Supported placeholders are:
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Project</property>
               </object>
-              <packing>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkGrid" id="table17">
@@ -8313,9 +8160,6 @@ Supported placeholders are:
                   </packing>
                 </child>
               </object>
-              <packing>
-                <property name="position">1</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label227">
@@ -8323,10 +8167,6 @@ Supported placeholders are:
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Indentation</property>
               </object>
-              <packing>
-                <property name="position">1</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkBox" id="vbox_project_dialog_editor">
@@ -8572,9 +8412,6 @@ Supported placeholders are:
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">2</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label238_project">
@@ -8582,10 +8419,6 @@ Supported placeholders are:
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Editor</property>
               </object>
-              <packing>
-                <property name="position">2</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
             <child>
               <object class="GtkBox" id="vbox3">
@@ -8667,9 +8500,6 @@ Supported placeholders are:
                   </object>
                 </child>
               </object>
-              <packing>
-                <property name="position">3</property>
-              </packing>
             </child>
             <child type="tab">
               <object class="GtkLabel" id="label3">
@@ -8677,10 +8507,6 @@ Supported placeholders are:
                 <property name="can-focus">False</property>
                 <property name="label" translatable="yes">Files</property>
               </object>
-              <packing>
-                <property name="position">3</property>
-                <property name="tab-fill">False</property>
-              </packing>
             </child>
           </object>
         </child>
@@ -8753,9 +8579,9 @@ Supported placeholders are:
                   <object class="GtkImage" id="file_type_image">
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
-                    <property name="xalign">1</property>
                     <property name="stock">gtk-file</property>
                     <property name="hexpand">True</property>
+                    <property name="halign">end</property>
                   </object>
                 </child>
                 <child>
@@ -8978,7 +8804,6 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
-                    <property name="xalign">0</property>
                     <property name="draw-indicator">True</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
