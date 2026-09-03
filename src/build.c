@@ -1797,7 +1797,22 @@ static const guint entry_x_padding = 3;
 static const guint entry_y_padding = 0;
 
 
-static RowWidgets *build_add_dialog_row(GeanyDocument *doc, GtkTable *table, guint row,
+/* Attaches child to the cells of grid, filling them and expanding vertically,
+ * with the given padding around it (what the GtkTable-based dialog used to do). */
+static void grid_attach(GtkGrid *grid, GtkWidget *child, guint left, guint right,
+		guint top, guint bottom, gboolean hexpand, guint xpadding, guint ypadding)
+{
+	gtk_widget_set_hexpand(child, hexpand);
+	gtk_widget_set_vexpand(child, TRUE);
+	gtk_widget_set_margin_start(child, xpadding);
+	gtk_widget_set_margin_end(child, xpadding);
+	gtk_widget_set_margin_top(child, ypadding);
+	gtk_widget_set_margin_bottom(child, ypadding);
+	gtk_grid_attach(grid, child, left, top, right - left, bottom - top);
+}
+
+
+static RowWidgets *build_add_dialog_row(GeanyDocument *doc, GtkGrid *table, guint row,
 				GeanyBuildSource dst, guint grp, guint cmd, gboolean dir)
 {
 	GtkWidget *label, *clear, *clearicon;
@@ -1820,8 +1835,8 @@ static RowWidgets *build_add_dialog_row(GeanyDocument *doc, GtkTable *table, gui
 	gtk_style_context_get_color(ctx, GTK_STATE_FLAG_INSENSITIVE, &insensitive_color);
 	gtk_style_context_restore(ctx);
 
-	gtk_table_attach(table, label, column, column + 1, row, row + 1, GTK_FILL,
-		GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+	grid_attach(table, label, column, column + 1, row, row + 1, FALSE,
+		entry_x_padding, entry_y_padding);
 	roww = g_new0(RowWidgets, 1);
 	roww->src = GEANY_BCS_COUNT;
 	roww->grp = grp;
@@ -1829,7 +1844,7 @@ static RowWidgets *build_add_dialog_row(GeanyDocument *doc, GtkTable *table, gui
 	roww->dst = dst;
 	for (i = 0; i < GEANY_BC_CMDENTRIES_COUNT; i++)
 	{
-		gint xflags = (i == GEANY_BC_COMMAND) ? GTK_FILL | GTK_EXPAND : GTK_FILL;
+		gboolean expand = (i == GEANY_BC_COMMAND);
 
 		column += 1;
 		if (i == GEANY_BC_LABEL)
@@ -1844,16 +1859,16 @@ static RowWidgets *build_add_dialog_row(GeanyDocument *doc, GtkTable *table, gui
 			roww->entries[i] = gtk_entry_new();
 			g_signal_connect(roww->entries[i], "focus-in-event", G_CALLBACK(on_entry_focus), roww);
 		}
-		gtk_table_attach(table, roww->entries[i], column, column + 1, row, row + 1, xflags,
-			GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+		grid_attach(table, roww->entries[i], column, column + 1, row, row + 1, expand,
+			entry_x_padding, entry_y_padding);
 	}
 	column++;
 	clearicon = gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU);
 	clear = gtk_button_new();
 	gtk_button_set_image(GTK_BUTTON(clear), clearicon);
 	g_signal_connect(clear, "clicked", G_CALLBACK(on_clear_dialog_row), roww);
-	gtk_table_attach(table, clear, column, column + 1, row, row + 1, GTK_FILL,
-		GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+	grid_attach(table, clear, column, column + 1, row, row + 1, FALSE,
+		entry_x_padding, entry_y_padding);
 	roww->cmdsrc = bc = get_build_cmd(doc, grp, cmd, &src);
 	if (bc != NULL)
 		roww->src = src;
@@ -1898,7 +1913,7 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 {
 	GtkWidget *label, *sep, *clearicon, *clear;
 	BuildTableFields *fields;
-	GtkTable *table;
+	GtkGrid *table;
 	const gchar **ch;
 	gchar *txt;
 	guint col, row, cmdindex;
@@ -1907,18 +1922,16 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 	gboolean sensitivity;
 	guint sep_padding = entry_y_padding + 3;
 
-	table = GTK_TABLE(gtk_table_new(build_items_count + 12, 5, FALSE));
+	table = GTK_GRID(gtk_grid_new());
 	fields = g_new0(BuildTableFields, 1);
 	fields->rows = g_new0(RowWidgets*, build_items_count);
 	for (ch = colheads, col = 0; *ch != NULL; ch++, col++)
 	{
 		label = gtk_label_new(_(*ch));
-		gtk_table_attach(table, label, col, col + 1, 0, 1,
-			GTK_FILL, GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+		grid_attach(table, label, col, col + 1, 0, 1, FALSE, entry_x_padding, entry_y_padding);
 	}
 	sep = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-	gtk_table_attach(table, sep, 0, DC_N_COL, 1, 2, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, sep_padding);
+	grid_attach(table, sep, 0, DC_N_COL, 1, 2, FALSE, entry_x_padding, sep_padding);
 	if (ft != NULL && ft->id != GEANY_FILETYPES_NONE)
 		txt = g_strdup_printf(_("%s commands"), ft->name);
 	else
@@ -1927,12 +1940,11 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 	label = ui_label_new_bold(txt);
 	g_free(txt);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
-	gtk_table_attach(table, label, 0, DC_N_COL, 2, 3, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, entry_y_padding);
+	grid_attach(table, label, 0, DC_N_COL, 2, 3, FALSE, entry_x_padding, entry_y_padding);
 	for (row = 3, cmdindex = 0, cmd = 0; cmd < build_groups_count[GEANY_GBG_FT]; ++row, ++cmdindex, ++cmd)
 		fields->rows[cmdindex] = build_add_dialog_row(doc, table, row, dst, GEANY_GBG_FT, cmd, FALSE);
 	label = gtk_label_new(_("Error regular expression:"));
-	gtk_table_attach(table, label, 0, DC_ENTRIES + 1, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
+	grid_attach(table, label, 0, DC_ENTRIES + 1, row, row + 1, FALSE,
 		entry_x_padding, entry_y_padding);
 	fields->fileregex = gtk_entry_new();
 	fields->fileregexstring = build_get_regex(GEANY_GBG_FT, NULL, &src);
@@ -1943,32 +1955,30 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 		if (src > dst)
 			sensitivity = FALSE;
 	}
-	gtk_table_attach(table, fields->fileregex, DC_ENTRIES + 1, DC_CLEAR, row, row + 1, GTK_FILL,
-		GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+	grid_attach(table, fields->fileregex, DC_ENTRIES + 1, DC_CLEAR, row, row + 1, FALSE,
+		entry_x_padding, entry_y_padding);
 	clearicon = gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU);
 	clear = gtk_button_new();
 	gtk_button_set_image(GTK_BUTTON(clear), clearicon);
 	g_signal_connect_swapped(clear, "clicked",
 		G_CALLBACK(on_clear_dialog_regex_row), (fields->fileregex));
-	gtk_table_attach(table, clear, DC_CLEAR, DC_CLEAR + 1, row, row + 1, GTK_FILL,
-		GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+	grid_attach(table, clear, DC_CLEAR, DC_CLEAR + 1, row, row + 1, FALSE,
+		entry_x_padding, entry_y_padding);
 	gtk_widget_set_sensitive(fields->fileregex, sensitivity);
 	gtk_widget_set_sensitive(clear, sensitivity);
 	++row;
 	sep = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-	gtk_table_attach(table, sep, 0, DC_N_COL, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, sep_padding);
+	grid_attach(table, sep, 0, DC_N_COL, row, row + 1, FALSE, entry_x_padding, sep_padding);
 	++row;
 	label = ui_label_new_bold(_("Independent commands"));
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
-	gtk_table_attach(table, label, 0, DC_N_COL, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, entry_y_padding);
+	grid_attach(table, label, 0, DC_N_COL, row, row + 1, FALSE, entry_x_padding, entry_y_padding);
 	for (++row, cmd = 0; cmd < build_groups_count[GEANY_GBG_NON_FT]; ++row, ++cmdindex, ++cmd)
 		fields->rows[cmdindex] = build_add_dialog_row(
 			doc, table, row, dst, GEANY_GBG_NON_FT, cmd, TRUE);
 	label = gtk_label_new(_("Error regular expression:"));
-	gtk_table_attach(table, label, 0, DC_ENTRIES + 1, row, row + 1, GTK_FILL,
-		GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+	grid_attach(table, label, 0, DC_ENTRIES + 1, row, row + 1, FALSE,
+		entry_x_padding, entry_y_padding);
 	fields->nonfileregex = gtk_entry_new();
 	fields->nonfileregexstring = build_get_regex(GEANY_GBG_NON_FT, NULL, &src);
 	sensitivity = TRUE;
@@ -1977,15 +1987,15 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 		gtk_entry_set_text(GTK_ENTRY(fields->nonfileregex), *(fields->nonfileregexstring));
 		sensitivity = src > dst ? FALSE : TRUE;
 	}
-	gtk_table_attach(table, fields->nonfileregex, DC_ENTRIES + 1, DC_CLEAR, row, row + 1, GTK_FILL,
-		GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+	grid_attach(table, fields->nonfileregex, DC_ENTRIES + 1, DC_CLEAR, row, row + 1, FALSE,
+		entry_x_padding, entry_y_padding);
 	clearicon = gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU);
 	clear = gtk_button_new();
 	gtk_button_set_image(GTK_BUTTON(clear), clearicon);
 	g_signal_connect_swapped(clear, "clicked",
 		G_CALLBACK(on_clear_dialog_regex_row), (fields->nonfileregex));
-	gtk_table_attach(table, clear, DC_CLEAR, DC_CLEAR + 1, row, row + 1, GTK_FILL,
-		GTK_FILL | GTK_EXPAND, entry_x_padding, entry_y_padding);
+	grid_attach(table, clear, DC_CLEAR, DC_CLEAR + 1, row, row + 1, FALSE,
+		entry_x_padding, entry_y_padding);
 	gtk_widget_set_sensitive(fields->nonfileregex, sensitivity);
 	gtk_widget_set_sensitive(clear, sensitivity);
 	++row;
@@ -1993,29 +2003,24 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 	ui_label_set_markup(GTK_LABEL(label), "<i>%s</i>",
 		_("Note: Item 2 opens a dialog and appends the response to the command."));
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
-	gtk_table_attach(table, label, 0, DC_N_COL, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, entry_y_padding);
+	grid_attach(table, label, 0, DC_N_COL, row, row + 1, FALSE, entry_x_padding, entry_y_padding);
 	++row;
 	sep = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-	gtk_table_attach(table, sep, 0, DC_N_COL, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, sep_padding);
+	grid_attach(table, sep, 0, DC_N_COL, row, row + 1, FALSE, entry_x_padding, sep_padding);
 	++row;
 	label = ui_label_new_bold(_("Execute commands"));
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
-	gtk_table_attach(table, label, 0, DC_N_COL, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, entry_y_padding);
+	grid_attach(table, label, 0, DC_N_COL, row, row + 1, FALSE, entry_x_padding, entry_y_padding);
 	for (++row, cmd = 0; cmd < build_groups_count[GEANY_GBG_EXEC]; ++row, ++cmdindex, ++cmd)
 		fields->rows[cmdindex] = build_add_dialog_row(doc, table, row, dst, GEANY_GBG_EXEC, cmd, TRUE);
 	sep = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
-	gtk_table_attach(table, sep, 0, DC_N_COL, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, sep_padding);
+	grid_attach(table, sep, 0, DC_N_COL, row, row + 1, FALSE, entry_x_padding, sep_padding);
 	++row;
 	label = gtk_label_new(NULL);
 	ui_label_set_markup(GTK_LABEL(label), "<i>%s</i>",
 		_("%d, %e, %f, %p, %l are substituted in command and directory fields, see manual for details."));
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
-	gtk_table_attach(table, label, 0, DC_N_COL, row, row + 1, GTK_FILL, GTK_FILL | GTK_EXPAND,
-		entry_x_padding, entry_y_padding);
+	grid_attach(table, label, 0, DC_N_COL, row, row + 1, FALSE, entry_x_padding, entry_y_padding);
 	/*printf("%d extra rows in dialog\n", row-build_items_count);*/
 	++row;
 	*table_data = fields;

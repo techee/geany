@@ -243,6 +243,8 @@ gchar *ui_menu_item_get_text(GtkMenuItem *menu_item);
 
 void ui_dialog_set_primary_button_order(GtkDialog *dialog, gint response, ...);
 
+void ui_grid_add_row(GtkGrid *grid, gint row, ...) G_GNUC_NULL_TERMINATED;
+
 void ui_combo_box_prepend_text_once(GtkComboBoxText *combo, const gchar *text);
 
 void ui_setup_open_button_callback(GtkWidget *open_btn, const gchar *title,

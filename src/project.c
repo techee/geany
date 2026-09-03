@@ -185,9 +185,9 @@ void project_new(gboolean from_folder)
 
 	vbox = ui_dialog_vbox_new(GTK_DIALOG(e.dialog));
 
-	table = gtk_table_new(3, 2, FALSE);
-	gtk_table_set_row_spacings(GTK_TABLE(table), 5);
-	gtk_table_set_col_spacings(GTK_TABLE(table), 10);
+	table = gtk_grid_new();
+	gtk_grid_set_row_spacing(GTK_GRID(table), 5);
+	gtk_grid_set_column_spacing(GTK_GRID(table), 10);
 
 	label = gtk_label_new(_("Name:"));
 	gtk_label_set_xalign(GTK_LABEL(label), 1);
@@ -199,7 +199,7 @@ void project_new(gboolean from_folder)
 	gtk_entry_set_max_length(GTK_ENTRY(e.name), MAX_NAME_LEN);
 	gtk_widget_set_tooltip_text(e.name, _("Project name"));
 
-	ui_table_add_row(GTK_TABLE(table), 0, label, e.name, NULL);
+	ui_grid_add_row(GTK_GRID(table), 0, label, e.name, NULL);
 
 	label = gtk_label_new(_("Filename:"));
 	gtk_label_set_xalign(GTK_LABEL(label), 1);
@@ -222,7 +222,7 @@ void project_new(gboolean from_folder)
 	gtk_box_pack_start(GTK_BOX(bbox), e.file_name, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(bbox), button, FALSE, FALSE, 0);
 
-	ui_table_add_row(GTK_TABLE(table), 1, label, bbox, NULL);
+	ui_grid_add_row(GTK_GRID(table), 1, label, bbox, NULL);
 
 	label = gtk_label_new(_("Base path:"));
 	gtk_label_set_xalign(GTK_LABEL(label), 1);
@@ -238,7 +238,7 @@ void project_new(gboolean from_folder)
 	bbox = ui_path_box_new(_("Choose Project Base Path"),
 		GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER, GTK_ENTRY(e.base_path));
 
-	ui_table_add_row(GTK_TABLE(table), 2, label, bbox, NULL);
+	ui_grid_add_row(GTK_GRID(table), 2, label, bbox, NULL);
 
 	gtk_box_pack_start(GTK_BOX(vbox), table, TRUE, TRUE, 0);
 

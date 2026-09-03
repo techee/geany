@@ -709,68 +709,68 @@ void tools_word_count(void)
 	word_count(text, &chars, &lines, &words);
 	g_free(text);
 
-	table = gtk_table_new(4, 2, FALSE);
-	gtk_table_set_row_spacings(GTK_TABLE(table), 5);
-	gtk_table_set_col_spacings(GTK_TABLE(table), 10);
+	table = gtk_grid_new();
+	gtk_grid_set_row_spacing(GTK_GRID(table), 5);
+	gtk_grid_set_column_spacing(GTK_GRID(table), 10);
 
 	label = gtk_label_new(_("Range:"));
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_grid_attach(GTK_GRID(table), label, 0, 0, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 1);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	label = gtk_label_new(range);
-	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 0, 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 20, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_start(label, 20);
+	gtk_widget_set_margin_end(label, 20);
+	gtk_grid_attach(GTK_GRID(table), label, 1, 0, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	label = gtk_label_new(_("Lines:"));
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_grid_attach(GTK_GRID(table), label, 0, 1, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 1);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	text = g_strdup_printf("%d", lines);
 	label = gtk_label_new(text);
-	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 1, 2,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 20, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_start(label, 20);
+	gtk_widget_set_margin_end(label, 20);
+	gtk_grid_attach(GTK_GRID(table), label, 1, 1, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 	g_free(text);
 
 	label = gtk_label_new(_("Words:"));
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 2, 3,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_grid_attach(GTK_GRID(table), label, 0, 2, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 1);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	text = g_strdup_printf("%d", words);
 	label = gtk_label_new(text);
-	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 2, 3,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 20, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_start(label, 20);
+	gtk_widget_set_margin_end(label, 20);
+	gtk_grid_attach(GTK_GRID(table), label, 1, 2, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 	g_free(text);
 
 	label = gtk_label_new(_("Characters:"));
-	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 3, 4,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_grid_attach(GTK_GRID(table), label, 0, 3, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 1);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	text = g_strdup_printf("%d", chars);
 	label = gtk_label_new(text);
-	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 3, 4,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 20, 0);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_start(label, 20);
+	gtk_widget_set_margin_end(label, 20);
+	gtk_grid_attach(GTK_GRID(table), label, 1, 3, 1, 1);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
 	g_free(text);

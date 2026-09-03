@@ -2102,6 +2102,26 @@ void ui_table_add_row(GtkTable *table, gint row, ...)
 }
 
 
+/* Like ui_table_add_row() for a GtkGrid: packs the widgets passed after the row
+ * argument into that row, one per column. The first widget (usually a label) is
+ * not expanded as the grid grows. */
+void ui_grid_add_row(GtkGrid *grid, gint row, ...)
+{
+	va_list args;
+	guint i;
+	GtkWidget *widget;
+
+	va_start(args, row);
+	for (i = 0; (widget = va_arg(args, GtkWidget*), widget != NULL); i++)
+	{
+		gtk_widget_set_hexpand(widget, i > 0);
+		gtk_widget_set_valign(widget, GTK_ALIGN_CENTER);
+		gtk_grid_attach(grid, widget, i, row, 1, 1);
+	}
+	va_end(args);
+}
+
+
 /* comment-out all lines that are not already commented out except sections */
 static void comment_conf_files(ScintillaObject *sci)
 {

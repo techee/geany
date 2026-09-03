@@ -335,52 +335,65 @@ static GtkWidget *add_file_open_extra_widget(GtkWidget *dialog)
 {
 	GtkWidget *expander, *vbox, *table, *check_hidden;
 	GtkWidget *filetype_label, *filetype_combo;
-	GtkWidget *encoding_label, *encoding_combo;
+	GtkWidget *encoding_label, *encoding_combo, *spacer;
 
 	expander = gtk_expander_new_with_mnemonic(_("_More Options"));
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
 	gtk_container_add(GTK_CONTAINER(expander), vbox);
 
-	table = gtk_table_new(2, 4, FALSE);
+	table = gtk_grid_new();
 
 	/* line 1 with checkbox and encoding combo */
 	check_hidden = gtk_check_button_new_with_mnemonic(_("Show _hidden files"));
 	gtk_widget_show(check_hidden);
-	gtk_table_attach(GTK_TABLE(table), check_hidden, 0, 1, 0, 1,
-					(GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_hexpand(check_hidden, TRUE);
+	gtk_widget_set_valign(check_hidden, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(check_hidden, 5);
+	gtk_widget_set_margin_bottom(check_hidden, 5);
+	gtk_grid_attach(GTK_GRID(table), check_hidden, 0, 0, 1, 1);
 
 	/* spacing */
-	gtk_table_attach(GTK_TABLE(table), gtk_label_new(""), 1, 2, 0, 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 5, 5);
+	spacer = gtk_label_new("");
+	gtk_widget_set_margin_start(spacer, 5);
+	gtk_widget_set_margin_end(spacer, 5);
+	gtk_widget_set_margin_top(spacer, 5);
+	gtk_widget_set_margin_bottom(spacer, 5);
+	gtk_grid_attach(GTK_GRID(table), spacer, 1, 0, 1, 1);
 
 	encoding_label = gtk_label_new(_("Set encoding:"));
 	gtk_label_set_xalign(GTK_LABEL(encoding_label), 1);
 	gtk_label_set_yalign(GTK_LABEL(encoding_label), 0);
-	gtk_table_attach(GTK_TABLE(table), encoding_label, 2, 3, 0, 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 4, 5);
+	gtk_widget_set_valign(encoding_label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_start(encoding_label, 4);
+	gtk_widget_set_margin_end(encoding_label, 4);
+	gtk_widget_set_margin_top(encoding_label, 5);
+	gtk_widget_set_margin_bottom(encoding_label, 5);
+	gtk_grid_attach(GTK_GRID(table), encoding_label, 2, 0, 1, 1);
 	encoding_combo = ui_create_encodings_combo_box(TRUE, GEANY_ENCODINGS_MAX);
 	gtk_widget_set_tooltip_text(encoding_combo,
 		_("Explicitly defines an encoding for the file, if it would not be detected. This is useful when you know that the encoding of a file cannot be detected correctly by Geany.\nNote if you choose multiple files, they will all be opened with the chosen encoding."));
-	gtk_table_attach(GTK_TABLE(table), encoding_combo, 3, 4, 0, 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_valign(encoding_combo, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(encoding_combo, 5);
+	gtk_widget_set_margin_bottom(encoding_combo, 5);
+	gtk_grid_attach(GTK_GRID(table), encoding_combo, 3, 0, 1, 1);
 
 	/* line 2 with filetype combo */
 	filetype_label = gtk_label_new(_("Set filetype:"));
 	gtk_label_set_xalign(GTK_LABEL(filetype_label), 1);
 	gtk_label_set_yalign(GTK_LABEL(filetype_label), 0);
-	gtk_table_attach(GTK_TABLE(table), filetype_label, 2, 3, 1, 2,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 4, 5);
+	gtk_widget_set_valign(filetype_label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_start(filetype_label, 4);
+	gtk_widget_set_margin_end(filetype_label, 4);
+	gtk_widget_set_margin_top(filetype_label, 5);
+	gtk_widget_set_margin_bottom(filetype_label, 5);
+	gtk_grid_attach(GTK_GRID(table), filetype_label, 2, 1, 1, 1);
 	filetype_combo = create_filetype_combo_box();
 	gtk_widget_set_tooltip_text(filetype_combo,
 		_("Explicitly defines a filetype for the file, if it would not be detected by filename extension.\nNote if you choose multiple files, they will all be opened with the chosen filetype."));
-	gtk_table_attach(GTK_TABLE(table), filetype_combo, 3, 4, 1, 2,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_valign(filetype_combo, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(filetype_combo, 5);
+	gtk_widget_set_margin_bottom(filetype_combo, 5);
+	gtk_grid_attach(GTK_GRID(table), filetype_combo, 3, 1, 1, 1);
 
 	gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
 	gtk_widget_show_all(vbox);

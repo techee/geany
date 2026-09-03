@@ -131,8 +131,9 @@ static void homepage_clicked(GtkButton *button, gpointer data);
 
 #define ROW(text, row, col, x_align, y_padding, col_span) \
 	label = gtk_label_new((text)); \
-	gtk_table_attach(GTK_TABLE(table), label, (col), (col) + (col_span) + 1, (row), (row) + 1, \
-			(GtkAttachOptions) (GTK_FILL), (GtkAttachOptions) (GTK_FILL), 0, (y_padding)); \
+	gtk_widget_set_margin_top(label, (y_padding)); \
+	gtk_widget_set_margin_bottom(label, (y_padding)); \
+	gtk_grid_attach(GTK_GRID(table), label, (col), (row), (col_span) + 1, 1); \
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE); \
 	gtk_label_set_xalign(GTK_LABEL(label), (x_align)); \
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
@@ -310,14 +311,17 @@ static GtkWidget *create_dialog(void)
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(credits_scrollwin),
 		GTK_POLICY_NEVER, GTK_POLICY_AUTOMATIC);
 
-	table = gtk_table_new(23 + translators_len + prev_translators_len, 3, FALSE);
-	gtk_table_set_col_spacings(GTK_TABLE(table), 10);
+	table = gtk_grid_new();
+	gtk_grid_set_column_spacing(GTK_GRID(table), 10);
 
 	row = 0;
 	g_snprintf(buffer, sizeof(buffer),
 		"<span size=\"larger\" weight=\"bold\">%s</span>", _("Developers"));
 	label = gtk_label_new(buffer);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 2, row, row + 1, GTK_FILL, 0, 0, 5);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(label, 5);
+	gtk_widget_set_margin_bottom(label, 5);
+	gtk_grid_attach(GTK_GRID(table), label, 0, row, 2, 1);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	gtk_label_set_yalign(GTK_LABEL(label), 0);
@@ -374,9 +378,10 @@ static GtkWidget *create_dialog(void)
 	g_snprintf(buffer, sizeof(buffer),
 		"<span size=\"larger\" weight=\"bold\">%s</span>", _("Translators"));
 	label = gtk_label_new(buffer);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 2, row, row + 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(label, 5);
+	gtk_widget_set_margin_bottom(label, 5);
+	gtk_grid_attach(GTK_GRID(table), label, 0, row, 2, 1);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
@@ -394,9 +399,10 @@ static GtkWidget *create_dialog(void)
 	g_snprintf(buffer, sizeof(buffer),
 		"<span size=\"larger\" weight=\"bold\">%s</span>", _("Previous Translators"));
 	label = gtk_label_new(buffer);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 2, row, row + 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(label, 5);
+	gtk_widget_set_margin_bottom(label, 5);
+	gtk_grid_attach(GTK_GRID(table), label, 0, row, 2, 1);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
@@ -415,9 +421,10 @@ static GtkWidget *create_dialog(void)
 	g_snprintf(buffer, sizeof(buffer),
 		"<span size=\"larger\" weight=\"bold\">%s</span>", _("Contributors"));
 	label = gtk_label_new(buffer);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 2, row, row + 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(label, 5);
+	gtk_widget_set_margin_bottom(label, 5);
+	gtk_grid_attach(GTK_GRID(table), label, 0, row, 2, 1);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
@@ -431,17 +438,20 @@ static GtkWidget *create_dialog(void)
 #endif
 		);
 	label = geany_wrap_label_new(buffer);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 2, row, row + 1,
-					(GtkAttachOptions) (GTK_FILL),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(label, 5);
+	gtk_widget_set_margin_bottom(label, 5);
+	gtk_grid_attach(GTK_GRID(table), label, 0, row, 2, 1);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
 
 	label = geany_wrap_label_new(contributors);
-	gtk_table_attach(GTK_TABLE(table), label, 0, 2, row, row + 1,
-					(GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
-					(GtkAttachOptions) (0), 0, 5);
+	gtk_widget_set_hexpand(label, TRUE);
+	gtk_widget_set_valign(label, GTK_ALIGN_CENTER);
+	gtk_widget_set_margin_top(label, 5);
+	gtk_widget_set_margin_bottom(label, 5);
+	gtk_grid_attach(GTK_GRID(table), label, 0, row, 2, 1);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
