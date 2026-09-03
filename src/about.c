@@ -429,7 +429,7 @@ static GtkWidget *create_dialog(void)
 	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
 	row++;
 
-	gtk_scrolled_window_add_with_viewport(GTK_SCROLLED_WINDOW(credits_scrollwin), table);
+	gtk_container_add(GTK_CONTAINER(credits_scrollwin), table);
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(gtk_widget_get_parent(table)), GTK_SHADOW_NONE);
 	gtk_widget_show_all(table);
 	label = gtk_label_new(_("Credits"));
