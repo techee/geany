@@ -91,10 +91,9 @@ static gboolean geany_pong_area_draw(GtkWidget *area, cairo_t *cr, GeanyPong *se
 	 * background and we want something to paint for the overlay */
 	GtkStyleContext *ctx = gtk_widget_get_style_context(GTK_WIDGET(self));
 	GtkStateFlags state = gtk_style_context_get_state(ctx);
-	GdkRGBA fg, bg;
+	GdkRGBA fg;
 
 	gtk_style_context_get_color(ctx, state, &fg);
-	gtk_style_context_get_background_color(ctx, state, &bg);
 
 	self->area_width = gtk_widget_get_allocated_width(area);
 	self->area_height = gtk_widget_get_allocated_height(area);
@@ -124,9 +123,11 @@ static gboolean geany_pong_area_draw(GtkWidget *area, cairo_t *cr, GeanyPong *se
 		gdouble scale;
 		PangoFontDescription *font = NULL;
 
-		geany_pong_set_cairo_source_color(cr, &bg, 0.8);
-		cairo_rectangle(cr, 0, 0, self->area_width, self->area_height);
-		cairo_paint(cr);
+		/* dim the area with the window's background */
+		cairo_push_group(cr);
+		gtk_render_background(ctx, cr, 0, 0, self->area_width, self->area_height);
+		cairo_pop_group_to_source(cr);
+		cairo_paint_with_alpha(cr, 0.8);
 
 		geany_pong_set_cairo_source_color(cr, &fg, 1.0);
 		layout = pango_cairo_create_layout(cr);
