@@ -1750,14 +1750,12 @@ static void on_clear_dialog_regex_row(GtkEntry *regex, gpointer unused)
 static void on_label_button_clicked(GtkWidget *wid, gpointer user_data)
 {
 	RowWidgets *r = user_data;
-	GtkWidget *top_level = gtk_widget_get_toplevel(wid);
+	GtkWidget *top_level = gtk_widget_get_ancestor(wid, GTK_TYPE_WINDOW);
 	const gchar *old = gtk_button_get_label(GTK_BUTTON(wid));
 	gchar *str;
 
-	if (gtk_widget_is_toplevel(top_level) && GTK_IS_WINDOW(top_level))
-		str = dialogs_show_input(_("Set menu item label"), GTK_WINDOW(top_level), NULL, old);
-	else
-		str = dialogs_show_input(_("Set menu item label"), NULL, NULL, old);
+	str = dialogs_show_input(_("Set menu item label"),
+		top_level ? GTK_WINDOW(top_level) : NULL, NULL, old);
 
 	if (!str)
 		return;
