@@ -1255,7 +1255,7 @@ static void on_toggle_hidden(void)
 GtkWidget *plugin_configure(GtkDialog *dialog)
 {
 	GtkWidget *label, *entry, *checkbox_of, *checkbox_hf, *checkbox_fp, *checkbox_pb, *vbox;
-	GtkWidget *box, *align;
+	GtkWidget *box;
 
 	vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 6);
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 3);
@@ -1297,10 +1297,8 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 	gtk_box_pack_start(GTK_BOX(box), entry, FALSE, FALSE, 0);
 	pref_widgets.hidden_files_entry = entry;
 
-	align = gtk_alignment_new(1, 0.5, 1, 1);
-	gtk_alignment_set_padding(GTK_ALIGNMENT(align), 0, 0, 12, 0);
-	gtk_container_add(GTK_CONTAINER(align), box);
-	gtk_box_pack_start(GTK_BOX(vbox), align, FALSE, FALSE, 0);
+	gtk_widget_set_margin_start(box, 12);
+	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, FALSE, 0);
 	on_toggle_hidden();
 
 	checkbox_fp = gtk_check_button_new_with_label(_("Follow the path of the current file"));

@@ -737,7 +737,7 @@ gint notebook_new_tab(GeanyDocument *this)
 
 	if (file_prefs.show_tab_cross)
 	{
-		GtkWidget *image, *btn, *align;
+		GtkWidget *image, *btn;
 
 		btn = gtk_button_new();
 		gtk_button_set_relief(GTK_BUTTON(btn), GTK_RELIEF_NONE);
@@ -747,9 +747,9 @@ gint notebook_new_tab(GeanyDocument *this)
 		image = gtk_image_new_from_stock(GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
 		gtk_container_add(GTK_CONTAINER(btn), image);
 
-		align = gtk_alignment_new(1.0, 0.5, 0.0, 0.0);
-		gtk_container_add(GTK_CONTAINER(align), btn);
-		gtk_box_pack_start(GTK_BOX(hbox), align, TRUE, TRUE, 0);
+		gtk_widget_set_halign(btn, GTK_ALIGN_END);
+		gtk_widget_set_valign(btn, GTK_ALIGN_CENTER);
+		gtk_box_pack_start(GTK_BOX(hbox), btn, TRUE, TRUE, 0);
 
 		g_signal_connect(btn, "clicked", G_CALLBACK(notebook_tab_close_clicked_cb), this);
 		/* button overrides event box, so make middle click on button also close tab */

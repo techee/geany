@@ -351,17 +351,13 @@ get_template_class_source(ClassInfo *class_info)
 /* Creates a new option label, indented on the left */
 static GtkWidget *cc_option_label_new(const gchar *text)
 {
-	GtkWidget *align;
 	GtkWidget *label;
-
-	align = gtk_alignment_new(0.0, 0.5, 1.0, 1.0);
-	gtk_alignment_set_padding(GTK_ALIGNMENT(align), 0, 0, 12, 0);
 
 	label = gtk_label_new(text);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
-	gtk_container_add(GTK_CONTAINER(align), label);
+	gtk_widget_set_margin_start(label, 12);
 
-	return align;
+	return label;
 }
 
 /* Attaches a new section label at the specified table row, optionally
@@ -370,20 +366,17 @@ static GtkWidget *cc_table_attach_section_label(GtkWidget *table, const gchar *t
 		guint row, gboolean top_padding)
 {
 	gchar *markup;
-	GtkWidget *label, *align;
+	GtkWidget *label;
 
 	label = gtk_label_new(NULL);
 	markup = g_markup_printf_escaped("<b>%s</b>", text);
 	gtk_label_set_markup(GTK_LABEL(label), markup);
 	g_free(markup);
 	gtk_label_set_xalign(GTK_LABEL(label), 0);
-
-	align = gtk_alignment_new(0.0, 0.5, 1.0, 1.0);
 	if (top_padding)
-		gtk_alignment_set_padding(GTK_ALIGNMENT(align), 6, 0, 0, 0);
-	gtk_container_add(GTK_CONTAINER(align), label);
+		gtk_widget_set_margin_top(label, 6);
 
-	gtk_table_attach(GTK_TABLE(table), align,
+	gtk_table_attach(GTK_TABLE(table), label,
 					 0, 2, row, row+1,
 					 GTK_EXPAND | GTK_FILL, GTK_FILL, 0, 0);
 
@@ -422,7 +415,7 @@ static void show_dialog_create_class(gint type)
 {
 	CreateClassDialog *cc_dlg;
 	GtkWidget *main_box, *table, *label, *hdr_hbox;
-	GtkWidget *opt_table, *align;
+	GtkWidget *opt_table;
 	guint row;
 
 	cc_dlg = g_new0(CreateClassDialog, 1);
@@ -532,15 +525,12 @@ static void show_dialog_create_class(gint type)
 
 	cc_table_attach_section_label(table, _("Options"), row++, TRUE);
 
-	align = gtk_alignment_new(0.0, 0.5, 1.0, 1.0);
-	gtk_alignment_set_padding(GTK_ALIGNMENT(align), 0, 0, 12, 0);
-
 	opt_table = gtk_table_new(1, 2, FALSE);
 	gtk_table_set_row_spacings(GTK_TABLE(opt_table), 6);
 	gtk_table_set_col_spacings(GTK_TABLE(opt_table), 6);
-	gtk_container_add(GTK_CONTAINER(align), opt_table);
+	gtk_widget_set_margin_start(opt_table, 12);
 
-	gtk_table_attach(GTK_TABLE(table), align,
+	gtk_table_attach(GTK_TABLE(table), opt_table,
 					 0, 2, row, row+1,
 					 GTK_FILL|GTK_EXPAND,
 					 GTK_FILL|GTK_EXPAND,
@@ -567,7 +557,7 @@ static void show_dialog_create_class(gint type)
 						 1, 2, 1, 2, GTK_FILL|GTK_SHRINK, GTK_FILL|GTK_SHRINK, 0, 0);
 	}
 
-	gtk_widget_show_all(align);
+	gtk_widget_show_all(opt_table);
 
 	if (type == GEANY_CLASS_TYPE_GTK)
 	{
