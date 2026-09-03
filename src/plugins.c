@@ -1738,7 +1738,6 @@ static void pm_prepare_treeview(GtkWidget *tree, GtkTreeStore *store)
 		pm_treeview_text_cell_data_func, NULL, NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(tree), column);
 
-	gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(tree), TRUE);
 	gtk_tree_view_set_enable_search(GTK_TREE_VIEW(tree), FALSE);
 	gtk_tree_sortable_set_sort_func(GTK_TREE_SORTABLE(store), PLUGIN_COLUMN_PLUGIN,
 		pm_tree_sort_func, NULL, NULL);

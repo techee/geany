@@ -1382,7 +1382,6 @@ void highlighting_show_color_scheme_dialog(void)
 
 	tree = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
 	g_object_unref(store);
-	gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(tree), TRUE);
 	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(tree), FALSE);
 	gtk_tree_view_set_search_equal_func(GTK_TREE_VIEW(tree),
 		color_scheme_search_equal_func, NULL, NULL);

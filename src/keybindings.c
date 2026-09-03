@@ -1020,7 +1020,6 @@ static GtkWidget *create_dialog(void)
 	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
 
 	tree = gtk_tree_view_new();
-	gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(tree), TRUE);
 	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(tree), FALSE);
 
 	text_renderer = gtk_cell_renderer_text_new();

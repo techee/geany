@@ -959,7 +959,6 @@ static TBEditorWidget *tb_editor_create_dialog(GtkWindow *parent)
 
 	tree_available = gtk_tree_view_new();
 	gtk_tree_view_set_model(GTK_TREE_VIEW(tree_available), GTK_TREE_MODEL(tbw->store_available));
-	gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(tree_available), TRUE);
 	gtk_tree_sortable_set_sort_column_id(
 		GTK_TREE_SORTABLE(tbw->store_available), TB_EDITOR_COL_LABEL, GTK_SORT_ASCENDING);
 
@@ -981,7 +980,6 @@ static TBEditorWidget *tb_editor_create_dialog(GtkWindow *parent)
 
 	tree_used = gtk_tree_view_new();
 	gtk_tree_view_set_model(GTK_TREE_VIEW(tree_used), GTK_TREE_MODEL(tbw->store_used));
-	gtk_tree_view_set_rules_hint(GTK_TREE_VIEW(tree_used), TRUE);
 	gtk_tree_view_set_reorderable(GTK_TREE_VIEW(tree_used), TRUE);
 
 	icon_renderer = gtk_cell_renderer_pixbuf_new();
