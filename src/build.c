@@ -1690,14 +1690,23 @@ static GdkRGBA insensitive_color;
 static void set_row_color(RowWidgets *r, GdkRGBA *color)
 {
 	enum GeanyBuildCmdEntries i;
+	gchar *css = NULL;
 
+	if (color != NULL)
+	{
+		gchar *str = gdk_rgba_to_string(color);
+
+		css = g_strdup_printf("* { color: %s; }", str);
+		g_free(str);
+	}
 	for (i = 0; i < GEANY_BC_CMDENTRIES_COUNT; i++)
 	{
 		if (i == GEANY_BC_LABEL)
 			continue;
 
-		gtk_widget_override_color(r->entries[i], GTK_STATE_FLAG_NORMAL, color);
+		ui_widget_set_css(r->entries[i], css);
 	}
+	g_free(css);
 }
 
 
