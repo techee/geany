@@ -985,7 +985,7 @@ gchar *utils_get_current_file_dir_utf8(void)
 void utils_beep(void)
 {
 	if (prefs.beep_on_errors)
-		gdk_beep();
+		gdk_display_beep(gdk_display_get_default());
 }
 
 

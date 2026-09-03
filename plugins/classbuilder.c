@@ -589,7 +589,7 @@ static void show_dialog_create_class(gint type)
 		if (create_class(cc_dlg))
 			break;
 		else
-			gdk_beep();
+			gdk_display_beep(gdk_display_get_default());
 	}
 	gtk_widget_destroy(cc_dlg->dialog);
 }
