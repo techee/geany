@@ -361,7 +361,7 @@ static void cc_show_dialog_custom_commands(void)
 
 	label = gtk_label_new(_("You can send the current selection to any of these commands and the output of the command replaces the current selection."));
 	gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
 
 	cc.count = 1;
@@ -717,54 +717,62 @@ void tools_word_count(void)
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 0, 1,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	label = gtk_label_new(range);
 	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 0, 1,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 20, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	label = gtk_label_new(_("Lines:"));
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 1, 2,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	text = g_strdup_printf("%d", lines);
 	label = gtk_label_new(text);
 	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 1, 2,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 20, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 	g_free(text);
 
 	label = gtk_label_new(_("Words:"));
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 2, 3,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	text = g_strdup_printf("%d", words);
 	label = gtk_label_new(text);
 	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 2, 3,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 20, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 	g_free(text);
 
 	label = gtk_label_new(_("Characters:"));
 	gtk_table_attach(GTK_TABLE(table), label, 0, 1, 3, 4,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	text = g_strdup_printf("%d", chars);
 	label = gtk_label_new(text);
 	gtk_table_attach(GTK_TABLE(table), label, 1, 2, 3, 4,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 20, 0);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 	g_free(text);
 
 	gtk_container_add(GTK_CONTAINER(vbox), table);

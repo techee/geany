@@ -1892,7 +1892,7 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 	gtk_container_add(GTK_CONTAINER(swin), pm_widgets.tree);
 
 	label = gtk_label_new(_("Choose which plugins to load:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 
 	/* plugin popup menu */
 	pm_widgets.popup_menu = gtk_menu_new();

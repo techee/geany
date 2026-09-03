@@ -1359,7 +1359,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 			G_CALLBACK(checkbox_toggled_cb), GINT_TO_POINTER(NOTEBOOK_PAGE_AUTOSAVE));
 
 		label = gtk_label_new_with_mnemonic(_("Auto save _interval:"));
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 6);
 
 		pref_widgets.autosave_interval_spin = spin = gtk_spin_button_new_with_range(1, 1800, 1);
@@ -1419,7 +1419,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 			G_CALLBACK(checkbox_toggled_cb), GINT_TO_POINTER(NOTEBOOK_PAGE_BACKUPCOPY));
 
 		label = gtk_label_new_with_mnemonic(_("_Directory to save backup files in:"));
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 0);
 
 		pref_widgets.backupcopy_entry_dir = entry_dir = gtk_entry_new();
@@ -1442,7 +1442,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 		label = gtk_label_new_with_mnemonic(
 			_("Date/_Time format for backup files (see https://docs.gtk.org/glib/method.DateTime.format.html):"));
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 7);
 
 		pref_widgets.backupcopy_entry_time = entry_time = gtk_entry_new();
@@ -1455,7 +1455,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 		label = gtk_label_new_with_mnemonic(
 			_("Directory _levels to include in the backup destination:"));
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_box_pack_start(GTK_BOX(hbox), label, FALSE, FALSE, 0);
 
 		spin_dir_levels = gtk_spin_button_new_with_range(0, 20, 1);
@@ -1506,7 +1506,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		entry_dir_label_text = g_strdup_printf(
 			_("_Directory to save files in (leave empty to use the default: %s):"), g_get_tmp_dir());
 		label = gtk_label_new_with_mnemonic(entry_dir_label_text);
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_widget_set_margin_start(label, 12);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 0);
 		g_free(entry_dir_label_text);
@@ -1532,7 +1532,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		help_label = gtk_label_new(
 			_("<i>The plugin will not delete the files created in this directory.</i>"));
 		gtk_label_set_use_markup(GTK_LABEL(help_label), TRUE);
-		gtk_misc_set_alignment(GTK_MISC(help_label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(help_label), 0);
 		gtk_widget_set_margin_start(help_label, 12);
 		gtk_widget_set_margin_bottom(help_label, 8);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), help_label, FALSE, FALSE, 0);
@@ -1549,7 +1549,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 			G_CALLBACK(radio_toggled_cb), GINT_TO_POINTER(NOTEBOOK_UNTITLEDDOC_RADIO_PERSISTENT));
 
 		label = gtk_label_new_with_mnemonic(_("_Directory to save persistent untitled documents in:"));
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_widget_set_margin_start(label, 12);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 0);
 
@@ -1574,7 +1574,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 1);
 		label = gtk_label_new_with_mnemonic(_("Untitled document save _interval:"));
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 		gtk_widget_set_margin_start(hbox, 12);
 
@@ -1596,7 +1596,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		/* Common */
 
 		label = gtk_label_new_with_mnemonic(_("Default _filetype to use for untitled documents:"));
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		gtk_widget_set_margin_top(label, 15);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), label, FALSE, FALSE, 0);
 

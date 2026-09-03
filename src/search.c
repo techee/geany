@@ -493,7 +493,7 @@ static void create_find_dialog(void)
 		GEANY_RESPONSE_FIND);
 
 	label = gtk_label_new_with_mnemonic(_("_Search for:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 
 	entry = gtk_combo_box_text_new_with_entry();
 	ui_entry_add_clear_icon(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(entry))));
@@ -667,10 +667,10 @@ static void create_replace_dialog(void)
 		GEANY_RESPONSE_REPLACE_AND_FIND);
 
 	label_find = gtk_label_new_with_mnemonic(_("_Search for:"));
-	gtk_misc_set_alignment(GTK_MISC(label_find), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label_find), 0);
 
 	label_replace = gtk_label_new_with_mnemonic(_("Replace wit_h:"));
-	gtk_misc_set_alignment(GTK_MISC(label_replace), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label_replace), 0);
 
 	replace_dlg.find_combobox = gtk_combo_box_text_new_with_entry();
 	replace_dlg.find_entry = gtk_bin_get_child(GTK_BIN(replace_dlg.find_combobox));
@@ -912,7 +912,7 @@ static void create_fif_dialog(void)
 		GTK_RESPONSE_ACCEPT);
 
 	label = gtk_label_new_with_mnemonic(_("_Search for:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 
 	combo = gtk_combo_box_text_new_with_entry();
 	entry = gtk_bin_get_child(GTK_BIN(combo));
@@ -931,7 +931,7 @@ static void create_fif_dialog(void)
 	gtk_size_group_add_widget(size_group, label);
 
 	label3 = gtk_label_new_with_mnemonic(_("File _patterns:"));
-	gtk_misc_set_alignment(GTK_MISC(label3), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label3), 0);
 
 	combo_files_mode = create_fif_file_mode_combo();
 	gtk_label_set_mnemonic_widget(GTK_LABEL(label3), combo_files_mode);
@@ -956,7 +956,7 @@ static void create_fif_dialog(void)
 	gtk_box_pack_start(GTK_BOX(hbox), fcombo, TRUE, TRUE, 0);
 
 	label1 = gtk_label_new_with_mnemonic(_("_Directory:"));
-	gtk_misc_set_alignment(GTK_MISC(label1), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label1), 0);
 
 	dir_combo = gtk_combo_box_text_new_with_entry();
 	entry = gtk_bin_get_child(GTK_BIN(dir_combo));
@@ -975,7 +975,7 @@ static void create_fif_dialog(void)
 	gtk_box_pack_start(GTK_BOX(dbox), label1, FALSE, FALSE, 0);
 
 	label2 = gtk_label_new_with_mnemonic(_("E_ncoding:"));
-	gtk_misc_set_alignment(GTK_MISC(label2), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label2), 0);
 
 	e_combo = ui_create_encodings_combo_box(FALSE, GEANY_ENCODING_UTF_8);
 	gtk_label_set_mnemonic_widget(GTK_LABEL(label2), e_combo);

@@ -358,7 +358,7 @@ static GtkWidget *cc_option_label_new(const gchar *text)
 	gtk_alignment_set_padding(GTK_ALIGNMENT(align), 0, 0, 12, 0);
 
 	label = gtk_label_new(text);
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	gtk_container_add(GTK_CONTAINER(align), label);
 
 	return align;
@@ -376,7 +376,7 @@ static GtkWidget *cc_table_attach_section_label(GtkWidget *table, const gchar *t
 	markup = g_markup_printf_escaped("<b>%s</b>", text);
 	gtk_label_set_markup(GTK_LABEL(label), markup);
 	g_free(markup);
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 
 	align = gtk_alignment_new(0.0, 0.5, 1.0, 1.0);
 	if (top_padding)

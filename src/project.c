@@ -190,7 +190,8 @@ void project_new(gboolean from_folder)
 	gtk_table_set_col_spacings(GTK_TABLE(table), 10);
 
 	label = gtk_label_new(_("Name:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	e.name = gtk_entry_new();
 	gtk_entry_set_activates_default(GTK_ENTRY(e.name), TRUE);
@@ -201,7 +202,8 @@ void project_new(gboolean from_folder)
 	ui_table_add_row(GTK_TABLE(table), 0, label, e.name, NULL);
 
 	label = gtk_label_new(_("Filename:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	e.file_name = gtk_entry_new();
 	gtk_entry_set_activates_default(GTK_ENTRY(e.file_name), TRUE);
@@ -223,7 +225,8 @@ void project_new(gboolean from_folder)
 	ui_table_add_row(GTK_TABLE(table), 1, label, bbox, NULL);
 
 	label = gtk_label_new(_("Base path:"));
-	gtk_misc_set_alignment(GTK_MISC(label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 	e.base_path = gtk_entry_new();
 	gtk_entry_set_activates_default(GTK_ENTRY(e.base_path), TRUE);

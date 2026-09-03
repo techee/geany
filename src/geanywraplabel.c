@@ -87,7 +87,8 @@ static void geany_wrap_label_init(GeanyWrapLabel *self)
 	self->priv->wrap_height = 0;
 
 	g_signal_connect(self, "notify::label", G_CALLBACK(geany_wrap_label_label_notify), NULL);
-	gtk_misc_set_alignment(GTK_MISC(self), 0.0, 0.0);
+	gtk_label_set_xalign(GTK_LABEL(self), 0);
+	gtk_label_set_yalign(GTK_LABEL(self), 0);
 }
 
 

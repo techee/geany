@@ -134,7 +134,8 @@ static void homepage_clicked(GtkButton *button, gpointer data);
 	gtk_table_attach(GTK_TABLE(table), label, (col), (col) + (col_span) + 1, (row), (row) + 1, \
 			(GtkAttachOptions) (GTK_FILL), (GtkAttachOptions) (GTK_FILL), 0, (y_padding)); \
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE); \
-	gtk_misc_set_alignment(GTK_MISC(label), (x_align), 0);
+	gtk_label_set_xalign(GTK_LABEL(label), (x_align)); \
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 
 
 static GtkWidget *create_dialog(void)
@@ -303,7 +304,8 @@ static GtkWidget *create_dialog(void)
 	label = gtk_label_new(buffer);
 	gtk_table_attach(GTK_TABLE(table), label, 0, 2, row, row + 1, GTK_FILL, 0, 0, 5);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
+	gtk_label_set_yalign(GTK_LABEL(label), 0);
 	row++;
 
 	g_snprintf(buffer, sizeof(buffer), "Colomban Wendling - %s", _("maintainer"));
@@ -361,7 +363,7 @@ static GtkWidget *create_dialog(void)
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 5);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
 
 	for (i = 0; i < translators_len; i++)
@@ -381,7 +383,7 @@ static GtkWidget *create_dialog(void)
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 5);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
 
 	for (i = 0; i < prev_translators_len; i++)
@@ -402,7 +404,7 @@ static GtkWidget *create_dialog(void)
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 5);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
 
 	g_snprintf(buffer, sizeof(buffer),
@@ -418,7 +420,7 @@ static GtkWidget *create_dialog(void)
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 0, 5);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
 
 	label = geany_wrap_label_new(contributors);
@@ -426,7 +428,7 @@ static GtkWidget *create_dialog(void)
 					(GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
 					(GtkAttachOptions) (0), 0, 5);
 	gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 	row++;
 
 	gtk_container_add(GTK_CONTAINER(credits_scrollwin), table);

@@ -328,7 +328,7 @@ static void geany_pong_init(GeanyPong *self)
 	gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 
 	label = gtk_label_new("Score:");
-	gtk_misc_set_alignment(GTK_MISC(label), 1.0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 1);
 	gtk_box_pack_start(GTK_BOX(hbox), label, TRUE, TRUE, 0);
 
 	self->score_label = gtk_label_new("0");

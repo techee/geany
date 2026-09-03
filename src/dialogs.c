@@ -356,7 +356,8 @@ static GtkWidget *add_file_open_extra_widget(GtkWidget *dialog)
 					(GtkAttachOptions) (0), 5, 5);
 
 	encoding_label = gtk_label_new(_("Set encoding:"));
-	gtk_misc_set_alignment(GTK_MISC(encoding_label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(encoding_label), 1);
+	gtk_label_set_yalign(GTK_LABEL(encoding_label), 0);
 	gtk_table_attach(GTK_TABLE(table), encoding_label, 2, 3, 0, 1,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 4, 5);
@@ -369,7 +370,8 @@ static GtkWidget *add_file_open_extra_widget(GtkWidget *dialog)
 
 	/* line 2 with filetype combo */
 	filetype_label = gtk_label_new(_("Set filetype:"));
-	gtk_misc_set_alignment(GTK_MISC(filetype_label), 1, 0);
+	gtk_label_set_xalign(GTK_LABEL(filetype_label), 1);
+	gtk_label_set_yalign(GTK_LABEL(filetype_label), 0);
 	gtk_table_attach(GTK_TABLE(table), filetype_label, 2, 3, 1, 2,
 					(GtkAttachOptions) (GTK_FILL),
 					(GtkAttachOptions) (0), 4, 5);
@@ -1021,7 +1023,7 @@ dialogs_show_input_full(const gchar *title, GtkWindow *parent,
 	{
 		GtkWidget *label = gtk_label_new(label_text);
 		gtk_label_set_line_wrap(GTK_LABEL(label), TRUE);
-		gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+		gtk_label_set_xalign(GTK_LABEL(label), 0);
 		ui_hookup_widget(dialog, label, "label");
 		gtk_container_add(GTK_CONTAINER(vbox), label);
 	}
@@ -1154,7 +1156,7 @@ gboolean dialogs_show_input_numeric(const gchar *title, const gchar *label_text,
 	gtk_widget_set_name(dialog, "GeanyDialog");
 
 	label = gtk_label_new(label_text);
-	gtk_misc_set_alignment(GTK_MISC(label), 0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 
 	spin = gtk_spin_button_new_with_range(min, max, step);
 	ui_entry_add_clear_icon(GTK_ENTRY(spin));

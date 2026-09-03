@@ -164,7 +164,8 @@ static void create_default_tag_tree(void)
 		gtk_scrolled_window_get_vadjustment(scrolled_window));
 	gtk_viewport_set_shadow_type(GTK_VIEWPORT(tv.default_tag_tree), GTK_SHADOW_NONE);
 	label = gtk_label_new(_("No symbols found"));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.1f, 0.01f);
+	gtk_label_set_xalign(GTK_LABEL(label), 0.1);
+	gtk_label_set_yalign(GTK_LABEL(label), 0.01);
 	gtk_container_add(GTK_CONTAINER(tv.default_tag_tree), label);
 	gtk_widget_show_all(tv.default_tag_tree);
 	g_signal_connect(tv.default_tag_tree, "button-press-event",

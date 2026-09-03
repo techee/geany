@@ -955,7 +955,7 @@ static TBEditorWidget *tb_editor_create_dialog(GtkWindow *parent)
 
 	label = gtk_label_new(
 		_("Select items to be displayed on the toolbar. Items can be reordered by drag and drop."));
-	gtk_misc_set_alignment(GTK_MISC(label), 0.0, 0.5);
+	gtk_label_set_xalign(GTK_LABEL(label), 0);
 
 	tree_available = gtk_tree_view_new();
 	gtk_tree_view_set_model(GTK_TREE_VIEW(tree_available), GTK_TREE_MODEL(tbw->store_available));
