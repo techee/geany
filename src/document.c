@@ -881,11 +881,8 @@ static gboolean get_mtime(const gchar *locale_filename, time_t *time)
 
 		if (info)
 		{
-			GTimeVal timeval;
-
-			g_file_info_get_modification_time(info, &timeval);
+			*time = (time_t) g_file_info_get_attribute_uint64(info, G_FILE_ATTRIBUTE_TIME_MODIFIED);
 			g_object_unref(info);
-			*time = timeval.tv_sec;
 		}
 		else if (error)
 			err_msg = error->message;
