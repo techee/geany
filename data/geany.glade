@@ -5584,7 +5584,6 @@
                               <object class="GtkTreeView" id="treeview7">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="rules-hint">True</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection"/>
                                 </child>
@@ -6366,7 +6365,6 @@ Supported placeholders are:
                               <object class="GtkTreeView" id="various_treeview">
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
-                                <property name="rules-hint">True</property>
                                 <child internal-child="selection">
                                   <object class="GtkTreeSelection"/>
                                 </child>
@@ -8545,7 +8543,6 @@ Supported placeholders are:
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="headers-visible">False</property>
-                        <property name="rules-hint">True</property>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection"/>
                         </child>
@@ -8602,7 +8599,6 @@ Supported placeholders are:
                         <property name="visible">True</property>
                         <property name="can-focus">True</property>
                         <property name="headers-visible">False</property>
-                        <property name="rules-hint">True</property>
                         <child internal-child="selection">
                           <object class="GtkTreeSelection"/>
                         </child>
