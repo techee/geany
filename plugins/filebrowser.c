@@ -910,22 +910,26 @@ static GtkWidget *make_toolbar(void)
 	gtk_toolbar_set_icon_size(GTK_TOOLBAR(toolbar), GTK_ICON_SIZE_MENU);
 	gtk_toolbar_set_style(GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
 
-	wid = GTK_WIDGET(gtk_tool_button_new_from_stock(GTK_STOCK_GO_UP));
+	wid = GTK_WIDGET(gtk_tool_button_new(NULL, _("Up")));
+	gtk_tool_button_set_icon_name(GTK_TOOL_BUTTON(wid), "go-up");
 	gtk_widget_set_tooltip_text(wid, _("Up"));
 	g_signal_connect(wid, "clicked", G_CALLBACK(on_go_up), NULL);
 	gtk_container_add(GTK_CONTAINER(toolbar), wid);
 
-	wid = GTK_WIDGET(gtk_tool_button_new_from_stock(GTK_STOCK_REFRESH));
+	wid = GTK_WIDGET(gtk_tool_button_new(NULL, _("Refresh")));
+	gtk_tool_button_set_icon_name(GTK_TOOL_BUTTON(wid), "view-refresh");
 	gtk_widget_set_tooltip_text(wid, _("Refresh"));
 	g_signal_connect(wid, "clicked", G_CALLBACK(refresh), NULL);
 	gtk_container_add(GTK_CONTAINER(toolbar), wid);
 
-	wid = GTK_WIDGET(gtk_tool_button_new_from_stock(GTK_STOCK_HOME));
+	wid = GTK_WIDGET(gtk_tool_button_new(NULL, _("Home")));
+	gtk_tool_button_set_icon_name(GTK_TOOL_BUTTON(wid), "go-home");
 	gtk_widget_set_tooltip_text(wid, _("Home"));
 	g_signal_connect(wid, "clicked", G_CALLBACK(on_go_home), NULL);
 	gtk_container_add(GTK_CONTAINER(toolbar), wid);
 
-	wid = GTK_WIDGET(gtk_tool_button_new_from_stock(GTK_STOCK_JUMP_TO));
+	wid = GTK_WIDGET(gtk_tool_button_new(NULL, _("Set path from document")));
+	gtk_tool_button_set_icon_name(GTK_TOOL_BUTTON(wid), "go-jump");
 	gtk_widget_set_tooltip_text(wid, _("Set path from document"));
 	g_signal_connect(wid, "clicked", G_CALLBACK(on_current_path), NULL);
 	gtk_container_add(GTK_CONTAINER(toolbar), wid);

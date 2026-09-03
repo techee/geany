@@ -1551,28 +1551,28 @@ void build_menu_update(GeanyDocument *doc)
 /* Call build_menu_update() instead of calling this directly. */
 static void set_stop_button(gboolean stop)
 {
-	const gchar *button_stock_id = NULL;
+	const gchar *button_icon_name = NULL;
 	GtkToolButton *run_button;
 
 	run_button = GTK_TOOL_BUTTON(toolbar_get_widget_by_name("Run"));
 	if (run_button != NULL)
-		button_stock_id = gtk_tool_button_get_stock_id(run_button);
+		button_icon_name = gtk_tool_button_get_icon_name(run_button);
 
-	if (stop && utils_str_equal(button_stock_id, GTK_STOCK_STOP))
+	if (stop && utils_str_equal(button_icon_name, "process-stop"))
 		return;
-	if (! stop && utils_str_equal(button_stock_id, GTK_STOCK_EXECUTE))
+	if (! stop && utils_str_equal(button_icon_name, "system-run"))
 		return;
 
 	 /* use the run button also as stop button  */
 	if (stop)
 	{
 		if (run_button != NULL)
-			gtk_tool_button_set_stock_id(run_button, GTK_STOCK_STOP);
+			gtk_tool_button_set_icon_name(run_button, "process-stop");
 	}
 	else
 	{
 		if (run_button != NULL)
-			gtk_tool_button_set_stock_id(run_button, GTK_STOCK_EXECUTE);
+			gtk_tool_button_set_icon_name(run_button, "system-run");
 	}
 }
 
