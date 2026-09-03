@@ -234,12 +234,12 @@ static void kb_show_popup_menu(KbData *kbdata, GtkWidget *widget, GdkEventButton
 
 		menu = gtk_menu_new();
 
-		item = ui_image_menu_item_new(GTK_STOCK_ADD, _("_Expand All"));
+		item = ui_image_menu_item_new("list-add", _("_Expand All"));
 		gtk_widget_show(item);
 		gtk_container_add(GTK_CONTAINER(menu), item);
 		g_signal_connect_swapped(item, "activate", G_CALLBACK(gtk_tree_view_expand_all), kbdata->tree);
 
-		item = ui_image_menu_item_new(GTK_STOCK_REMOVE, _("_Collapse All"));
+		item = ui_image_menu_item_new("list-remove", _("_Collapse All"));
 		gtk_widget_show(item);
 		gtk_container_add(GTK_CONTAINER(menu), item);
 		g_signal_connect_swapped(item, "activate", G_CALLBACK(gtk_tree_view_collapse_all), kbdata->tree);

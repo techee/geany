@@ -178,7 +178,7 @@ void project_new(gboolean from_folder)
 										 _("_Cancel"), GTK_RESPONSE_CANCEL, NULL);
 
 	gtk_widget_set_name(e.dialog, "GeanyDialogProject");
-	button = ui_button_new_with_image(GTK_STOCK_NEW, _("C_reate"));
+	button = ui_button_new_with_image("document-new", _("C_reate"));
 	gtk_widget_set_can_default(button, TRUE);
 	gtk_window_set_default(GTK_WINDOW(e.dialog), button);
 	gtk_dialog_add_action_widget(GTK_DIALOG(e.dialog), button, GTK_RESPONSE_OK);

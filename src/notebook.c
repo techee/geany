@@ -476,7 +476,7 @@ static void show_tab_bar_popup_menu(GdkEventButton *event, GeanyDocument *doc)
 	gtk_widget_show(menu_item);
 	gtk_container_add(GTK_CONTAINER(menu), menu_item);
 
-	menu_item = ui_image_menu_item_new(GTK_STOCK_OPEN, _("Open in New _Window"));
+	menu_item = ui_image_menu_item_new("document-open", _("Open in New _Window"));
 	gtk_widget_show(menu_item);
 	gtk_container_add(GTK_CONTAINER(menu), menu_item);
 	g_signal_connect(menu_item, "activate",
@@ -495,19 +495,19 @@ static void show_tab_bar_popup_menu(GdkEventButton *event, GeanyDocument *doc)
 	g_signal_connect(menu_item, "activate", G_CALLBACK(notebook_tab_close_clicked_cb), doc);
 	gtk_widget_set_sensitive(GTK_WIDGET(menu_item), (doc != NULL));
 
-	menu_item = ui_image_menu_item_new(GTK_STOCK_CLOSE, _("Close Ot_her Documents"));
+	menu_item = ui_image_menu_item_new("window-close", _("Close Ot_her Documents"));
 	gtk_widget_show(menu_item);
 	gtk_container_add(GTK_CONTAINER(menu), menu_item);
 	g_signal_connect(menu_item, "activate", G_CALLBACK(on_close_other_documents1_activate), doc);
 	gtk_widget_set_sensitive(GTK_WIDGET(menu_item), (doc != NULL));
 
-	menu_item = ui_image_menu_item_new(GTK_STOCK_CLOSE, _("Close Documents to the _Right"));
+	menu_item = ui_image_menu_item_new("window-close", _("Close Documents to the _Right"));
 	gtk_widget_show(menu_item);
 	gtk_container_add(GTK_CONTAINER(menu), menu_item);
 	g_signal_connect(menu_item, "activate", G_CALLBACK(on_close_documents_right_activate), doc);
 	gtk_widget_set_sensitive(GTK_WIDGET(menu_item), doc != NULL && has_tabs_on_right(doc));
 
-	menu_item = ui_image_menu_item_new(GTK_STOCK_CLOSE, _("C_lose All"));
+	menu_item = ui_image_menu_item_new("window-close", _("C_lose All"));
 	gtk_widget_show(menu_item);
 	gtk_container_add(GTK_CONTAINER(menu), menu_item);
 	g_signal_connect(menu_item, "activate", G_CALLBACK(on_close_all1_activate), NULL);

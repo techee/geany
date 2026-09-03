@@ -504,7 +504,7 @@ static gint run_dialog_for_persistent_doc_tab_closing(const gchar *msg, const gc
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", msg2);
 	gtk_dialog_add_button(GTK_DIALOG(dialog), _("_Cancel"), GTK_RESPONSE_CANCEL);
 
-	button = ui_button_new_with_image(GTK_STOCK_CLEAR, _("_Don't save (discard)"));
+	button = ui_button_new_with_image("edit-clear", _("_Don't save (discard)"));
 	gtk_dialog_add_action_widget(GTK_DIALOG(dialog), button, GTK_RESPONSE_NO);
 	gtk_widget_show(button);
 

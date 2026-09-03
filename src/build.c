@@ -2709,7 +2709,7 @@ void build_init(void)
 	gtk_container_add(GTK_CONTAINER(toolmenu), item);
 
 	/* arguments */
-	item = ui_image_menu_item_new(GTK_STOCK_PREFERENCES, _("_Set Build Commands"));
+	item = ui_image_menu_item_new("preferences-system", _("_Set Build Commands"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(toolmenu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(on_set_build_commands_activate), NULL);

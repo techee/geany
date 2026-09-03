@@ -481,13 +481,13 @@ static void create_find_dialog(void)
 	gtk_dialog_add_action_widget(GTK_DIALOG(find_dlg.dialog), button,
 		GTK_RESPONSE_CANCEL);
 
-	button = ui_button_new_with_image(GTK_STOCK_GO_BACK, _("_Previous"));
+	button = ui_button_new_with_image("go-previous", _("_Previous"));
 	gtk_widget_set_size_request(button, MIN_DLG_BUTTON_SIZE, -1);
 	gtk_dialog_add_action_widget(GTK_DIALOG(find_dlg.dialog), button,
 		GEANY_RESPONSE_FIND_PREVIOUS);
 	ui_hookup_widget(find_dlg.dialog, button, "btn_previous");
 
-	button = ui_button_new_with_image(GTK_STOCK_GO_FORWARD, _("_Next"));
+	button = ui_button_new_with_image("go-next", _("_Next"));
 	gtk_widget_set_size_request(button, MIN_DLG_BUTTON_SIZE, -1);
 	gtk_dialog_add_action_widget(GTK_DIALOG(find_dlg.dialog), button,
 		GEANY_RESPONSE_FIND);

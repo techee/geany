@@ -1039,8 +1039,8 @@ static TBEditorWidget *tb_editor_create_dialog(GtkWindow *parent)
 		G_CALLBACK(tb_editor_drag_motion_cb), tbw);
 
 
-	button_add = ui_button_new_with_image(GTK_STOCK_GO_FORWARD, NULL);
-	button_remove = ui_button_new_with_image(GTK_STOCK_GO_BACK, NULL);
+	button_add = ui_button_new_with_image("go-next", NULL);
+	button_remove = ui_button_new_with_image("go-previous", NULL);
 	g_signal_connect(button_add, "clicked", G_CALLBACK(tb_editor_btn_add_clicked_cb), tbw);
 	g_signal_connect(button_remove, "clicked", G_CALLBACK(tb_editor_btn_remove_clicked_cb), tbw);
 

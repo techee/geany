@@ -1333,7 +1333,7 @@ static void create_openfiles_popup_menu(void)
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), item);
 
-	item = ui_image_menu_item_new(GTK_STOCK_FIND, _("_Find in Files..."));
+	item = ui_image_menu_item_new("edit-find", _("_Find in Files..."));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(on_find_in_files), NULL);
@@ -1349,13 +1349,13 @@ static void create_openfiles_popup_menu(void)
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), item);
 
-	doc_items.expand_all = ui_image_menu_item_new(GTK_STOCK_ADD, _("_Expand All"));
+	doc_items.expand_all = ui_image_menu_item_new("list-add", _("_Expand All"));
 	gtk_widget_show(doc_items.expand_all);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), doc_items.expand_all);
 	g_signal_connect(doc_items.expand_all, "activate",
 					 G_CALLBACK(on_openfiles_expand_collapse), GINT_TO_POINTER(TRUE));
 
-	doc_items.collapse_all = ui_image_menu_item_new(GTK_STOCK_REMOVE, _("_Collapse All"));
+	doc_items.collapse_all = ui_image_menu_item_new("list-remove", _("_Collapse All"));
 	gtk_widget_show(doc_items.collapse_all);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), doc_items.collapse_all);
 	g_signal_connect(doc_items.collapse_all, "activate",

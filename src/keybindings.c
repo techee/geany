@@ -375,7 +375,7 @@ static void init_default_kb(void)
 		0, 0, "project_open", _("Open"), "project_open1");
 	add_kb(group, GEANY_KEYS_PROJECT_PROPERTIES, NULL,
 		0, 0, "project_properties",
-		ui_lookup_stock_label(GTK_STOCK_PROPERTIES), "project_properties1");
+		_("_Properties"), "project_properties1");
 	add_kb(group, GEANY_KEYS_PROJECT_CLOSE, NULL,
 		0, 0, "project_close", _("Close"), "project_close1");
 

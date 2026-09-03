@@ -650,13 +650,13 @@ static GtkWidget *create_popup_menu(void)
 
 	menu = gtk_menu_new();
 
-	item = ui_image_menu_item_new(GTK_STOCK_OPEN, _("Open in _Geany"));
+	item = ui_image_menu_item_new("document-open", _("Open in _Geany"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(on_open_clicked), NULL);
 	popup_items.open = item;
 
-	item = ui_image_menu_item_new(GTK_STOCK_OPEN, _("Open _Externally"));
+	item = ui_image_menu_item_new("document-open", _("Open _Externally"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(on_external_open), NULL);
@@ -671,7 +671,7 @@ static GtkWidget *create_popup_menu(void)
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(refresh), NULL);
 
-	item = ui_image_menu_item_new(GTK_STOCK_FIND, _("_Find in Files..."));
+	item = ui_image_menu_item_new("edit-find", _("_Find in Files..."));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(on_find_in_files), NULL);
@@ -700,7 +700,7 @@ static GtkWidget *create_popup_menu(void)
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 
-	item = ui_image_menu_item_new(GTK_STOCK_CLOSE, _("H_ide Sidebar"));
+	item = ui_image_menu_item_new("window-close", _("H_ide Sidebar"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(on_hide_sidebar), NULL);

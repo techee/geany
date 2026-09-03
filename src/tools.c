@@ -73,18 +73,18 @@ struct cc_dialog
 static void cc_dialog_update_row_status(GtkListStore *store, GtkTreeIter *iter, const gchar *cmd)
 {
 	GError *err = NULL;
-	const gchar *stock_id = GTK_STOCK_NO;
+	const gchar *icon_name = "gtk-no";
 	gchar *tooltip = NULL;
 
 	if (EMPTY(cmd) || spawn_check_command(cmd, TRUE, &err))
-		stock_id = GTK_STOCK_YES;
+		icon_name = "gtk-yes";
 	else
 	{
 		tooltip = g_strdup_printf(_("Invalid command: %s"), err->message);
 		g_error_free(err);
 	}
 
-	gtk_list_store_set(store, iter, CC_COLUMN_STATUS, stock_id, CC_COLUMN_TOOLTIP, tooltip, -1);
+	gtk_list_store_set(store, iter, CC_COLUMN_STATUS, icon_name, CC_COLUMN_TOOLTIP, tooltip, -1);
 	g_free(tooltip);
 }
 
@@ -379,7 +379,7 @@ static void cc_show_dialog_custom_commands(void)
 	column = g_object_new(GTK_TYPE_TREE_VIEW_COLUMN, "title", _("Command"), "expand", TRUE, "resizable", TRUE, NULL);
 	renderer = gtk_cell_renderer_pixbuf_new();
 	gtk_tree_view_column_pack_start(column, renderer, FALSE);
-	gtk_tree_view_column_set_attributes(column, renderer, "stock-id", CC_COLUMN_STATUS, NULL);
+	gtk_tree_view_column_set_attributes(column, renderer, "icon-name", CC_COLUMN_STATUS, NULL);
 	renderer = gtk_cell_renderer_text_new();
 	g_object_set(renderer, "editable", TRUE, "ellipsize", PANGO_ELLIPSIZE_END, NULL);
 	g_signal_connect(renderer, "edited", G_CALLBACK(cc_dialog_on_command_edited), &cc);
