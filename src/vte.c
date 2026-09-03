@@ -719,14 +719,14 @@ static GtkWidget *vte_create_popup_menu(void)
 	accel_group = gtk_accel_group_new();
 	gtk_window_add_accel_group(GTK_WINDOW(main_widgets.window), accel_group);
 
-	item = gtk_image_menu_item_new_from_stock(GTK_STOCK_COPY, NULL);
+	item = ui_image_menu_item_new("edit-copy", _("_Copy"));
 	gtk_widget_add_accelerator(item, "activate", accel_group,
 		GDK_KEY_c, GEANY_PRIMARY_MOD_MASK | GDK_SHIFT_MASK, GTK_ACCEL_VISIBLE);
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(vte_popup_menu_clicked), GINT_TO_POINTER(POPUP_COPY));
 
-	item = gtk_image_menu_item_new_from_stock(GTK_STOCK_PASTE, NULL);
+	item = ui_image_menu_item_new("edit-paste", _("_Paste"));
 	gtk_widget_add_accelerator(item, "activate", accel_group,
 		GDK_KEY_v, GEANY_PRIMARY_MOD_MASK | GDK_SHIFT_MASK, GTK_ACCEL_VISIBLE);
 	gtk_widget_show(item);
@@ -737,7 +737,7 @@ static GtkWidget *vte_create_popup_menu(void)
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 
-	item = gtk_image_menu_item_new_from_stock(GTK_STOCK_SELECT_ALL, NULL);
+	item = ui_image_menu_item_new("edit-select-all", _("Select _All"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(vte_popup_menu_clicked), GINT_TO_POINTER(POPUP_SELECTALL));
@@ -760,7 +760,7 @@ static GtkWidget *vte_create_popup_menu(void)
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 
-	item = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
+	item = ui_image_menu_item_new("preferences-system", _("_Preferences"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(menu), item);
 	g_signal_connect(item, "activate", G_CALLBACK(vte_popup_menu_clicked), GINT_TO_POINTER(POPUP_PREFERENCES));

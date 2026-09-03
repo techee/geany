@@ -1897,7 +1897,7 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 	/* plugin popup menu */
 	pm_widgets.popup_menu = gtk_menu_new();
 
-	menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_PREFERENCES, NULL);
+	menu_item = ui_image_menu_item_new("preferences-system", _("_Preferences"));
 	gtk_container_add(GTK_CONTAINER(pm_widgets.popup_menu), menu_item);
 	g_signal_connect(menu_item, "activate",
 			G_CALLBACK(pm_on_plugin_button_clicked), GINT_TO_POINTER(PM_BUTTON_CONFIGURE));
@@ -1909,7 +1909,7 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 			G_CALLBACK(pm_on_plugin_button_clicked), GINT_TO_POINTER(PM_BUTTON_KEYBINDINGS));
 	pm_widgets.popup_keybindings_menu_item = menu_item;
 
-	menu_item = gtk_image_menu_item_new_from_stock(GTK_STOCK_HELP, NULL);
+	menu_item = ui_image_menu_item_new("help-browser", _("_Help"));
 	gtk_container_add(GTK_CONTAINER(pm_widgets.popup_menu), menu_item);
 	g_signal_connect(menu_item, "activate",
 			G_CALLBACK(pm_on_plugin_button_clicked), GINT_TO_POINTER(PM_BUTTON_HELP));

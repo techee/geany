@@ -1302,7 +1302,7 @@ static void create_openfiles_popup_menu(void)
 
 	openfiles_popup_menu = gtk_menu_new();
 
-	item = gtk_image_menu_item_new_from_stock(GTK_STOCK_CLOSE, NULL);
+	item = ui_image_menu_item_new("window-close", _("_Close"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), item);
 	g_signal_connect(item, "activate",
@@ -1313,7 +1313,7 @@ static void create_openfiles_popup_menu(void)
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), item);
 
-	item = gtk_image_menu_item_new_from_stock(GTK_STOCK_SAVE, NULL);
+	item = ui_image_menu_item_new("document-save", _("_Save"));
 	gtk_widget_show(item);
 	gtk_container_add(GTK_CONTAINER(openfiles_popup_menu), item);
 	g_signal_connect(item, "activate",
