@@ -190,11 +190,17 @@ static void kb_tree_view_change_button_clicked_cb(GtkWidget *button, KbData *kbd
 			str = g_strdup_printf(
 					_("Press the combination of the keys you want to use for \"%s\"."), name);
 			label = gtk_label_new(str);
-			gtk_misc_set_padding(GTK_MISC(label), 5, 10);
+			gtk_widget_set_margin_start(label, 5);
+			gtk_widget_set_margin_end(label, 5);
+			gtk_widget_set_margin_top(label, 10);
+			gtk_widget_set_margin_bottom(label, 10);
 			gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), label);
 
 			accel_label = gtk_label_new("");
-			gtk_misc_set_padding(GTK_MISC(accel_label), 5, 10);
+			gtk_widget_set_margin_start(accel_label, 5);
+			gtk_widget_set_margin_end(accel_label, 5);
+			gtk_widget_set_margin_top(accel_label, 10);
+			gtk_widget_set_margin_bottom(accel_label, 10);
 			gtk_container_add(GTK_CONTAINER(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), accel_label);
 
 			g_signal_connect(dialog, "key-press-event",
@@ -1810,13 +1816,15 @@ void prefs_show_dialog(void)
 		label = geany_wrap_label_new(_("<i>Warning: these settings are overridden by the current project. See <b>Project->Properties</b>.</i>"));
 		gtk_widget_show(label);
 		gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-		gtk_misc_set_padding(GTK_MISC(label), 6, 0);
+		gtk_widget_set_margin_start(label, 6);
+		gtk_widget_set_margin_end(label, 6);
 		gtk_box_pack_start(GTK_BOX(ui_lookup_widget(ui_widgets.prefs_dialog,
 			"label_project_indent_warning")), label, FALSE, TRUE, 5);
 		label = geany_wrap_label_new(_("Note: To apply these settings to all currently open documents, use <i>Project->Apply Default Indentation</i>."));
 		gtk_widget_show(label);
 		gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-		gtk_misc_set_padding(GTK_MISC(label), 6, 0);
+		gtk_widget_set_margin_start(label, 6);
+		gtk_widget_set_margin_end(label, 6);
 		gtk_box_pack_start(GTK_BOX(ui_lookup_widget(ui_widgets.prefs_dialog,
 			"label_indent_warning")), label, FALSE, TRUE, 5);
 

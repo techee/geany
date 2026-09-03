@@ -217,7 +217,10 @@ static GtkWidget *create_dialog(void)
 	gtk_label_set_use_markup(GTK_LABEL(label_info), TRUE);
 	g_snprintf(buffer, sizeof(buffer), INFO, _("A fast and lightweight IDE"));
 	gtk_label_set_markup(GTK_LABEL(label_info), buffer);
-	gtk_misc_set_padding(GTK_MISC(label_info), 2, 11);
+	gtk_widget_set_margin_start(label_info, 2);
+	gtk_widget_set_margin_end(label_info, 2);
+	gtk_widget_set_margin_top(label_info, 11);
+	gtk_widget_set_margin_bottom(label_info, 11);
 	gtk_widget_show(label_info);
 	gtk_box_pack_start(GTK_BOX(info_box), label_info, FALSE, FALSE, 0);
 
@@ -227,7 +230,10 @@ static GtkWidget *create_dialog(void)
 	gtk_label_set_selectable(GTK_LABEL(codename_label), TRUE);
 	gtk_label_set_use_markup(GTK_LABEL(codename_label), TRUE);
 	gtk_label_set_markup(GTK_LABEL(codename_label), CODENAME);
-	gtk_misc_set_padding(GTK_MISC(codename_label), 2, 8);
+	gtk_widget_set_margin_start(codename_label, 2);
+	gtk_widget_set_margin_end(codename_label, 2);
+	gtk_widget_set_margin_top(codename_label, 8);
+	gtk_widget_set_margin_bottom(codename_label, 8);
 	gtk_widget_show(codename_label);
 	gtk_box_pack_start(GTK_BOX(info_box), codename_label, FALSE, FALSE, 0);
 
@@ -241,7 +247,10 @@ static GtkWidget *create_dialog(void)
 	g_free(build_date);
 	g_snprintf(buffer, sizeof(buffer), BUILDDATE, buffer2);
 	gtk_label_set_markup(GTK_LABEL(builddate_label), buffer);
-	gtk_misc_set_padding(GTK_MISC(builddate_label), 2, 2);
+	gtk_widget_set_margin_start(builddate_label, 2);
+	gtk_widget_set_margin_end(builddate_label, 2);
+	gtk_widget_set_margin_top(builddate_label, 2);
+	gtk_widget_set_margin_bottom(builddate_label, 2);
 	gtk_widget_show(builddate_label);
 	gtk_box_pack_start(GTK_BOX(info_box), builddate_label, FALSE, FALSE, 0);
 
@@ -256,7 +265,10 @@ static GtkWidget *create_dialog(void)
 		glib_major_version, glib_minor_version, glib_micro_version);
 	g_snprintf(buffer, sizeof(buffer), RUNTIME, buffer2);
 	gtk_label_set_markup(GTK_LABEL(runtime_label), buffer);
-	gtk_misc_set_padding(GTK_MISC(runtime_label), 2, 2);
+	gtk_widget_set_margin_start(runtime_label, 2);
+	gtk_widget_set_margin_end(runtime_label, 2);
+	gtk_widget_set_margin_top(runtime_label, 2);
+	gtk_widget_set_margin_bottom(runtime_label, 2);
 	gtk_widget_show(runtime_label);
 	gtk_box_pack_start(GTK_BOX(info_box), runtime_label, FALSE, FALSE, 0);
 
@@ -279,7 +291,10 @@ static GtkWidget *create_dialog(void)
 	gtk_label_set_selectable(GTK_LABEL(cop_label), FALSE);
 	gtk_label_set_use_markup(GTK_LABEL(cop_label), TRUE);
 	gtk_label_set_markup(GTK_LABEL(cop_label), COPYRIGHT);
-	gtk_misc_set_padding(GTK_MISC(cop_label), 2, 10);
+	gtk_widget_set_margin_start(cop_label, 2);
+	gtk_widget_set_margin_end(cop_label, 2);
+	gtk_widget_set_margin_top(cop_label, 10);
+	gtk_widget_set_margin_bottom(cop_label, 10);
 	gtk_widget_show(cop_label);
 	gtk_box_pack_start(GTK_BOX(info_box), cop_label, FALSE, FALSE, 0);
 	/*gtk_container_add(GTK_CONTAINER(info_box), cop_label); */
