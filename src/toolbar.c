@@ -51,38 +51,46 @@ static GtkActionGroup *group;
 static GSList *plugin_items = NULL;
 
 /* Available toolbar actions
- * Fields: name, stock_id, label, accelerator, tooltip, callback */
-static const GtkActionEntry ui_entries[] = {
-	/* custom actions defined in toolbar_init(): "New", "Open", "SearchEntry", "GotoEntry", "Build" */
-	{ "Save", GTK_STOCK_SAVE, NULL, NULL, N_("Save the current file"), G_CALLBACK(on_save1_activate) },
-	{ "SaveAs", GTK_STOCK_SAVE_AS, NULL, NULL, N_("Save as"), G_CALLBACK(on_save_as1_activate) },
-	{ "SaveAll", GEANY_STOCK_SAVE_ALL, NULL, NULL, N_("Save all open files"), G_CALLBACK(on_save_all1_activate) },
-	{ "Reload", GTK_STOCK_REVERT_TO_SAVED, NULL, NULL, N_("Reload the current file from disk"), G_CALLBACK(on_toolbutton_reload_clicked) },
-	{ "Close", GTK_STOCK_CLOSE, NULL, NULL, N_("Close the current file"), G_CALLBACK(on_close1_activate) },
-	{ "CloseAll", GEANY_STOCK_CLOSE_ALL, NULL, NULL, N_("Close all open files"), G_CALLBACK(on_close_all1_activate) },
-	{ "Cut", GTK_STOCK_CUT, NULL, NULL, N_("Cut the current selection"), G_CALLBACK(on_cut1_activate) },
-	{ "Copy", GTK_STOCK_COPY, NULL, NULL, N_("Copy the current selection"), G_CALLBACK(on_copy1_activate) },
-	{ "Paste", GTK_STOCK_PASTE, NULL, NULL, N_("Paste the contents of the clipboard"), G_CALLBACK(on_paste1_activate) },
-	{ "Delete", GTK_STOCK_DELETE, NULL, NULL, N_("Delete the current selection"), G_CALLBACK(on_delete1_activate) },
-	{ "Undo", GTK_STOCK_UNDO, NULL, NULL, N_("Undo the last modification"), G_CALLBACK(on_undo1_activate) },
-	{ "Redo", GTK_STOCK_REDO, NULL, NULL, N_("Redo the last modification"), G_CALLBACK(on_redo1_activate) },
-	{ "NavBack", GTK_STOCK_GO_BACK, NULL, NULL, N_("Navigate back a location"), G_CALLBACK(on_toolbutton_back_activate) },
-	{ "NavFor", GTK_STOCK_GO_FORWARD, NULL, NULL, N_("Navigate forward a location"), G_CALLBACK(on_toolbutton_forward_activate) },
-	{ "Compile", GTK_STOCK_CONVERT, N_("Compile"), NULL, N_("Compile the current file"), G_CALLBACK(on_toolbutton_compile_clicked) },
-	{ "Run", GTK_STOCK_EXECUTE, NULL, NULL, N_("Run or view the current file"), G_CALLBACK(on_toolbutton_run_clicked) },
-	{ "Color", GTK_STOCK_SELECT_COLOR, N_("Color Chooser"), NULL, N_("Open a color chooser dialog, to interactively pick colors from a palette"), G_CALLBACK(on_show_color_chooser1_activate) },
-	{ "ZoomIn", GTK_STOCK_ZOOM_IN, NULL, NULL, N_("Zoom in the text"), G_CALLBACK(on_zoom_in1_activate) },
-	{ "ZoomOut", GTK_STOCK_ZOOM_OUT, NULL, NULL, N_("Zoom out the text"), G_CALLBACK(on_zoom_out1_activate) },
-	{ "UnIndent", GTK_STOCK_UNINDENT, NULL, NULL, N_("Decrease indentation"), G_CALLBACK(on_menu_decrease_indent1_activate) },
-	{ "Indent", GTK_STOCK_INDENT, NULL, NULL, N_("Increase indentation"), G_CALLBACK(on_menu_increase_indent1_activate) },
-	{ "Search", GTK_STOCK_FIND, NULL, NULL, N_("Find the entered text in the current file"), G_CALLBACK(on_toolbutton_search_clicked) },
-	{ "Goto", GTK_STOCK_JUMP_TO, NULL, NULL, N_("Jump to the entered line number"), G_CALLBACK(on_toolbutton_goto_clicked) },
-	{ "Preferences", GTK_STOCK_PREFERENCES, NULL, NULL, N_("Show the preferences dialog"), G_CALLBACK(on_preferences1_activate) },
-	{ "Quit", GTK_STOCK_QUIT, NULL, NULL, N_("Quit Geany"), G_CALLBACK(on_quit1_activate) },
-	{ "Print", GTK_STOCK_PRINT, NULL, NULL, N_("Print document"), G_CALLBACK(on_print1_activate) },
-	{ "Replace", GTK_STOCK_FIND_AND_REPLACE, NULL, NULL, N_("Replace text in the current document"), G_CALLBACK(on_replace1_activate) }
+ * Fields: name, icon name, label, tooltip, callback */
+/* the toolbar actions: the icon names are the ones GTK documents for the former stock
+ * ids, the labels GTK's stock labels */
+static const struct
+{
+	const gchar *name;
+	const gchar *icon_name;
+	const gchar *label;
+	const gchar *tooltip;
+	GCallback callback;
+}
+ui_entries[] = {
+	{ "Save", "document-save", N_("_Save"), N_("Save the current file"), G_CALLBACK(on_save1_activate) },
+	{ "SaveAs", "document-save-as", N_("Save _As"), N_("Save as"), G_CALLBACK(on_save_as1_activate) },
+	{ "SaveAll", GEANY_STOCK_SAVE_ALL, N_("Save All"), N_("Save all open files"), G_CALLBACK(on_save_all1_activate) },
+	{ "Reload", "document-revert", N_("_Revert"), N_("Reload the current file from disk"), G_CALLBACK(on_toolbutton_reload_clicked) },
+	{ "Close", "window-close", N_("_Close"), N_("Close the current file"), G_CALLBACK(on_close1_activate) },
+	{ "CloseAll", GEANY_STOCK_CLOSE_ALL, N_("Close All"), N_("Close all open files"), G_CALLBACK(on_close_all1_activate) },
+	{ "Cut", "edit-cut", N_("Cu_t"), N_("Cut the current selection"), G_CALLBACK(on_cut1_activate) },
+	{ "Copy", "edit-copy", N_("_Copy"), N_("Copy the current selection"), G_CALLBACK(on_copy1_activate) },
+	{ "Paste", "edit-paste", N_("_Paste"), N_("Paste the contents of the clipboard"), G_CALLBACK(on_paste1_activate) },
+	{ "Delete", "edit-delete", N_("_Delete"), N_("Delete the current selection"), G_CALLBACK(on_delete1_activate) },
+	{ "Undo", "edit-undo", N_("_Undo"), N_("Undo the last modification"), G_CALLBACK(on_undo1_activate) },
+	{ "Redo", "edit-redo", N_("_Redo"), N_("Redo the last modification"), G_CALLBACK(on_redo1_activate) },
+	{ "NavBack", "go-previous", N_("_Back"), N_("Navigate back a location"), G_CALLBACK(on_toolbutton_back_activate) },
+	{ "NavFor", "go-next", N_("_Forward"), N_("Navigate forward a location"), G_CALLBACK(on_toolbutton_forward_activate) },
+	{ "Compile", "gtk-convert", N_("Compile"), N_("Compile the current file"), G_CALLBACK(on_toolbutton_compile_clicked) },
+	{ "Run", "system-run", N_("_Execute"), N_("Run or view the current file"), G_CALLBACK(on_toolbutton_run_clicked) },
+	{ "Color", "gtk-select-color", N_("Color Chooser"), N_("Open a color chooser dialog, to interactively pick colors from a palette"), G_CALLBACK(on_show_color_chooser1_activate) },
+	{ "ZoomIn", "zoom-in", N_("Zoom _In"), N_("Zoom in the text"), G_CALLBACK(on_zoom_in1_activate) },
+	{ "ZoomOut", "zoom-out", N_("Zoom _Out"), N_("Zoom out the text"), G_CALLBACK(on_zoom_out1_activate) },
+	{ "UnIndent", "format-indent-less", N_("Decrease Indent"), N_("Decrease indentation"), G_CALLBACK(on_menu_decrease_indent1_activate) },
+	{ "Indent", "format-indent-more", N_("Increase Indent"), N_("Increase indentation"), G_CALLBACK(on_menu_increase_indent1_activate) },
+	{ "Search", "edit-find", N_("_Find"), N_("Find the entered text in the current file"), G_CALLBACK(on_toolbutton_search_clicked) },
+	{ "Goto", "go-jump", N_("_Jump to"), N_("Jump to the entered line number"), G_CALLBACK(on_toolbutton_goto_clicked) },
+	{ "Preferences", "preferences-system", N_("_Preferences"), N_("Show the preferences dialog"), G_CALLBACK(on_preferences1_activate) },
+	{ "Quit", "application-exit", N_("_Quit"), N_("Quit Geany"), G_CALLBACK(on_quit1_activate) },
+	{ "Print", "document-print", N_("_Print"), N_("Print document"), G_CALLBACK(on_print1_activate) },
+	{ "Replace", "edit-find-replace", N_("Find and _Replace"), N_("Replace text in the current document"), G_CALLBACK(on_replace1_activate) }
 };
-static const guint ui_entries_n = G_N_ELEMENTS(ui_entries);
 
 
 /* fallback UI definition */
@@ -346,32 +354,41 @@ GtkWidget *toolbar_init(void)
 	GtkAction *action_searchentry;
 	GtkAction *action_gotoentry;
 	GtkSettings *gtk_settings;
+	guint i;
 
 	uim = gtk_ui_manager_new();
 	group = gtk_action_group_new("GeanyToolbar");
 
-	gtk_action_group_set_translation_domain(group, GETTEXT_PACKAGE);
-	gtk_action_group_add_actions(group, ui_entries, ui_entries_n, NULL);
+	for (i = 0; i < G_N_ELEMENTS(ui_entries); i++)
+	{
+		GtkAction *action = gtk_action_new(ui_entries[i].name, _(ui_entries[i].label),
+			_(ui_entries[i].tooltip), NULL);
+
+		gtk_action_set_icon_name(action, ui_entries[i].icon_name);
+		g_signal_connect(action, "activate", ui_entries[i].callback, NULL);
+		gtk_action_group_add_action_with_accel(group, action, NULL);
+		g_object_unref(action);
+	}
 
 	/* Create our custom actions */
 	action_new = geany_menu_button_action_new(
-		"New", NULL,
+		"New", _("_New"),
 		_("Create a new file"),
 		_("Create a new file from a template"),
-		GTK_STOCK_NEW);
+		"document-new");
 	g_signal_connect(action_new, "button-clicked", G_CALLBACK(on_new1_activate), NULL);
 	gtk_action_group_add_action(group, action_new);
 
 	action_open = geany_menu_button_action_new(
-		"Open", NULL,
+		"Open", _("_Open"),
 		_("Open an existing file"),
 		_("Open a recent file"),
-		GTK_STOCK_OPEN);
+		"document-open");
 	g_signal_connect(action_open, "button-clicked", G_CALLBACK(on_open1_activate), NULL);
 	gtk_action_group_add_action(group, action_open);
 
 	action_build = geany_menu_button_action_new(
-		"Build", NULL,
+		"Build", _("Build"),
 		_("Build the current file"),
 		_("Choose more build actions"),
 		GEANY_STOCK_BUILD);
@@ -964,7 +981,7 @@ static TBEditorWidget *tb_editor_create_dialog(GtkWindow *parent)
 
 	icon_renderer = gtk_cell_renderer_pixbuf_new();
 	column = gtk_tree_view_column_new_with_attributes(
-		NULL, icon_renderer, "stock-id", TB_EDITOR_COL_ICON, NULL);
+		NULL, icon_renderer, "icon-name", TB_EDITOR_COL_ICON, NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(tree_available), column);
 
 	text_renderer = gtk_cell_renderer_text_new();
@@ -984,7 +1001,7 @@ static TBEditorWidget *tb_editor_create_dialog(GtkWindow *parent)
 
 	icon_renderer = gtk_cell_renderer_pixbuf_new();
 	column = gtk_tree_view_column_new_with_attributes(
-		NULL, icon_renderer, "stock-id", TB_EDITOR_COL_ICON, NULL);
+		NULL, icon_renderer, "icon-name", TB_EDITOR_COL_ICON, NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(tree_used), column);
 
 	text_renderer = gtk_cell_renderer_text_new();

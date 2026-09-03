@@ -155,14 +155,14 @@ GtkAction *geany_menu_button_action_new(const gchar *name,
 										const gchar *label,
 									    const gchar *tooltip,
 									    const gchar *tooltip_arrow,
-										const gchar *stock_id)
+										const gchar *icon_name)
 {
 	GtkAction *action = g_object_new(GEANY_MENU_BUTTON_ACTION_TYPE,
 		"name", name,
 		"label", label,
 		"tooltip", tooltip,
 		"tooltip-arrow", tooltip_arrow,
-		"stock-id", stock_id,
+		"icon-name", icon_name,
 		NULL);
 
 	return action;
