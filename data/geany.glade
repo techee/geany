@@ -4552,18 +4552,12 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEventBox" id="eventbox1">
+                                  <object class="GtkComboBox" id="combo_new_encoding">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="tooltip-text" translatable="yes">Sets the default encoding for newly created files</property>
                                     <child>
-                                      <object class="GtkComboBox" id="combo_new_encoding">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <child>
-                                          <object class="GtkCellRendererText" id="combo_new_encoding_renderer"/>
-                                        </child>
-                                      </object>
+                                      <object class="GtkCellRendererText" id="combo_new_encoding_renderer"/>
                                     </child>
                                   </object>
                                   <packing>
@@ -4598,18 +4592,12 @@
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEventBox" id="eventbox3">
+                                  <object class="GtkComboBox" id="combo_open_encoding">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="tooltip-text" translatable="yes">Sets the default encoding for opening existing non-Unicode files</property>
                                     <child>
-                                      <object class="GtkComboBox" id="combo_open_encoding">
-                                        <property name="visible">True</property>
-                                        <property name="can-focus">False</property>
-                                        <child>
-                                          <object class="GtkCellRendererText" id="combo_open_encoding_renderer"/>
-                                        </child>
-                                      </object>
+                                      <object class="GtkCellRendererText" id="combo_open_encoding_renderer"/>
                                     </child>
                                   </object>
                                   <packing>
