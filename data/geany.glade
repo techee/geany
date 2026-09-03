@@ -131,7 +131,6 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="image">image3192</property>
-        <property name="use-stock">False</property>
         <signal name="activate" handler="on_customize_toolbar1_activate" swapped="no"/>
       </object>
     </child>
@@ -148,7 +147,6 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="image">image3193</property>
-        <property name="use-stock">False</property>
         <signal name="activate" handler="on_hide_toolbar1_activate" swapped="no"/>
       </object>
     </child>
@@ -211,21 +209,21 @@
     <property name="can-focus">False</property>
     <child>
       <object class="GtkImageMenuItem" id="undo1">
-        <property name="label">gtk-undo</property>
+        <property name="label" translatable="yes">_Undo</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">image_undo1</property>
         <signal name="activate" handler="on_undo1_activate" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkImageMenuItem" id="redo1">
-        <property name="label">gtk-redo</property>
+        <property name="label" translatable="yes">_Redo</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">image_redo1</property>
         <signal name="activate" handler="on_redo1_activate" swapped="no"/>
       </object>
     </child>
@@ -237,41 +235,41 @@
     </child>
     <child>
       <object class="GtkImageMenuItem" id="cut1">
-        <property name="label">gtk-cut</property>
+        <property name="label" translatable="yes">Cu_t</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">image_cut1</property>
         <signal name="activate" handler="on_cut1_activate" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkImageMenuItem" id="copy1">
-        <property name="label">gtk-copy</property>
+        <property name="label" translatable="yes">_Copy</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">image_copy1</property>
         <signal name="activate" handler="on_copy1_activate" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkImageMenuItem" id="paste1">
-        <property name="label">gtk-paste</property>
+        <property name="label" translatable="yes">_Paste</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">image_paste1</property>
         <signal name="activate" handler="on_paste1_activate" swapped="no"/>
       </object>
     </child>
     <child>
       <object class="GtkImageMenuItem" id="delete1">
-        <property name="label">gtk-delete</property>
+        <property name="label" translatable="yes">_Delete</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">image_delete1</property>
         <signal name="activate" handler="on_delete1_activate" swapped="no"/>
       </object>
     </child>
@@ -283,11 +281,11 @@
     </child>
     <child>
       <object class="GtkImageMenuItem" id="menu_select_all2">
-        <property name="label">gtk-select-all</property>
+        <property name="label" translatable="yes">Select _All</property>
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
-        <property name="use-stock">True</property>
+        <property name="image">image_menu_select_all2</property>
         <signal name="activate" handler="on_menu_select_all1_activate" swapped="no"/>
       </object>
     </child>
@@ -320,7 +318,6 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="image">image4055</property>
-        <property name="use-stock">False</property>
         <child type="submenu">
           <object class="GtkMenu" id="insert1_menu">
             <property name="can-focus">False</property>
@@ -358,7 +355,6 @@
                 <property name="can-focus">False</property>
                 <property name="use-underline">True</property>
                 <property name="image">image3761</property>
-                <property name="use-stock">False</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="comments_menu">
                     <property name="can-focus">False</property>
@@ -406,7 +402,6 @@
                 <property name="can-focus">False</property>
                 <property name="use-underline">True</property>
                 <property name="image">image3762</property>
-                <property name="use-stock">False</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="insert_date2_menu">
                     <property name="can-focus">False</property>
@@ -428,7 +423,6 @@
                 <property name="can-focus">False</property>
                 <property name="use-underline">True</property>
                 <property name="image">image3763</property>
-                <property name="use-stock">False</property>
                 <child type="submenu">
                   <object class="GtkMenu" id="insert_include1_menu">
                     <property name="can-focus">False</property>
@@ -483,7 +477,6 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="image">image3764</property>
-        <property name="use-stock">False</property>
         <signal name="activate" handler="on_menu_open_selected_file1_activate" swapped="no"/>
       </object>
     </child>
@@ -494,7 +487,6 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="image">image3765</property>
-        <property name="use-stock">False</property>
         <signal name="activate" handler="on_find_usage1_activate" swapped="no"/>
       </object>
     </child>
@@ -505,7 +497,6 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="image">image3766</property>
-        <property name="use-stock">False</property>
         <signal name="activate" handler="on_find_document_usage1_activate" swapped="no"/>
       </object>
     </child>
@@ -516,7 +507,6 @@
         <property name="can-focus">False</property>
         <property name="use-underline">True</property>
         <property name="image">image3767</property>
-        <property name="use-stock">False</property>
         <signal name="activate" handler="on_goto_tag_definition1" swapped="no"/>
       </object>
     </child>
@@ -740,6 +730,150 @@
     <property name="visible">True</property>
     <property name="can-focus">False</property>
     <property name="icon-name">window-close</property>
+  </object>
+  <object class="GtkImage" id="image_undo1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-undo</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_redo1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-redo</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_cut1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-cut</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_copy1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-copy</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_paste1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-paste</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_delete1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-delete</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_select_all2">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-select-all</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_new1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-new</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_save1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-save</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_properties1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-properties</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_close1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">window-close</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_quit1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">application-exit</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_undo2">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-undo</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_redo2">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-redo</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_cut1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-cut</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_copy1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-copy</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_paste1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-paste</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_delete1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-delete</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_select_all1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">edit-select-all</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_zoom_in1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">zoom-in</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_zoom_out1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">zoom-out</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_normal_size1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">zoom-original</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_project_properties1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">document-properties</property>
+    <property name="icon_size">1</property>
+  </object>
+  <object class="GtkImage" id="image_menu_info1">
+    <property name="visible">True</property>
+    <property name="can-focus">False</property>
+    <property name="icon-name">help-about</property>
+    <property name="icon_size">1</property>
   </object>
   <object class="GtkListStore" id="indent_mode_list">
     <columns>
@@ -5564,11 +5698,11 @@ Supported placeholders are:
                         <property name="can-focus">False</property>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_new1">
-                            <property name="label">gtk-new</property>
+                            <property name="label" translatable="yes">_New</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_new1</property>
                             <signal name="activate" handler="on_new1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5579,7 +5713,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4056</property>
-                            <property name="use-stock">False</property>
                           </object>
                         </child>
                         <child>
@@ -5595,7 +5728,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image3</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_open1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5624,11 +5756,11 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_save1">
-                            <property name="label">gtk-save</property>
+                            <property name="label" translatable="yes">_Save</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_save1</property>
                             <signal name="activate" handler="on_save1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5639,7 +5771,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_save_as1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5650,7 +5781,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4057</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_save_all1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5661,7 +5791,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4058</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_toolbutton_reload_clicked" swapped="no"/>
                           </object>
                         </child>
@@ -5672,7 +5801,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4059</property>
-                            <property name="use-stock">False</property>
                             <child type="submenu">
                               <object class="GtkMenu" id="menu_reload_as1_menu">
                                 <property name="can-focus">False</property>
@@ -5695,11 +5823,11 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="properties1">
-                            <property name="label">gtk-properties</property>
+                            <property name="label" translatable="yes">_Properties</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_properties1</property>
                             <signal name="activate" handler="on_file_properties_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5725,7 +5853,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image5</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_print1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5737,11 +5864,11 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_close1">
-                            <property name="label">gtk-close</property>
+                            <property name="label" translatable="yes">_Close</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_close1</property>
                             <signal name="activate" handler="on_close1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5752,7 +5879,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4060</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_close_other_documents1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5763,7 +5889,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4061</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_close_all1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5775,11 +5900,11 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_quit1">
-                            <property name="label">gtk-quit</property>
+                            <property name="label" translatable="yes">_Quit</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_quit1</property>
                             <signal name="activate" handler="on_quit1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5800,21 +5925,21 @@ Supported placeholders are:
                         <property name="can-focus">False</property>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_undo2">
-                            <property name="label">gtk-undo</property>
+                            <property name="label" translatable="yes">_Undo</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_undo2</property>
                             <signal name="activate" handler="on_undo1_activate" swapped="no"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_redo2">
-                            <property name="label">gtk-redo</property>
+                            <property name="label" translatable="yes">_Redo</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_redo2</property>
                             <signal name="activate" handler="on_redo1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5826,41 +5951,41 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_cut1">
-                            <property name="label">gtk-cut</property>
+                            <property name="label" translatable="yes">Cu_t</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_cut1</property>
                             <signal name="activate" handler="on_cut1_activate" swapped="no"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_copy1">
-                            <property name="label">gtk-copy</property>
+                            <property name="label" translatable="yes">_Copy</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_copy1</property>
                             <signal name="activate" handler="on_copy1_activate" swapped="no"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_paste1">
-                            <property name="label">gtk-paste</property>
+                            <property name="label" translatable="yes">_Paste</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_paste1</property>
                             <signal name="activate" handler="on_paste1_activate" swapped="no"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_delete1">
-                            <property name="label">gtk-delete</property>
+                            <property name="label" translatable="yes">_Delete</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_delete1</property>
                             <signal name="activate" handler="on_delete1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5872,11 +5997,11 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_select_all1">
-                            <property name="label">gtk-select-all</property>
+                            <property name="label" translatable="yes">Select _All</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_select_all1</property>
                             <signal name="activate" handler="on_menu_select_all1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -5902,7 +6027,6 @@ Supported placeholders are:
                                     <property name="can-focus">False</property>
                                     <property name="use-underline">True</property>
                                     <property name="image">image4062</property>
-                                    <property name="use-stock">False</property>
                                     <signal name="activate" handler="on_cut_current_lines1_activate" swapped="no"/>
                                   </object>
                                 </child>
@@ -5913,7 +6037,6 @@ Supported placeholders are:
                                     <property name="can-focus">False</property>
                                     <property name="use-underline">True</property>
                                     <property name="image">image4063</property>
-                                    <property name="use-stock">False</property>
                                     <signal name="activate" handler="on_copy_current_lines1_activate" swapped="no"/>
                                   </object>
                                 </child>
@@ -6084,7 +6207,6 @@ Supported placeholders are:
                                     <property name="can-focus">False</property>
                                     <property name="use-underline">True</property>
                                     <property name="image">image4064</property>
-                                    <property name="use-stock">False</property>
                                     <signal name="activate" handler="on_menu_increase_indent1_activate" swapped="no"/>
                                   </object>
                                 </child>
@@ -6095,7 +6217,6 @@ Supported placeholders are:
                                     <property name="can-focus">False</property>
                                     <property name="use-underline">True</property>
                                     <property name="image">image4065</property>
-                                    <property name="use-stock">False</property>
                                     <signal name="activate" handler="on_menu_decrease_indent1_activate" swapped="no"/>
                                   </object>
                                 </child>
@@ -6151,7 +6272,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4066</property>
-                            <property name="use-stock">False</property>
                             <child type="submenu">
                               <object class="GtkMenu" id="add_comments1_menu">
                                 <property name="can-focus">False</property>
@@ -6226,7 +6346,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4067</property>
-                            <property name="use-stock">False</property>
                             <child type="submenu">
                               <object class="GtkMenu" id="insert_date1_menu">
                                 <property name="can-focus">False</property>
@@ -6248,7 +6367,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4068</property>
-                            <property name="use-stock">False</property>
                             <child type="submenu">
                               <object class="GtkMenu" id="insert_include2_menu">
                                 <property name="can-focus">False</property>
@@ -6285,7 +6403,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4069</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_preferences1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6296,7 +6413,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4070</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_plugin_preferences1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6321,7 +6437,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image6</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_find1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6356,7 +6471,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4071</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_find_in_files1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6367,7 +6481,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4072</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_replace1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6384,7 +6497,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4073</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_next_message1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6395,7 +6507,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4074</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_previous_message1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6436,7 +6547,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4075</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_go_to_line_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6554,7 +6664,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4076</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_change_font1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6565,7 +6674,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image2</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_menu_color_schemes_activate" swapped="no"/>
                           </object>
                         </child>
@@ -6693,31 +6801,31 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_zoom_in1">
-                            <property name="label">gtk-zoom-in</property>
+                            <property name="label" translatable="yes">Zoom _In</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_zoom_in1</property>
                             <signal name="activate" handler="on_zoom_in1_activate" swapped="no"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_zoom_out1">
-                            <property name="label">gtk-zoom-out</property>
+                            <property name="label" translatable="yes">Zoom _Out</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_zoom_out1</property>
                             <signal name="activate" handler="on_zoom_out1_activate" swapped="no"/>
                           </object>
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="normal_size1">
-                            <property name="label">gtk-zoom-100</property>
+                            <property name="label" translatable="yes">_Normal Size</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_normal_size1</property>
                             <signal name="activate" handler="on_normal_size1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7153,7 +7261,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4077</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_project_new1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7164,7 +7271,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image7</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_project_new_from_folder1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7175,7 +7281,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4078</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_project_open1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7194,7 +7299,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4079</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_project_close1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7222,11 +7326,11 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="project_properties1">
-                            <property name="label">gtk-properties</property>
+                            <property name="label" translatable="yes">_Properties</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_project_properties1</property>
                             <signal name="activate" handler="on_project_properties1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7258,7 +7362,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4080</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_menu_reload_configuration1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7269,7 +7372,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4081</property>
-                            <property name="use-stock">False</property>
                           </object>
                         </child>
                         <child>
@@ -7285,7 +7387,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4082</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_show_color_chooser1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7327,7 +7428,6 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
                             <property name="image">image4083</property>
-                            <property name="use-stock">False</property>
                             <signal name="activate" handler="on_help1_activate" swapped="no"/>
                           </object>
                         </child>
@@ -7399,11 +7499,11 @@ Supported placeholders are:
                         </child>
                         <child>
                           <object class="GtkImageMenuItem" id="menu_info1">
-                            <property name="label">gtk-about</property>
+                            <property name="label" translatable="yes">_About</property>
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
                             <property name="use-underline">True</property>
-                            <property name="use-stock">True</property>
+                            <property name="image">image_menu_info1</property>
                             <signal name="activate" handler="on_info1_activate" swapped="no"/>
                           </object>
                         </child>
