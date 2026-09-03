@@ -511,6 +511,22 @@ void dialogs_file_chooser_destroy(GtkFileChooser *dialog)
 }
 
 
+/* Returns the selected file as a filename in locale encoding, or NULL if nothing
+ * is selected or the selection is not a local file. Free the result with g_free(). */
+gchar *dialogs_file_chooser_get_filename(GtkFileChooser *dialog)
+{
+	GFile *file = gtk_file_chooser_get_file(dialog);
+	gchar *filename = NULL;
+
+	if (file)
+	{
+		filename = g_file_get_path(file);
+		g_object_unref(file);
+	}
+	return filename;
+}
+
+
 /* This shows the file selection dialog to open a file. */
 void dialogs_show_open_file(void)
 {
@@ -578,7 +594,7 @@ static gboolean save_as_dialog_handle_response(GeanyDocument *doc,
 {
 	gboolean rename_file = FALSE;
 	gboolean success = FALSE;
-	gchar *new_filename = gtk_file_chooser_get_filename(dialog);
+	gchar *new_filename = dialogs_file_chooser_get_filename(dialog);
 
 	switch (response)
 	{

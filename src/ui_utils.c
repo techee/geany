@@ -2010,7 +2010,7 @@ static gchar *run_file_chooser(const gchar *title, GtkFileChooserAction action,
 	{
 		gchar *dir_locale;
 
-		dir_locale = gtk_file_chooser_get_filename(dialog);
+		dir_locale = dialogs_file_chooser_get_filename(dialog);
 		ret_path = utils_get_utf8_from_locale(dir_locale);
 		g_free(dir_locale);
 	}

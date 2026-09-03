@@ -1091,9 +1091,11 @@ static void target_directory_button_clicked_cb(GtkButton *button, gpointer item)
 	if (file_chooser_run(dialog) == GTK_RESPONSE_ACCEPT)
 	{
 		gchar *utf8_filename, *tmp;
+		GFile *file = gtk_file_chooser_get_file(dialog);
 
-		tmp = gtk_file_chooser_get_filename(dialog);
+		tmp = g_file_get_path(file);
 		utf8_filename = utils_get_utf8_from_locale(tmp);
+		g_object_unref(file);
 
 		gtk_entry_set_text(GTK_ENTRY(item), utf8_filename);
 

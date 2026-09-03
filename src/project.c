@@ -317,7 +317,7 @@ static void run_open_dialog(GtkFileChooser *dialog)
 {
 	while (dialogs_file_chooser_run(dialog) == GTK_RESPONSE_ACCEPT)
 	{
-		gchar *filename = gtk_file_chooser_get_filename(dialog);
+		gchar *filename = dialogs_file_chooser_get_filename(dialog);
 
 		if (app->project && !project_close(FALSE)) {}
 		/* try to load the config */
@@ -510,8 +510,10 @@ static void on_project_properties_base_path_button_clicked(GtkWidget *button,
 
 	if (dialogs_file_chooser_run(dialog) == GTK_RESPONSE_ACCEPT)
 	{
-		gtk_entry_set_text(GTK_ENTRY(base_path_entry),
-			gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog)));
+		gchar *filename = dialogs_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
+
+		gtk_entry_set_text(GTK_ENTRY(base_path_entry), filename);
+		g_free(filename);
 	}
 
 	dialogs_file_chooser_destroy(dialog);
@@ -932,7 +934,7 @@ static void run_dialog(GtkFileChooser *dialog, GtkWidget *entry)
 	/* run it */
 	if (dialogs_file_chooser_run(dialog) == GTK_RESPONSE_ACCEPT)
 	{
-		gchar *filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
+		gchar *filename = dialogs_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
 		gchar *tmp_utf8_filename = utils_get_utf8_from_locale(filename);
 
 		gtk_entry_set_text(GTK_ENTRY(entry), tmp_utf8_filename);
