@@ -796,7 +796,7 @@ static void on_color_dialog_response(GtkDialog *dialog, gint response, gpointer 
 			/* fall through */
 		case GTK_RESPONSE_APPLY:
 		{
-			GdkColor color;
+			GdkRGBA color;
 			GeanyDocument *doc = document_get_current();
 			gchar *hex;
 			GtkWidget *colorsel;
@@ -804,7 +804,7 @@ static void on_color_dialog_response(GtkDialog *dialog, gint response, gpointer 
 			g_return_if_fail(doc != NULL);
 
 			colorsel = gtk_color_selection_dialog_get_color_selection(GTK_COLOR_SELECTION_DIALOG(ui_widgets.open_colorsel));
-			gtk_color_selection_get_current_color(GTK_COLOR_SELECTION(colorsel), &color);
+			gtk_color_selection_get_current_rgba(GTK_COLOR_SELECTION(colorsel), &color);
 
 			hex = utils_get_hex_from_color(&color);
 			editor_insert_color(doc->editor, hex);
@@ -835,7 +835,7 @@ static void on_color_selection_change_palette_with_screen(GdkScreen *screen, con
 /* This shows the color selection dialog to choose a color. */
 void tools_color_chooser(const gchar *color)
 {
-	GdkColor gc;
+	GdkRGBA gc;
 	GtkWidget *colorsel;
 
 	if (ui_widgets.open_colorsel == NULL)
@@ -860,8 +860,8 @@ void tools_color_chooser(const gchar *color)
 	/* if color is non-NULL set it in the dialog as preselected color */
 	if (color != NULL && utils_parse_color(color, &gc))
 	{
-		gtk_color_selection_set_current_color(GTK_COLOR_SELECTION(colorsel), &gc);
-		gtk_color_selection_set_previous_color(GTK_COLOR_SELECTION(colorsel), &gc);
+		gtk_color_selection_set_current_rgba(GTK_COLOR_SELECTION(colorsel), &gc);
+		gtk_color_selection_set_previous_rgba(GTK_COLOR_SELECTION(colorsel), &gc);
 	}
 
 	/* We make sure the dialog is visible. */

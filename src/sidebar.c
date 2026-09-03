@@ -288,7 +288,7 @@ GtkTreeStore *sidebar_create_store_openfiles(void)
 	/* store the icon and the short filename to show, and the index as reference,
 	 * the colour (black/red/green) and the full name for the tooltip */
 	store = gtk_tree_store_new(DOCUMENTS_COLUMNS_NUM, G_TYPE_ICON, G_TYPE_STRING,
-		G_TYPE_POINTER, GDK_TYPE_COLOR, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
+		G_TYPE_POINTER, GDK_TYPE_RGBA, G_TYPE_STRING, G_TYPE_BOOLEAN, G_TYPE_BOOLEAN);
 
 	/* sort opened filenames in the store_openfiles treeview */
 	sortable = GTK_TREE_SORTABLE(GTK_TREE_MODEL(store));
@@ -461,7 +461,7 @@ static void prepare_openfiles(void)
 	gtk_tree_view_column_set_attributes(column, icon_renderer, "gicon", DOCUMENTS_ICON, NULL);
 	gtk_tree_view_column_pack_start(column, text_renderer, TRUE);
 	gtk_tree_view_column_set_attributes(column, text_renderer, "text", DOCUMENTS_SHORTNAME,
-		"foreground-gdk", DOCUMENTS_COLOR, NULL);
+		"foreground-rgba", DOCUMENTS_COLOR, NULL);
 	gtk_tree_view_append_column(GTK_TREE_VIEW(tv.tree_openfiles), column);
 	gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(tv.tree_openfiles), FALSE);
 
@@ -597,7 +597,7 @@ static void tree_copy_node(GtkTreeStore *tree, GtkTreeIter *new_node, GtkTreeIte
 	GIcon *icon;
 	gchar *filename;
 	gchar *shortname;
-	GdkColor *color;
+	GdkRGBA *color;
 	GeanyDocument *doc;
 	GtkTreeModel *model = GTK_TREE_MODEL(tree);
 	gboolean fold, visible;
@@ -630,7 +630,7 @@ static void tree_copy_node(GtkTreeStore *tree, GtkTreeIter *new_node, GtkTreeIte
 	g_free(filename);
 	g_free(shortname);
 	if (color)
-		gdk_color_free(color);
+		gdk_rgba_free(color);
 }
 
 
@@ -933,7 +933,7 @@ void sidebar_openfiles_add(GeanyDocument *doc)
 	GtkTreeIter parent;
 	const gchar *filename = DOC_FILENAME(doc);
 	gchar *basename;
-	const GdkColor *color = document_get_status_color(doc);
+	const GdkRGBA *color = document_get_status_rgba(doc);
 	static GIcon *file_icon = NULL;
 	gboolean expand = FALSE;
 	gboolean visible = TRUE;
@@ -1031,7 +1031,7 @@ void sidebar_openfiles_update(GeanyDocument *doc)
 	if (utils_str_equal(fname, DOC_FILENAME(doc)))
 	{
 		/* just update color and the icon */
-		const GdkColor *color = document_get_status_color(doc);
+		const GdkRGBA *color = document_get_status_rgba(doc);
 		GIcon *icon = doc->file_type->icon;
 
 		gtk_tree_store_set(store_openfiles, iter, DOCUMENTS_COLOR, color, -1);

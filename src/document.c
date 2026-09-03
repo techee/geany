@@ -3186,12 +3186,13 @@ enum
 static struct
 {
 	const gchar *name;
-	GdkColor color;
+	GdkRGBA rgba;
+	GdkColor color;	/* the same, for document_get_status_color() */
 	gboolean loaded;
 } document_status_styles[] = {
-	{ "geany-document-status-changed",      {0}, FALSE },
-	{ "geany-document-status-disk-changed", {0}, FALSE },
-	{ "geany-document-status-readonly",     {0}, FALSE }
+	{ "geany-document-status-changed",      {0}, {0}, FALSE },
+	{ "geany-document-status-disk-changed", {0}, {0}, FALSE },
+	{ "geany-document-status-readonly",     {0}, {0}, FALSE }
 };
 
 
@@ -3229,6 +3230,41 @@ const gchar *document_get_status_widget_class(GeanyDocument *doc)
 }
 
 
+const GdkRGBA *document_get_status_rgba(GeanyDocument *doc)
+{
+	gint status;
+
+	g_return_val_if_fail(doc != NULL, NULL);
+
+	status = document_get_status_id(doc);
+	if (status < 0)
+		return NULL;
+	if (! document_status_styles[status].loaded)
+	{
+		GdkRGBA *rgba = &document_status_styles[status].rgba;
+		GdkColor *color = &document_status_styles[status].color;
+		GtkWidgetPath *path = gtk_widget_path_new();
+		GtkStyleContext *ctx = gtk_style_context_new();
+		gtk_widget_path_append_type(path, GTK_TYPE_WINDOW);
+		gtk_widget_path_append_type(path, GTK_TYPE_BOX);
+		gtk_widget_path_append_type(path, GTK_TYPE_NOTEBOOK);
+		gtk_widget_path_append_type(path, GTK_TYPE_LABEL);
+		gtk_widget_path_iter_set_name(path, -1, document_status_styles[status].name);
+		gtk_style_context_set_screen(ctx, gtk_widget_get_screen(GTK_WIDGET(doc->editor->sci)));
+		gtk_style_context_set_path(ctx, path);
+		gtk_style_context_get_color(ctx, gtk_style_context_get_state(ctx), rgba);
+		color->red   = 0xffff * rgba->red;
+		color->green = 0xffff * rgba->green;
+		color->blue  = 0xffff * rgba->blue;
+		document_status_styles[status].loaded = TRUE;
+		gtk_widget_path_unref(path);
+		g_object_unref(ctx);
+	}
+	return &document_status_styles[status].rgba;
+}
+
+
+
 /**
  *  Gets the status color of the document, or @c NULL if default widget coloring should be used.
  *  Returned colors are red if the document has changes, green if the document is read-only
@@ -3244,34 +3280,9 @@ const gchar *document_get_status_widget_class(GeanyDocument *doc)
 GEANY_API_SYMBOL
 const GdkColor *document_get_status_color(GeanyDocument *doc)
 {
-	gint status;
-
-	g_return_val_if_fail(doc != NULL, NULL);
-
-	status = document_get_status_id(doc);
-	if (status < 0)
+	if (document_get_status_rgba(doc) == NULL)
 		return NULL;
-	if (! document_status_styles[status].loaded)
-	{
-		GdkRGBA color;
-		GtkWidgetPath *path = gtk_widget_path_new();
-		GtkStyleContext *ctx = gtk_style_context_new();
-		gtk_widget_path_append_type(path, GTK_TYPE_WINDOW);
-		gtk_widget_path_append_type(path, GTK_TYPE_BOX);
-		gtk_widget_path_append_type(path, GTK_TYPE_NOTEBOOK);
-		gtk_widget_path_append_type(path, GTK_TYPE_LABEL);
-		gtk_widget_path_iter_set_name(path, -1, document_status_styles[status].name);
-		gtk_style_context_set_screen(ctx, gtk_widget_get_screen(GTK_WIDGET(doc->editor->sci)));
-		gtk_style_context_set_path(ctx, path);
-		gtk_style_context_get_color(ctx, gtk_style_context_get_state(ctx), &color);
-		document_status_styles[status].color.red   = 0xffff * color.red;
-		document_status_styles[status].color.green = 0xffff * color.green;
-		document_status_styles[status].color.blue  = 0xffff * color.blue;
-		document_status_styles[status].loaded = TRUE;
-		gtk_widget_path_unref(path);
-		g_object_unref(ctx);
-	}
-	return &document_status_styles[status].color;
+	return &document_status_styles[document_get_status_id(doc)].color;
 }
 
 

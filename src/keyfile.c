@@ -843,7 +843,7 @@ GPtrArray *configuration_load_session_files(GKeyFile *config)
 
 #ifdef HAVE_VTE
 static void get_setting_color(GKeyFile *config, const gchar *section, const gchar *key,
-		GdkColor *color, const gchar *default_color)
+		GdkRGBA *color, const gchar *default_color)
 {
 	gchar *str = utils_get_setting_string(config, section, key, NULL);
 	if (str == NULL || ! utils_parse_color(str, color))
