@@ -2,7 +2,6 @@
 <!-- Generated with glade 3.40.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkAccelGroup" id="accelgroup1"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="lower">3</property>
     <property name="upper">1000</property>
@@ -6473,9 +6472,6 @@ Supported placeholders are:
     <property name="can-focus">False</property>
     <property name="title" translatable="yes">Geany</property>
     <property name="icon-name">geany</property>
-    <accel-groups>
-      <group name="accelgroup1"/>
-    </accel-groups>
     <signal name="delete-event" handler="on_window_delete_event" swapped="no"/>
     <signal name="window-state-event" handler="on_window_state_event" swapped="no"/>
     <child>
