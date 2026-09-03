@@ -124,8 +124,7 @@ static const gchar *contributors =
 "Tyler Mulligan, Walery Studennikov, Yura Siamashka";
 
 
-static void header_eventbox_style_set(GtkWidget *widget);
-static void header_label_style_set(GtkWidget *widget);
+static void header_set_theme_color(GtkWidget *widget, const gchar *property, const gchar *color_name);
 static void homepage_clicked(GtkButton *button, gpointer data);
 
 
@@ -195,10 +194,8 @@ static GtkWidget *create_dialog(void)
 	gtk_label_set_markup(GTK_LABEL(header_label), buffer);
 	gtk_widget_show(header_label);
 	gtk_box_pack_start(GTK_BOX(header_hbox), header_label, FALSE, FALSE, 0);
-	header_eventbox_style_set(header_eventbox);
-	header_label_style_set(header_label);
-	g_signal_connect_after(header_eventbox, "style-set", G_CALLBACK(header_eventbox_style_set), NULL);
-	g_signal_connect_after(header_label, "style-set", G_CALLBACK(header_label_style_set), NULL);
+	header_set_theme_color(header_eventbox, "background-color", "theme_selected_bg_color");
+	header_set_theme_color(header_label, "color", "theme_selected_fg_color");
 	gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(dialog))), header_eventbox, FALSE, FALSE, 0);
 
 	/* create notebook */
@@ -510,19 +507,19 @@ void about_dialog_show(void)
 }
 
 
-static void header_eventbox_style_set(GtkWidget *widget)
+/* Paints the header in the theme's selection colors, referenced by name so that a theme
+ * change is followed; themes that do not define them leave the header unpainted. */
+static void header_set_theme_color(GtkWidget *widget, const gchar *property, const gchar *color_name)
 {
-	GtkStyle *style = gtk_widget_get_style(widget);
-	if (! gdk_color_equal(&style->bg[GTK_STATE_NORMAL], &style->bg[GTK_STATE_SELECTED]))
-		gtk_widget_modify_bg(widget, GTK_STATE_NORMAL, &style->bg[GTK_STATE_SELECTED]);
-}
+	GdkRGBA color;
 
+	if (gtk_style_context_lookup_color(gtk_widget_get_style_context(widget), color_name, &color))
+	{
+		gchar *css = g_strdup_printf("* { %s: @%s; }", property, color_name);
 
-static void header_label_style_set(GtkWidget *widget)
-{
-	GtkStyle *style = gtk_widget_get_style(widget);
-	if (! gdk_color_equal(&style->fg[GTK_STATE_NORMAL], &style->fg[GTK_STATE_SELECTED]))
-		gtk_widget_modify_fg(widget, GTK_STATE_NORMAL, &style->fg[GTK_STATE_SELECTED]);
+		ui_widget_set_css(widget, css);
+		g_free(css);
+	}
 }
 
 
