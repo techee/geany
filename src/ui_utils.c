@@ -132,8 +132,8 @@ void ui_widget_set_sensitive(GtkWidget *widget, gboolean set)
 static void set_statusbar(const gchar *text, gboolean allow_override)
 {
 	static guint id = 0;
-	static glong last_time = 0;
-	GTimeVal timeval;
+	static gint64 last_time = 0;
+	gint64 now;
 	const gint GEANY_STATUS_TIMEOUT = 1;
 
 	if (! interface_prefs.statusbar_visible)
@@ -142,16 +142,16 @@ static void set_statusbar(const gchar *text, gboolean allow_override)
 	if (id == 0)
 		id = gtk_statusbar_get_context_id(GTK_STATUSBAR(ui_widgets.statusbar), "geany-main");
 
-	g_get_current_time(&timeval);
+	now = g_get_real_time() / G_USEC_PER_SEC;
 
 	if (! allow_override)
 	{
 		gtk_statusbar_pop(GTK_STATUSBAR(ui_widgets.statusbar), id);
 		gtk_statusbar_push(GTK_STATUSBAR(ui_widgets.statusbar), id, text);
-		last_time = timeval.tv_sec;
+		last_time = now;
 	}
 	else
-	if (timeval.tv_sec > last_time + GEANY_STATUS_TIMEOUT)
+	if (now > last_time + GEANY_STATUS_TIMEOUT)
 	{
 		gtk_statusbar_pop(GTK_STATUSBAR(ui_widgets.statusbar), id);
 		gtk_statusbar_push(GTK_STATUSBAR(ui_widgets.statusbar), id, text);
