@@ -656,13 +656,13 @@ static void create_replace_dialog(void)
 	button = gtk_button_new_with_mnemonic(_("_Replace"));
 	gtk_widget_set_size_request(button, MIN_DLG_BUTTON_SIZE, -1);
 	gtk_button_set_image(GTK_BUTTON(button),
-		gtk_image_new_from_stock(GTK_STOCK_FIND_AND_REPLACE, GTK_ICON_SIZE_BUTTON));
+		gtk_image_new_from_icon_name("edit-find-replace", GTK_ICON_SIZE_BUTTON));
 	gtk_dialog_add_action_widget(GTK_DIALOG(replace_dlg.dialog), button,
 		GEANY_RESPONSE_REPLACE);
 	button = gtk_button_new_with_mnemonic(_("Replace & Fi_nd"));
 	gtk_widget_set_size_request(button, MIN_DLG_BUTTON_SIZE, -1);
 	gtk_button_set_image(GTK_BUTTON(button),
-		gtk_image_new_from_stock(GTK_STOCK_FIND_AND_REPLACE, GTK_ICON_SIZE_BUTTON));
+		gtk_image_new_from_icon_name("edit-find-replace", GTK_ICON_SIZE_BUTTON));
 	gtk_dialog_add_action_widget(GTK_DIALOG(replace_dlg.dialog), button,
 		GEANY_RESPONSE_REPLACE_AND_FIND);
 

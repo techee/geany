@@ -202,7 +202,7 @@ static GtkWidget *create_switch_dialog(void)
 	gtk_container_set_border_width(GTK_CONTAINER(vbox), 12);
 	gtk_container_add(GTK_CONTAINER(dialog), vbox);
 
-	widget = gtk_image_new_from_stock(GTK_STOCK_JUMP_TO, GTK_ICON_SIZE_BUTTON);
+	widget = gtk_image_new_from_icon_name("go-jump", GTK_ICON_SIZE_BUTTON);
 	gtk_container_add(GTK_CONTAINER(vbox), widget);
 
 	widget = gtk_label_new(NULL);
@@ -744,7 +744,7 @@ gint notebook_new_tab(GeanyDocument *this)
 		gtk_widget_set_focus_on_click(btn, FALSE);
 		gtk_widget_set_name(btn, "geany-close-tab-button");
 
-		image = gtk_image_new_from_stock(GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);
+		image = gtk_image_new_from_icon_name("window-close", GTK_ICON_SIZE_MENU);
 		gtk_container_add(GTK_CONTAINER(btn), image);
 
 		gtk_widget_set_halign(btn, GTK_ALIGN_END);

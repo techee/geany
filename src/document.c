@@ -3445,16 +3445,16 @@ static GtkWidget* document_show_message(GeanyDocument *doc, GtkMessageType msgty
 	switch (msgtype)
 	{
 		case GTK_MESSAGE_INFO:
-			icon = gtk_image_new_from_stock(GTK_STOCK_DIALOG_INFO, GTK_ICON_SIZE_DIALOG);
+			icon = gtk_image_new_from_icon_name("dialog-information", GTK_ICON_SIZE_DIALOG);
 			break;
 		case GTK_MESSAGE_WARNING:
-			icon = gtk_image_new_from_stock(GTK_STOCK_DIALOG_WARNING, GTK_ICON_SIZE_DIALOG);
+			icon = gtk_image_new_from_icon_name("dialog-warning", GTK_ICON_SIZE_DIALOG);
 			break;
 		case GTK_MESSAGE_QUESTION:
-			icon = gtk_image_new_from_stock(GTK_STOCK_DIALOG_QUESTION, GTK_ICON_SIZE_DIALOG);
+			icon = gtk_image_new_from_icon_name("dialog-question", GTK_ICON_SIZE_DIALOG);
 			break;
 		case GTK_MESSAGE_ERROR:
-			icon = gtk_image_new_from_stock(GTK_STOCK_DIALOG_ERROR, GTK_ICON_SIZE_DIALOG);
+			icon = gtk_image_new_from_icon_name("dialog-error", GTK_ICON_SIZE_DIALOG);
 			break;
 		default:
 			icon = NULL;

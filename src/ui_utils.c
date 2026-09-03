@@ -1707,9 +1707,19 @@ static const StockItem *stock_item_lookup(const gchar *stock_id)
 }
 
 
+/* Returns the icon name to use for @a id, which is either an icon name already or a
+ * legacy stock id */
+static const gchar *icon_name_from_stock_id(const gchar *id)
+{
+	const StockItem *item = stock_item_lookup(id);
+
+	return (item != NULL && item->icon_name != NULL) ? item->icon_name : id;
+}
+
+
 /** Creates a @c GtkButton with custom text and a stock image similar to
  * @c gtk_button_new_from_stock().
- * @param stock_id A @c GTK_STOCK_NAME string.
+ * @param stock_id An icon name, or a legacy @c GTK_STOCK_NAME string.
  * @param text Button label text, can include mnemonics.
  *
  * @return @transfer{floating} The new @c GtkButton.
@@ -1721,7 +1731,7 @@ GtkWidget *ui_button_new_with_image(const gchar *stock_id, const gchar *text)
 
 	button = gtk_button_new_with_mnemonic(text);
 	gtk_widget_show(button);
-	image = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_BUTTON);
+	image = gtk_image_new_from_icon_name(icon_name_from_stock_id(stock_id), GTK_ICON_SIZE_BUTTON);
 	gtk_button_set_image(GTK_BUTTON(button), image);
 	/* note: image is shown by gtk */
 	return button;
@@ -1729,7 +1739,7 @@ GtkWidget *ui_button_new_with_image(const gchar *stock_id, const gchar *text)
 
 
 /** Creates a @c GtkImageMenuItem with a stock image and a custom label.
- * @param stock_id Stock image ID, e.g. @c GTK_STOCK_OPEN.
+ * @param stock_id An icon name, or a legacy stock image ID such as @c GTK_STOCK_OPEN.
  * @param label Menu item label, can include mnemonics.
  * @return @transfer{floating} The new @c GtkImageMenuItem.
  *
@@ -1740,7 +1750,7 @@ GtkWidget *
 ui_image_menu_item_new(const gchar *stock_id, const gchar *label)
 {
 	GtkWidget *item = gtk_image_menu_item_new_with_mnemonic(label);
-	GtkWidget *image = gtk_image_new_from_stock(stock_id, GTK_ICON_SIZE_MENU);
+	GtkWidget *image = gtk_image_new_from_icon_name(icon_name_from_stock_id(stock_id), GTK_ICON_SIZE_MENU);
 
 	gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
 	gtk_widget_show(image);
@@ -2070,7 +2080,7 @@ GtkWidget *ui_path_box_new(const gchar *title, GtkFileChooserAction action, GtkE
 	gtk_box_pack_start(GTK_BOX(vbox), parent, TRUE, FALSE, 0);
 
 	dirbtn = gtk_button_new();
-	openimg = gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_BUTTON);
+	openimg = gtk_image_new_from_icon_name("document-open", GTK_ICON_SIZE_BUTTON);
 	gtk_container_add(GTK_CONTAINER(dirbtn), openimg);
 	ui_setup_open_button_callback(dirbtn, title, action, entry);
 

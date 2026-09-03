@@ -1275,14 +1275,14 @@ static void on_build_menu_item(GtkWidget *w, gpointer user_data)
 
 
 static struct BuildMenuItemSpec {
-	const gchar	*stock_id;
+	const gchar	*icon_name;
 	const gint	 key_binding;
 	const guint	 build_grp;
 	const guint	 build_cmd;
 	const gchar	*fix_label;
 	Callback *cb;
 } build_menu_specs[] = {
-	{GTK_STOCK_CONVERT, GEANY_KEYS_BUILD_COMPILE, GBO_TO_GBG(GEANY_GBO_COMPILE),
+	{"gtk-convert", GEANY_KEYS_BUILD_COMPILE, GBO_TO_GBG(GEANY_GBO_COMPILE),
 		GBO_TO_CMD(GEANY_GBO_COMPILE), NULL, on_build_menu_item},
 	{GEANY_STOCK_BUILD, GEANY_KEYS_BUILD_LINK, GBO_TO_GBG(GEANY_GBO_BUILD),
 		GBO_TO_CMD(GEANY_GBO_BUILD), NULL, on_build_menu_item},
@@ -1300,19 +1300,19 @@ static struct BuildMenuItemSpec {
 		GBO_TO_CMD(GEANY_GBO_MAKE_OBJECT) + 1, NULL, on_build_menu_item},
 	{NULL, -1, MENU_SEPARATOR,
 		GBF_SEP_2, NULL, NULL},
-	{GTK_STOCK_GO_DOWN, GEANY_KEYS_BUILD_NEXTERROR, MENU_NEXT_ERROR,
+	{"go-down", GEANY_KEYS_BUILD_NEXTERROR, MENU_NEXT_ERROR,
 		GBF_NEXT_ERROR, N_("_Next Error"), on_build_next_error},
-	{GTK_STOCK_GO_UP, GEANY_KEYS_BUILD_PREVIOUSERROR, MENU_PREV_ERROR,
+	{"go-up", GEANY_KEYS_BUILD_PREVIOUSERROR, MENU_PREV_ERROR,
 		GBF_PREV_ERROR, N_("_Previous Error"), on_build_previous_error},
 	{NULL, -1, MENU_SEPARATOR,
 		GBF_SEP_3, NULL, NULL},
-	{GTK_STOCK_EXECUTE, GEANY_KEYS_BUILD_RUN, GBO_TO_GBG(GEANY_GBO_EXEC),
+	{"system-run", GEANY_KEYS_BUILD_RUN, GBO_TO_GBG(GEANY_GBO_EXEC),
 		GBO_TO_CMD(GEANY_GBO_EXEC), NULL, on_build_menu_item},
 	{NULL, -1, MENU_EXEC_REST,
 		GBO_TO_CMD(GEANY_GBO_EXEC) + 1, NULL, on_build_menu_item},
 	{NULL, -1, MENU_SEPARATOR,
 		GBF_SEP_4, NULL, NULL},
-	{GTK_STOCK_PREFERENCES, GEANY_KEYS_BUILD_OPTIONS, MENU_COMMANDS,
+	{"preferences-system", GEANY_KEYS_BUILD_OPTIONS, MENU_COMMANDS,
 		GBF_COMMANDS, N_("_Set Build Commands"), on_set_build_commands_activate},
 	{NULL, -1, MENU_DONE,
 		0, NULL, NULL}
@@ -1324,9 +1324,9 @@ static void create_build_menu_item(GtkWidget *menu, GeanyKeyGroup *group, GtkAcc
 {
 	GtkWidget *item = gtk_image_menu_item_new_with_mnemonic(lbl);
 
-	if (bs->stock_id != NULL)
+	if (bs->icon_name != NULL)
 	{
-		GtkWidget *image = gtk_image_new_from_stock(bs->stock_id, GTK_ICON_SIZE_MENU);
+		GtkWidget *image = gtk_image_new_from_icon_name(bs->icon_name, GTK_ICON_SIZE_MENU);
 		gtk_image_menu_item_set_image(GTK_IMAGE_MENU_ITEM(item), image);
 	}
 	gtk_widget_show(item);
@@ -1493,11 +1493,11 @@ void build_menu_update(GeanyDocument *doc)
 							run_sensitivity = cmd_sensitivity;
 						if (! exec_running)
 						{
-							image = gtk_image_new_from_stock(bs->stock_id, GTK_ICON_SIZE_MENU);
+							image = gtk_image_new_from_icon_name(bs->icon_name, GTK_ICON_SIZE_MENU);
 						}
 						else
 						{
-							image = gtk_image_new_from_stock(GTK_STOCK_STOP, GTK_ICON_SIZE_MENU);
+							image = gtk_image_new_from_icon_name("process-stop", GTK_ICON_SIZE_MENU);
 						}
 						if (cmd == GBO_TO_CMD(GEANY_GBO_EXEC))
 							run_running = exec_running;
@@ -1863,7 +1863,7 @@ static RowWidgets *build_add_dialog_row(GeanyDocument *doc, GtkGrid *table, guin
 			entry_x_padding, entry_y_padding);
 	}
 	column++;
-	clearicon = gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU);
+	clearicon = gtk_image_new_from_icon_name("edit-clear", GTK_ICON_SIZE_MENU);
 	clear = gtk_button_new();
 	gtk_button_set_image(GTK_BUTTON(clear), clearicon);
 	g_signal_connect(clear, "clicked", G_CALLBACK(on_clear_dialog_row), roww);
@@ -1957,7 +1957,7 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 	}
 	grid_attach(table, fields->fileregex, DC_ENTRIES + 1, DC_CLEAR, row, row + 1, FALSE,
 		entry_x_padding, entry_y_padding);
-	clearicon = gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU);
+	clearicon = gtk_image_new_from_icon_name("edit-clear", GTK_ICON_SIZE_MENU);
 	clear = gtk_button_new();
 	gtk_button_set_image(GTK_BUTTON(clear), clearicon);
 	g_signal_connect_swapped(clear, "clicked",
@@ -1989,7 +1989,7 @@ GtkWidget *build_commands_table(GeanyDocument *doc, GeanyBuildSource dst, BuildT
 	}
 	grid_attach(table, fields->nonfileregex, DC_ENTRIES + 1, DC_CLEAR, row, row + 1, FALSE,
 		entry_x_padding, entry_y_padding);
-	clearicon = gtk_image_new_from_stock(GTK_STOCK_CLEAR, GTK_ICON_SIZE_MENU);
+	clearicon = gtk_image_new_from_icon_name("edit-clear", GTK_ICON_SIZE_MENU);
 	clear = gtk_button_new();
 	gtk_button_set_image(GTK_BUTTON(clear), clearicon);
 	g_signal_connect_swapped(clear, "clicked",

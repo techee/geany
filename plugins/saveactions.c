@@ -1431,7 +1431,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		g_signal_connect(button, "clicked",
 			G_CALLBACK(target_directory_button_clicked_cb), entry_dir);
 
-		image = gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_BUTTON);
+		image = gtk_image_new_from_icon_name("document-open", GTK_ICON_SIZE_BUTTON);
 		gtk_container_add(GTK_CONTAINER(button), image);
 
 		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
@@ -1520,7 +1520,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		g_signal_connect(button, "clicked",
 			G_CALLBACK(target_directory_button_clicked_cb), entry_dir);
 
-		image = gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_BUTTON);
+		image = gtk_image_new_from_icon_name("document-open", GTK_ICON_SIZE_BUTTON);
 		gtk_container_add(GTK_CONTAINER(button), image);
 
 		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
@@ -1562,7 +1562,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		g_signal_connect(button, "clicked",
 			G_CALLBACK(target_directory_button_clicked_cb), entry_dir);
 
-		image = gtk_image_new_from_stock(GTK_STOCK_OPEN, GTK_ICON_SIZE_BUTTON);
+		image = gtk_image_new_from_icon_name("document-open", GTK_ICON_SIZE_BUTTON);
 		gtk_container_add(GTK_CONTAINER(button), image);
 
 		hbox = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 6);
