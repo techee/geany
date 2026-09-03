@@ -201,7 +201,7 @@ static GIcon *get_icon(const gchar *fname)
 				icon = NULL;
 			}
 			else
-				gtk_icon_info_free(icon_info);
+				g_object_unref(icon_info);
 		}
 		g_free(ctype);
 	}

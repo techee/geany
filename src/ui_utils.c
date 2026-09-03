@@ -3106,7 +3106,7 @@ GIcon *ui_get_mime_icon(const gchar *mime_type)
 				icon = NULL;
 			}
 			else
-				gtk_icon_info_free(icon_info);
+				g_object_unref(icon_info);
 		}
 
 		g_free(ctype);
