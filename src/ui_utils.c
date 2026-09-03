@@ -2033,8 +2033,83 @@ void ui_tree_view_set_tooltip_text_column(GtkTreeView *tree_view, gint column)
 }
 
 
+/* Styles @a widget with @a css, a stylesheet whose rules should use the "*" selector,
+ * replacing what a previous call set; @a css may be NULL to remove it. Only @a widget
+ * itself is matched, but its children inherit the inheritable properties (fonts, colors).
+ * This is the CSS way to do what gtk_widget_modify_*()/gtk_widget_override_*() did. */
+void ui_widget_set_css(GtkWidget *widget, const gchar *css)
+{
+	GtkStyleContext *ctx = gtk_widget_get_style_context(widget);
+	GtkCssProvider *provider = g_object_get_data(G_OBJECT(widget), "geany-css-provider");
+
+	if (provider != NULL)
+	{
+		gtk_style_context_remove_provider(ctx, GTK_STYLE_PROVIDER(provider));
+		g_object_set_data(G_OBJECT(widget), "geany-css-provider", NULL);
+	}
+	if (css != NULL)
+	{
+		provider = gtk_css_provider_new();
+		gtk_css_provider_load_from_data(provider, css, -1, NULL);
+		gtk_style_context_add_provider(ctx, GTK_STYLE_PROVIDER(provider),
+			GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+		g_object_set_data_full(G_OBJECT(widget), "geany-css-provider", provider, g_object_unref);
+	}
+}
+
+
+/* Builds the CSS font properties equivalent to @a pfd */
+static gchar *css_from_font_description(const PangoFontDescription *pfd)
+{
+	static const gchar *styles[] = { "normal", "oblique", "italic" };
+	static const gchar *stretches[] = { "ultra-condensed", "extra-condensed", "condensed",
+		"semi-condensed", "normal", "semi-expanded", "expanded", "extra-expanded", "ultra-expanded" };
+	PangoFontMask mask = pango_font_description_get_set_fields(pfd);
+	GString *css = g_string_new("* {");
+
+	if (mask & PANGO_FONT_MASK_FAMILY)
+	{
+		gchar **families = g_strsplit(pango_font_description_get_family(pfd), ",", -1);
+		gchar **family;
+
+		g_string_append(css, " font-family:");
+		for (family = families; *family != NULL; family++)
+		{
+			g_string_append_printf(css, "%s \"%s\"", family == families ? "" : ",",
+				g_strstrip(*family));
+		}
+		g_string_append_c(css, ';');
+		g_strfreev(families);
+	}
+	if (mask & PANGO_FONT_MASK_STYLE)
+		g_string_append_printf(css, " font-style: %s;",
+			styles[CLAMP(pango_font_description_get_style(pfd), 0, G_N_ELEMENTS(styles) - 1)]);
+	if (mask & PANGO_FONT_MASK_VARIANT)
+		g_string_append_printf(css, " font-variant: %s;",
+			pango_font_description_get_variant(pfd) == PANGO_VARIANT_SMALL_CAPS ? "small-caps" : "normal");
+	if (mask & PANGO_FONT_MASK_WEIGHT)
+	{	/* CSS only knows the multiples of 100 */
+		gint weight = pango_font_description_get_weight(pfd);
+		g_string_append_printf(css, " font-weight: %d;", CLAMP((weight + 50) / 100 * 100, 100, 900));
+	}
+	if (mask & PANGO_FONT_MASK_STRETCH)
+		g_string_append_printf(css, " font-stretch: %s;",
+			stretches[CLAMP(pango_font_description_get_stretch(pfd), 0, G_N_ELEMENTS(stretches) - 1)]);
+	if (mask & PANGO_FONT_MASK_SIZE)
+	{
+		gchar buf[G_ASCII_DTOSTR_BUF_SIZE];
+
+		g_ascii_formatd(buf, sizeof buf, "%g", pango_font_description_get_size(pfd) / (gdouble) PANGO_SCALE);
+		g_string_append_printf(css, " font-size: %s%s;", buf,
+			pango_font_description_get_size_is_absolute(pfd) ? "px" : "pt");
+	}
+	g_string_append(css, " }");
+	return g_string_free(css, FALSE);
+}
+
+
 /**
- * Modifies the font of a widget using gtk_widget_modify_font().
+ * Modifies the font of a widget (and of its children, which inherit it).
  *
  * @param widget The widget.
  * @param str The font name as expected by pango_font_description_from_string().
@@ -2043,9 +2118,12 @@ GEANY_API_SYMBOL
 void ui_widget_modify_font_from_string(GtkWidget *widget, const gchar *str)
 {
 	PangoFontDescription *pfd;
+	gchar *css;
 
 	pfd = pango_font_description_from_string(str);
-	gtk_widget_modify_font(widget, pfd);
+	css = css_from_font_description(pfd);
+	ui_widget_set_css(widget, css);
+	g_free(css);
 	pango_font_description_free(pfd);
 }
 
