@@ -1577,6 +1577,136 @@ void ui_dialog_set_primary_button_order(GtkDialog *dialog, gint response, ...)
 }
 
 
+/* The GTK 3 stock items, so that ui_lookup_stock_label() and the stock ids plugins may
+ * still pass to ui_button_new_with_image() and ui_image_menu_item_new() keep working
+ * without GTK's deprecated stock API. The icon names are the replacements GTK documents;
+ * a stock id without one is used as an icon name as it is, which GTK 3 resolves from its
+ * built-in legacy icons. The labels are GTK's, spelled exactly as in its message catalog
+ * so they can be translated through it (see ui_lookup_stock_label()). */
+typedef struct
+{
+	const gchar *stock_id;
+	const gchar *icon_name;
+	const gchar *label;
+}
+StockItem;
+
+static const StockItem stock_items[] =
+{
+	{ "gtk-about", "help-about", "_About" },
+	{ "gtk-add", "list-add", "_Add" },
+	{ "gtk-apply", NULL, "_Apply" },
+	{ "gtk-bold", "format-text-bold", "_Bold" },
+	{ "gtk-cancel", NULL, "_Cancel" },
+	{ "gtk-cdrom", "media-optical", "_CD-ROM" },
+	{ "gtk-clear", "edit-clear", "_Clear" },
+	{ "gtk-close", "window-close", "_Close" },
+	{ "gtk-connect", NULL, "C_onnect" },
+	{ "gtk-convert", NULL, "_Convert" },
+	{ "gtk-copy", "edit-copy", "_Copy" },
+	{ "gtk-cut", "edit-cut", "Cu_t" },
+	{ "gtk-delete", "edit-delete", "_Delete" },
+	{ "gtk-dialog-error", "dialog-error", "Error" },
+	{ "gtk-dialog-info", "dialog-information", "Information" },
+	{ "gtk-dialog-question", "dialog-question", "Question" },
+	{ "gtk-dialog-warning", "dialog-warning", "Warning" },
+	{ "gtk-discard", NULL, "_Discard" },
+	{ "gtk-disconnect", NULL, "_Disconnect" },
+	{ "gtk-edit", NULL, "_Edit" },
+	{ "gtk-execute", "system-run", "_Execute" },
+	{ "gtk-file", "text-x-generic", "_File" },
+	{ "gtk-find", "edit-find", "_Find" },
+	{ "gtk-find-and-replace", "edit-find-replace", "Find and _Replace" },
+	{ "gtk-floppy", NULL, "_Floppy" },
+	{ "gtk-fullscreen", "view-fullscreen", "_Fullscreen" },
+	{ "gtk-go-back", "go-previous", "_Back" },
+	{ "gtk-go-down", "go-down", "_Down" },
+	{ "gtk-go-forward", "go-next", "_Forward" },
+	{ "gtk-go-up", "go-up", "_Up" },
+	{ "gtk-goto-bottom", "go-bottom", "_Bottom" },
+	{ "gtk-goto-first", "go-first", "_First" },
+	{ "gtk-goto-last", "go-last", "_Last" },
+	{ "gtk-goto-top", "go-top", "_Top" },
+	{ "gtk-harddisk", "drive-harddisk", "_Hard Disk" },
+	{ "gtk-help", "help-browser", "_Help" },
+	{ "gtk-home", "go-home", "_Home" },
+	{ "gtk-indent", "format-indent-more", "Increase Indent" },
+	{ "gtk-index", NULL, "_Index" },
+	{ "gtk-info", "dialog-information", "_Information" },
+	{ "gtk-italic", "format-text-italic", "_Italic" },
+	{ "gtk-jump-to", "go-jump", "_Jump to" },
+	{ "gtk-justify-center", "format-justify-center", "_Center" },
+	{ "gtk-justify-fill", "format-justify-fill", "_Fill" },
+	{ "gtk-justify-left", "format-justify-left", "_Left" },
+	{ "gtk-justify-right", "format-justify-right", "_Right" },
+	{ "gtk-leave-fullscreen", "view-restore", "_Leave Fullscreen" },
+	{ "gtk-media-forward", "media-seek-forward", "_Forward" },
+	{ "gtk-media-next", "media-skip-forward", "_Next" },
+	{ "gtk-media-pause", "media-playback-pause", "P_ause" },
+	{ "gtk-media-play", "media-playback-start", "_Play" },
+	{ "gtk-media-previous", "media-skip-backward", "Pre_vious" },
+	{ "gtk-media-record", "media-record", "_Record" },
+	{ "gtk-media-rewind", "media-seek-backward", "R_ewind" },
+	{ "gtk-media-stop", "media-playback-stop", "_Stop" },
+	{ "gtk-network", "network-workgroup", "_Network" },
+	{ "gtk-new", "document-new", "_New" },
+	{ "gtk-no", NULL, "_No" },
+	{ "gtk-ok", NULL, "_OK" },
+	{ "gtk-open", "document-open", "_Open" },
+	{ "gtk-orientation-landscape", NULL, "Landscape" },
+	{ "gtk-orientation-portrait", NULL, "Portrait" },
+	{ "gtk-orientation-reverse-landscape", NULL, "Reverse landscape" },
+	{ "gtk-orientation-reverse-portrait", NULL, "Reverse portrait" },
+	{ "gtk-page-setup", "document-page-setup", "Page Set_up" },
+	{ "gtk-paste", "edit-paste", "_Paste" },
+	{ "gtk-preferences", "preferences-system", "_Preferences" },
+	{ "gtk-print", "document-print", "_Print" },
+	{ "gtk-print-preview", NULL, "Print Pre_view" },
+	{ "gtk-properties", "document-properties", "_Properties" },
+	{ "gtk-quit", "application-exit", "_Quit" },
+	{ "gtk-redo", "edit-redo", "_Redo" },
+	{ "gtk-refresh", "view-refresh", "_Refresh" },
+	{ "gtk-remove", "list-remove", "_Remove" },
+	{ "gtk-revert-to-saved", "document-revert", "_Revert" },
+	{ "gtk-save", "document-save", "_Save" },
+	{ "gtk-save-as", "document-save-as", "Save _As" },
+	{ "gtk-select-all", "edit-select-all", "Select _All" },
+	{ "gtk-select-color", NULL, "_Color" },
+	{ "gtk-select-font", NULL, "_Font" },
+	{ "gtk-sort-ascending", "view-sort-ascending", "_Ascending" },
+	{ "gtk-sort-descending", "view-sort-descending", "_Descending" },
+	{ "gtk-spell-check", "tools-check-spelling", "_Spell Check" },
+	{ "gtk-stop", "process-stop", "_Stop" },
+	{ "gtk-strikethrough", "format-text-strikethrough", "_Strikethrough" },
+	{ "gtk-undelete", NULL, "_Undelete" },
+	{ "gtk-underline", "format-text-underline", "_Underline" },
+	{ "gtk-undo", "edit-undo", "_Undo" },
+	{ "gtk-unindent", "format-indent-less", "Decrease Indent" },
+	{ "gtk-yes", NULL, "_Yes" },
+	{ "gtk-zoom-100", "zoom-original", "_Normal Size" },
+	{ "gtk-zoom-fit", "zoom-fit-best", "Best _Fit" },
+	{ "gtk-zoom-in", "zoom-in", "Zoom _In" },
+	{ "gtk-zoom-out", "zoom-out", "Zoom _Out" },
+	/* Geany's own items, translated in Geany's domain */
+	{ GEANY_STOCK_SAVE_ALL, GEANY_STOCK_SAVE_ALL, N_("Save All") },
+	{ GEANY_STOCK_CLOSE_ALL, GEANY_STOCK_CLOSE_ALL, N_("Close All") },
+	{ GEANY_STOCK_BUILD, GEANY_STOCK_BUILD, N_("Build") }
+};
+
+
+static const StockItem *stock_item_lookup(const gchar *stock_id)
+{
+	guint i;
+
+	for (i = 0; i < G_N_ELEMENTS(stock_items); i++)
+	{
+		if (g_strcmp0(stock_items[i].stock_id, stock_id) == 0)
+			return &stock_items[i];
+	}
+	return NULL;
+}
+
+
 /** Creates a @c GtkButton with custom text and a stock image similar to
  * @c gtk_button_new_from_stock().
  * @param stock_id A @c GTK_STOCK_NAME string.
@@ -3167,13 +3297,25 @@ void ui_focus_current_document(void)
 GEANY_API_SYMBOL
 const gchar *ui_lookup_stock_label(const gchar *stock_id)
 {
-	GtkStockItem item;
+	const StockItem *item = stock_item_lookup(stock_id);
+	const gchar *context;
 
-	if (gtk_stock_lookup(stock_id, &item))
-		return item.label;
+	if (item == NULL)
+	{
+		g_warning("No stock id '%s'!", stock_id);
+		return NULL;
+	}
+	if (g_str_has_prefix(item->stock_id, "geany-"))
+		return _(item->label);
 
-	g_warning("No stock id '%s'!", stock_id);
-	return NULL;
+	/* GTK 3 translates its former stock labels in these message contexts */
+	if (g_str_has_prefix(item->stock_id, "gtk-media-"))
+		context = "Stock label, media";
+	else if (g_str_has_prefix(item->stock_id, "gtk-go"))
+		context = "Stock label, navigation";
+	else
+		context = "Stock label";
+	return g_dpgettext2("gtk30", context, item->label);
 }
 
 
