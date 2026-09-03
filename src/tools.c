@@ -799,13 +799,10 @@ static void on_color_dialog_response(GtkDialog *dialog, gint response, gpointer 
 			GdkRGBA color;
 			GeanyDocument *doc = document_get_current();
 			gchar *hex;
-			GtkWidget *colorsel;
 
 			g_return_if_fail(doc != NULL);
 
-			colorsel = gtk_color_selection_dialog_get_color_selection(GTK_COLOR_SELECTION_DIALOG(ui_widgets.open_colorsel));
-			gtk_color_selection_get_current_rgba(GTK_COLOR_SELECTION(colorsel), &color);
-
+			gtk_color_chooser_get_rgba(GTK_COLOR_CHOOSER(dialog), &color);
 			hex = utils_get_hex_from_color(&color);
 			editor_insert_color(doc->editor, hex);
 			g_free(hex);
@@ -818,51 +815,29 @@ static void on_color_dialog_response(GtkDialog *dialog, gint response, gpointer 
 }
 
 
-static void on_color_selection_change_palette_with_screen(GdkScreen *screen, const GdkColor *colors, gint n_colors)
-{
-	GtkSettings *settings;
-
-	/* Get the updated palette */
-	g_free(ui_prefs.color_picker_palette);
-	ui_prefs.color_picker_palette = gtk_color_selection_palette_to_string(colors, n_colors);
-
-	/* Update the gtk-color-palette setting so all GtkColorSelection widgets will be modified */
-	settings = gtk_settings_get_for_screen(screen);
-	g_object_set(G_OBJECT(settings), "gtk-color-palette", ui_prefs.color_picker_palette, NULL);
-}
-
-
-/* This shows the color selection dialog to choose a color. */
+/* This shows the color chooser dialog to choose a color. */
 void tools_color_chooser(const gchar *color)
 {
 	GdkRGBA gc;
-	GtkWidget *colorsel;
 
 	if (ui_widgets.open_colorsel == NULL)
 	{
-		ui_widgets.open_colorsel = gtk_color_selection_dialog_new(_("Color Chooser"));
+		ui_widgets.open_colorsel = gtk_color_chooser_dialog_new(_("Color Chooser"),
+			GTK_WINDOW(main_widgets.window));
+		gtk_color_chooser_set_use_alpha(GTK_COLOR_CHOOSER(ui_widgets.open_colorsel), FALSE);
 		gtk_dialog_add_button(GTK_DIALOG(ui_widgets.open_colorsel), _("_Apply"), GTK_RESPONSE_APPLY);
 		ui_dialog_set_primary_button_order(GTK_DIALOG(ui_widgets.open_colorsel),
 				GTK_RESPONSE_APPLY, GTK_RESPONSE_CANCEL, GTK_RESPONSE_OK, -1);
 		gtk_widget_set_name(ui_widgets.open_colorsel, "GeanyDialog");
-		gtk_window_set_transient_for(GTK_WINDOW(ui_widgets.open_colorsel), GTK_WINDOW(main_widgets.window));
-		colorsel = gtk_color_selection_dialog_get_color_selection(GTK_COLOR_SELECTION_DIALOG(ui_widgets.open_colorsel));
-		gtk_color_selection_set_has_palette(GTK_COLOR_SELECTION(colorsel), TRUE);
-		gtk_color_selection_set_change_palette_with_screen_hook(on_color_selection_change_palette_with_screen);
 
 		g_signal_connect(ui_widgets.open_colorsel, "response",
 						G_CALLBACK(on_color_dialog_response), NULL);
 		g_signal_connect(ui_widgets.open_colorsel, "delete-event",
 						G_CALLBACK(gtk_widget_hide_on_delete), NULL);
 	}
-	else
-		colorsel = gtk_color_selection_dialog_get_color_selection(GTK_COLOR_SELECTION_DIALOG(ui_widgets.open_colorsel));
 	/* if color is non-NULL set it in the dialog as preselected color */
 	if (color != NULL && utils_parse_color(color, &gc))
-	{
-		gtk_color_selection_set_current_rgba(GTK_COLOR_SELECTION(colorsel), &gc);
-		gtk_color_selection_set_previous_rgba(GTK_COLOR_SELECTION(colorsel), &gc);
-	}
+		gtk_color_chooser_set_rgba(GTK_COLOR_CHOOSER(ui_widgets.open_colorsel), &gc);
 
 	/* We make sure the dialog is visible. */
 	gtk_window_present(GTK_WINDOW(ui_widgets.open_colorsel));

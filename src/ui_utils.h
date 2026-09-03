@@ -179,9 +179,6 @@ typedef struct UIPrefs
 	gchar		*custom_date_format;
 	gchar		**custom_commands;
 	gchar		**custom_commands_labels;
-
-	/* Color picker settings */
-	gchar		*color_picker_palette;
 }
 UIPrefs;
 
