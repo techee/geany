@@ -896,13 +896,15 @@ static void on_check_run_in_vte_toggled(GtkToggleButton *togglebutton, GtkWidget
 
 static void on_term_font_set(GtkFontButton *widget, gpointer user_data)
 {
-	const gchar *fontbtn = gtk_font_button_get_font_name(widget);
+	gchar *fontbtn = gtk_font_chooser_get_font(GTK_FONT_CHOOSER(widget));
 
 	if (! utils_str_equal(fontbtn, vte_config.font))
 	{
-		SETPTR(vte_config.font, g_strdup(gtk_font_button_get_font_name(widget)));
+		SETPTR(vte_config.font, fontbtn);
 		vte_apply_user_settings();
 	}
+	else
+		g_free(fontbtn);
 }
 
 

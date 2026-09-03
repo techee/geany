@@ -467,13 +467,13 @@ static void prefs_init_dialog(void)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), interface_prefs.sidebar_openfiles_visible);
 
 	widget = ui_lookup_widget(ui_widgets.prefs_dialog, "tagbar_font");
-	gtk_font_button_set_font_name(GTK_FONT_BUTTON(widget), interface_prefs.tagbar_font);
+	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(widget), interface_prefs.tagbar_font);
 
 	widget = ui_lookup_widget(ui_widgets.prefs_dialog, "msgwin_font");
-	gtk_font_button_set_font_name(GTK_FONT_BUTTON(widget), interface_prefs.msgwin_font);
+	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(widget), interface_prefs.msgwin_font);
 
 	widget = ui_lookup_widget(ui_widgets.prefs_dialog, "editor_font");
-	gtk_font_button_set_font_name(GTK_FONT_BUTTON(widget), interface_prefs.editor_font);
+	gtk_font_chooser_set_font(GTK_FONT_CHOOSER(widget), interface_prefs.editor_font);
 
 	widget = ui_lookup_widget(ui_widgets.prefs_dialog, "spin_long_line");
 	gtk_spin_button_set_value(GTK_SPIN_BUTTON(widget), editor_prefs.long_line_column);
@@ -772,7 +772,7 @@ static void prefs_init_dialog(void)
 		VteConfig *vc = &vte_config;
 
 		widget = ui_lookup_widget(ui_widgets.prefs_dialog, "font_term");
-		gtk_font_button_set_font_name(GTK_FONT_BUTTON(widget), vc->font);
+		gtk_font_chooser_set_font(GTK_FONT_CHOOSER(widget), vc->font);
 
 		widget = ui_lookup_widget(ui_widgets.prefs_dialog, "color_fore");
 		gtk_color_button_set_color(GTK_COLOR_BUTTON(widget), &vc->colour_fore);
@@ -1345,7 +1345,7 @@ static void on_color_button_choose_cb(GtkColorButton *widget, gpointer user_data
 
 static void on_prefs_font_choosed(GtkFontButton *widget, gpointer user_data)
 {
-	const gchar *fontbtn = gtk_font_button_get_font_name(widget);
+	gchar *fontbtn = gtk_font_chooser_get_font(GTK_FONT_CHOOSER(widget));
 	guint i;
 
 	switch (GPOINTER_TO_INT(user_data))
@@ -1386,6 +1386,7 @@ static void on_prefs_font_choosed(GtkFontButton *widget, gpointer user_data)
 			break;
 		}
 	}
+	g_free(fontbtn);
 }
 
 
