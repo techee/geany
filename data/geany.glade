@@ -1002,11 +1002,9 @@
                         <property name="shadow-type">none</property>
                         <property name="vexpand">False</property>
                         <child>
-                          <object class="GtkTable" id="table11">
+                          <object class="GtkGrid" id="table11">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="n-rows">3</property>
-                            <property name="n-columns">3</property>
                             <property name="column-spacing">6</property>
                             <property name="row-spacing">3</property>
                             <property name="margin-start">12</property>
@@ -1017,10 +1015,13 @@
                                 <property name="label" translatable="yes">Startup path:</property>
                                 <property name="mnemonic-widget">startup_path_entry</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -1031,11 +1032,13 @@
                                 <property name="invisible-char">•</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
-                                <property name="y-options"/>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -1043,6 +1046,9 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                                 <child>
                                   <object class="GtkImage" id="image1741">
                                     <property name="visible">True</property>
@@ -1053,9 +1059,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="right-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -1065,12 +1069,13 @@
                                 <property name="label" translatable="yes">Project files:</property>
                                 <property name="mnemonic-widget">project_file_path_entry</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1081,13 +1086,13 @@
                                 <property name="invisible-char">•</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1095,6 +1100,9 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                                 <child>
                                   <object class="GtkImage" id="image1775">
                                     <property name="visible">True</property>
@@ -1105,11 +1113,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="right-attach">3</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1119,12 +1123,13 @@
                                 <property name="label" translatable="yes">Extra plugin path:</property>
                                 <property name="mnemonic-widget">extra_plugin_path_entry</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1135,13 +1140,13 @@
                                 <property name="invisible-char">•</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1149,6 +1154,9 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                                 <child>
                                   <object class="GtkImage" id="image2852">
                                     <property name="visible">True</property>
@@ -1159,11 +1167,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="right-attach">3</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                           </object>
@@ -1652,11 +1656,9 @@
                         <property name="shadow-type">none</property>
                         <property name="vexpand">False</property>
                         <child>
-                          <object class="GtkTable" id="table2">
+                          <object class="GtkGrid" id="table2">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="n-rows">3</property>
-                            <property name="n-columns">2</property>
                             <property name="column-spacing">24</property>
                             <property name="row-spacing">3</property>
                             <property name="margin-start">12</property>
@@ -1668,12 +1670,13 @@
                                 <property name="label" translatable="yes">Symbol list:</property>
                                 <property name="mnemonic-widget">tagbar_font</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1683,12 +1686,13 @@
                                 <property name="label" translatable="yes">Message window:</property>
                                 <property name="mnemonic-widget">msgwin_font</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1698,10 +1702,13 @@
                                 <property name="label" translatable="yes">Editor:</property>
                                 <property name="mnemonic-widget">editor_font</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -1712,14 +1719,13 @@
                                 <property name="tooltip-text" translatable="yes">Sets the font for the message window</property>
                                 <property name="font">Sans 12</property>
                                 <property name="show-style">False</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1730,13 +1736,13 @@
                                 <property name="tooltip-text" translatable="yes">Sets the font for the symbol list</property>
                                 <property name="font">Sans 12</property>
                                 <property name="show-style">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -1746,12 +1752,13 @@
                                 <property name="receives-default">False</property>
                                 <property name="tooltip-text" translatable="yes">Sets the editor font</property>
                                 <property name="font">Sans 12</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                           </object>
@@ -1859,11 +1866,9 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTable" id="table21">
+                              <object class="GtkGrid" id="table21">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="n-rows">2</property>
-                                <property name="n-columns">2</property>
                                 <property name="vexpand">False</property>
                                 <child>
                                   <placeholder/>
@@ -1874,10 +1879,13 @@
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Placement of new file tabs:</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -1885,6 +1893,8 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="spacing">12</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">False</property>
                                     <child>
                                       <object class="GtkRadioButton" id="radio_tab_left">
                                         <property name="label" translatable="yes">Left</property>
@@ -1914,8 +1924,7 @@
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
-                                    <property name="y-options">GTK_FILL</property>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -1927,14 +1936,13 @@
                                     <property name="tooltip-text" translatable="yes">Whether to place file tabs next to the current tab rather than at the edges of the notebook</property>
                                     <property name="use-underline">True</property>
                                     <property name="draw-indicator">True</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">1</property>
-                                    <property name="bottom-attach">2</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                               </object>
@@ -2020,11 +2028,9 @@
                         <property name="shadow-type">none</property>
                         <property name="vexpand">False</property>
                         <child>
-                          <object class="GtkTable" id="table8">
+                          <object class="GtkGrid" id="table8">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="n-rows">3</property>
-                            <property name="n-columns">2</property>
                             <property name="column-spacing">24</property>
                             <property name="row-spacing">3</property>
                             <property name="margin-start">12</property>
@@ -2035,12 +2041,13 @@
                                 <property name="label" translatable="yes">Message window:</property>
                                 <property name="mnemonic-widget">combo_tab_msgwin</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -2048,6 +2055,8 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="model">tab_pos_list</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cellrenderertext1"/>
                                   <attributes>
@@ -2057,11 +2066,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options">GTK_FILL</property>
                               </packing>
                             </child>
                             <child>
@@ -2071,12 +2076,13 @@
                                 <property name="label" translatable="yes">Sidebar:</property>
                                 <property name="mnemonic-widget">combo_tab_sidebar</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -2084,6 +2090,8 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="model">tab_pos_list</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cellrenderertext2"/>
                                   <attributes>
@@ -2093,11 +2101,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options">GTK_FILL</property>
                               </packing>
                             </child>
                             <child>
@@ -2107,10 +2111,13 @@
                                 <property name="label" translatable="yes">Editor:</property>
                                 <property name="mnemonic-widget">combo_tab_editor</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -2118,6 +2125,8 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="model">tab_pos_list</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
                                 <child>
                                   <object class="GtkCellRendererText" id="cellrenderertext3"/>
                                   <attributes>
@@ -2127,9 +2136,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options">GTK_FILL</property>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                           </object>
@@ -2271,11 +2278,9 @@
                                 <property name="shadow-type">none</property>
                                 <property name="vexpand">False</property>
                                 <child>
-                                  <object class="GtkTable" id="table19">
+                                  <object class="GtkGrid" id="table19">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="n-rows">2</property>
-                                    <property name="n-columns">2</property>
                                     <property name="column-spacing">20</property>
                                     <property name="row-spacing">3</property>
                                     <property name="margin-start">12</property>
@@ -2287,10 +2292,13 @@
                                         <property name="receives-default">False</property>
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">0</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -2302,12 +2310,13 @@
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
                                         <property name="group">radio_toolbar_style_default</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
+                                        <property name="left-attach">0</property>
                                         <property name="top-attach">1</property>
-                                        <property name="bottom-attach">2</property>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -2319,12 +2328,13 @@
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
                                         <property name="group">radio_toolbar_style_default</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="right-attach">2</property>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
+                                        <property name="top-attach">0</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -2336,14 +2346,13 @@
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
                                         <property name="group">radio_toolbar_style_default</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="right-attach">2</property>
                                         <property name="top-attach">1</property>
-                                        <property name="bottom-attach">2</property>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
                                       </packing>
                                     </child>
                                   </object>
@@ -2366,15 +2375,16 @@
                                 <property name="shadow-type">none</property>
                                 <property name="vexpand">False</property>
                                 <child>
-                                  <object class="GtkTable" id="table20">
+                                  <object class="GtkGrid" id="table20">
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
-                                    <property name="n-rows">2</property>
-                                    <property name="n-columns">2</property>
                                     <property name="column-spacing">20</property>
                                     <property name="row-spacing">3</property>
-                                    <property name="homogeneous">True</property>
+                                    <property name="row-homogeneous">True</property>
+                                    <property name="column-homogeneous">True</property>
                                     <property name="margin-start">12</property>
+                                    <property name="halign">start</property>
+                                    <property name="valign">start</property>
                                     <child>
                                       <object class="GtkRadioButton" id="radio_toolbar_icon_default">
                                         <property name="label" translatable="yes">S_ystem default</property>
@@ -2383,10 +2393,13 @@
                                         <property name="receives-default">False</property>
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
+                                        <property name="left-attach">0</property>
+                                        <property name="top-attach">0</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -2398,12 +2411,13 @@
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
                                         <property name="group">radio_toolbar_icon_default</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
+                                        <property name="left-attach">0</property>
                                         <property name="top-attach">1</property>
-                                        <property name="bottom-attach">2</property>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
                                       </packing>
                                     </child>
                                     <child>
@@ -2415,12 +2429,13 @@
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
                                         <property name="group">radio_toolbar_icon_default</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="right-attach">2</property>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
+                                        <property name="top-attach">0</property>
                                       </packing>
                                     </child>
                                     <child>
@@ -2432,14 +2447,13 @@
                                         <property name="use-underline">True</property>
                                         <property name="draw-indicator">True</property>
                                         <property name="group">radio_toolbar_icon_default</property>
+                                        <property name="hexpand">False</property>
+                                        <property name="vexpand">False</property>
+                                        <property name="valign">center</property>
                                       </object>
                                       <packing>
                                         <property name="left-attach">1</property>
-                                        <property name="right-attach">2</property>
                                         <property name="top-attach">1</property>
-                                        <property name="bottom-attach">2</property>
-                                        <property name="x-options">GTK_FILL</property>
-                                        <property name="y-options"/>
                                       </packing>
                                     </child>
                                   </object>
@@ -2792,11 +2806,9 @@
                             <property name="orientation">vertical</property>
                             <property name="margin-start">12</property>
                             <child>
-                              <object class="GtkTable" id="table13">
+                              <object class="GtkGrid" id="table13">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="n-rows">7</property>
-                                <property name="n-columns">2</property>
                                 <property name="column-spacing">24</property>
                                 <property name="row-spacing">3</property>
                                 <property name="vexpand">False</property>
@@ -2820,10 +2832,13 @@
                                     <property name="use-underline">True</property>
                                     <property name="mnemonic-widget">spin_indent_width</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -2838,11 +2853,13 @@
                                     <property name="numeric">True</property>
                                     <property name="wrap">True</property>
                                     <property name="update-policy">if-valid</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
-                                    <property name="y-options"/>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -2853,12 +2870,13 @@
                                     <property name="use-underline">True</property>
                                     <property name="mnemonic-widget">combo_auto_indent_mode</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
+                                    <property name="left-attach">0</property>
                                     <property name="top-attach">6</property>
-                                    <property name="bottom-attach">7</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -2866,6 +2884,8 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="model">indent_mode_list</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext4"/>
                                       <attributes>
@@ -2875,11 +2895,7 @@
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">6</property>
-                                    <property name="bottom-attach">7</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options">GTK_FILL</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -2891,14 +2907,13 @@
                                     <property name="tooltip-text" translatable="yes">Whether to detect the indentation type from file contents when a file is opened</property>
                                     <property name="use-underline">True</property>
                                     <property name="draw-indicator">True</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">5</property>
-                                    <property name="bottom-attach">6</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -2910,14 +2925,13 @@
                                     <property name="tooltip-text" translatable="yes">Use spaces if the total indent is less than the tab width, otherwise use both</property>
                                     <property name="use-underline">True</property>
                                     <property name="draw-indicator">True</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">4</property>
-                                    <property name="bottom-attach">5</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -2930,14 +2944,13 @@
                                     <property name="use-underline">True</property>
                                     <property name="draw-indicator">True</property>
                                     <property name="group">radio_indent_both</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">3</property>
-                                    <property name="bottom-attach">4</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -2950,14 +2963,13 @@
                                     <property name="use-underline">True</property>
                                     <property name="draw-indicator">True</property>
                                     <property name="group">radio_indent_both</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">2</property>
-                                    <property name="bottom-attach">3</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -2969,14 +2981,13 @@
                                     <property name="tooltip-text" translatable="yes">Whether to detect the indentation width from file contents when a file is opened</property>
                                     <property name="use-underline">True</property>
                                     <property name="draw-indicator">True</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">1</property>
-                                    <property name="bottom-attach">2</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -2985,12 +2996,13 @@
                                     <property name="can-focus">False</property>
                                     <property name="label" translatable="yes">Type:</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
+                                    <property name="left-attach">0</property>
                                     <property name="top-attach">2</property>
-                                    <property name="bottom-attach">3</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                               </object>
@@ -3138,11 +3150,9 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTable" id="table14">
+                              <object class="GtkGrid" id="table14">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="n-rows">4</property>
-                                <property name="n-columns">2</property>
                                 <property name="column-spacing">12</property>
                                 <property name="row-spacing">3</property>
                                 <property name="vexpand">False</property>
@@ -3153,12 +3163,13 @@
                                     <property name="label" translatable="yes">Max. symbol name suggestions:</property>
                                     <property name="mnemonic-widget">spin_autocompletion_max_entries</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
+                                    <property name="left-attach">0</property>
                                     <property name="top-attach">2</property>
-                                    <property name="bottom-attach">3</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -3168,12 +3179,13 @@
                                     <property name="label" translatable="yes">Completion list height:</property>
                                     <property name="mnemonic-widget">spin_symbollistheight</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
+                                    <property name="left-attach">0</property>
                                     <property name="top-attach">1</property>
-                                    <property name="bottom-attach">2</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -3183,10 +3195,13 @@
                                     <property name="label" translatable="yes">Characters to type for autocompletion:</property>
                                     <property name="mnemonic-widget">spin_symbol_complete_chars</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -3199,11 +3214,13 @@
                                     <property name="adjustment">adjustment3</property>
                                     <property name="climb-rate">1</property>
                                     <property name="numeric">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
-                                    <property name="y-options"/>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -3216,13 +3233,13 @@
                                     <property name="adjustment">adjustment4</property>
                                     <property name="climb-rate">1</property>
                                     <property name="numeric">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">1</property>
-                                    <property name="bottom-attach">2</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -3235,13 +3252,13 @@
                                     <property name="adjustment">adjustment5</property>
                                     <property name="climb-rate">1</property>
                                     <property name="numeric">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">2</property>
-                                    <property name="bottom-attach">3</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -3251,12 +3268,13 @@
                                     <property name="label" translatable="yes">Symbol list update frequency:</property>
                                     <property name="mnemonic-widget">spin_symbol_update_freq</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
+                                    <property name="left-attach">0</property>
                                     <property name="top-attach">3</property>
-                                    <property name="bottom-attach">4</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                                 <child>
@@ -3269,13 +3287,13 @@
                                     <property name="adjustment">adjustment6</property>
                                     <property name="climb-rate">1</property>
                                     <property name="numeric">True</property>
+                                    <property name="hexpand">True</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
                                     <property name="top-attach">3</property>
-                                    <property name="bottom-attach">4</property>
-                                    <property name="y-options"/>
                                   </packing>
                                 </child>
                               </object>
@@ -3568,11 +3586,9 @@
                         <property name="shadow-type">none</property>
                         <property name="vexpand">False</property>
                         <child>
-                          <object class="GtkTable" id="table7">
+                          <object class="GtkGrid" id="table7">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="n-rows">4</property>
-                            <property name="n-columns">2</property>
                             <property name="column-spacing">24</property>
                             <property name="row-spacing">3</property>
                             <property name="margin-start">12</property>
@@ -3583,12 +3599,13 @@
                                 <property name="label" translatable="yes">Column:</property>
                                 <property name="mnemonic-widget">spin_long_line</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -3598,12 +3615,13 @@
                                 <property name="label" translatable="yes">Color:</property>
                                 <property name="mnemonic-widget">long_line_color</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">3</property>
-                                <property name="bottom-attach">4</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -3613,12 +3631,13 @@
                                 <property name="label" translatable="yes">Type:</property>
                                 <property name="mnemonic-widget">hbox5</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -3628,14 +3647,13 @@
                                 <property name="receives-default">False</property>
                                 <property name="tooltip-text" translatable="yes">Sets the color of the long line marker</property>
                                 <property name="title" translatable="yes">Color Chooser</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">3</property>
-                                <property name="bottom-attach">4</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -3649,14 +3667,13 @@
                                 <property name="climb-rate">1</property>
                                 <property name="numeric">True</property>
                                 <property name="wrap">True</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -3664,6 +3681,8 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
                                 <property name="spacing">12</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
                                 <child>
                                   <object class="GtkRadioButton" id="radio_long_line_line">
                                     <property name="label" translatable="yes">Line</property>
@@ -3692,11 +3711,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options">GTK_FILL</property>
                               </packing>
                             </child>
                             <child>
@@ -3707,11 +3722,14 @@
                                 <property name="receives-default">False</property>
                                 <property name="use-underline">True</property>
                                 <property name="draw-indicator">True</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
-                                <property name="right-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
+                                <property name="width">2</property>
                               </packing>
                             </child>
                           </object>
@@ -3843,10 +3861,9 @@
                               </object>
                             </child>
                             <child>
-                              <object class="GtkTable" id="table15">
+                              <object class="GtkGrid" id="table15">
                                 <property name="visible">True</property>
                                 <property name="can-focus">False</property>
-                                <property name="n-columns">2</property>
                                 <property name="column-spacing">24</property>
                                 <property name="row-spacing">3</property>
                                 <property name="vexpand">False</property>
@@ -3855,6 +3872,8 @@
                                     <property name="visible">True</property>
                                     <property name="can-focus">False</property>
                                     <property name="model">eol_list</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
                                     <child>
                                       <object class="GtkCellRendererText" id="cellrenderertext5"/>
                                       <attributes>
@@ -3864,9 +3883,7 @@
                                   </object>
                                   <packing>
                                     <property name="left-attach">1</property>
-                                    <property name="right-attach">2</property>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options">GTK_FILL</property>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -3876,10 +3893,13 @@
                                     <property name="label" translatable="yes">Default end of line characters:</property>
                                     <property name="mnemonic-widget">combo_eol</property>
                                     <property name="xalign">0</property>
+                                    <property name="hexpand">False</property>
+                                    <property name="vexpand">False</property>
+                                    <property name="valign">center</property>
                                   </object>
                                   <packing>
-                                    <property name="x-options">GTK_FILL</property>
-                                    <property name="y-options"/>
+                                    <property name="left-attach">0</property>
+                                    <property name="top-attach">0</property>
                                   </packing>
                                 </child>
                               </object>
@@ -4069,11 +4089,9 @@
                         <property name="orientation">vertical</property>
                         <property name="margin-start">12</property>
                         <child>
-                          <object class="GtkTable" id="table10">
+                          <object class="GtkGrid" id="table10">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="n-rows">2</property>
-                            <property name="n-columns">2</property>
                             <property name="column-spacing">24</property>
                             <property name="row-spacing">3</property>
                             <property name="vexpand">False</property>
@@ -4085,10 +4103,13 @@
                                 <property name="label" translatable="yes">Recent files list length:</property>
                                 <property name="mnemonic-widget">spin_mru</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -4102,12 +4123,13 @@
                                 <property name="climb-rate">1</property>
                                 <property name="numeric">True</property>
                                 <property name="wrap">True</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -4117,12 +4139,13 @@
                                 <property name="label" translatable="yes">Disk check timeout:</property>
                                 <property name="mnemonic-widget">spin_disk_check</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4136,14 +4159,13 @@
                                 <property name="climb-rate">1</property>
                                 <property name="numeric">True</property>
                                 <property name="wrap">True</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                           </object>
@@ -4209,11 +4231,9 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkTable" id="table1">
+                          <object class="GtkGrid" id="table1">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="n-rows">3</property>
-                            <property name="n-columns">3</property>
                             <property name="column-spacing">6</property>
                             <property name="row-spacing">3</property>
                             <property name="vexpand">False</property>
@@ -4224,10 +4244,13 @@
                                 <property name="label" translatable="yes">Terminal:</property>
                                 <property name="mnemonic-widget">entry_com_term</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -4237,12 +4260,13 @@
                                 <property name="label" translatable="yes">Browser:</property>
                                 <property name="mnemonic-widget">entry_browser</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4252,11 +4276,13 @@
                                 <property name="tooltip-text" translatable="yes">A terminal emulator command (%c is substituted with the Geany run script filename)</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
-                                <property name="y-options"/>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -4267,13 +4293,13 @@
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
                                 <property name="placeholder-text" translatable="yes">System default</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4281,6 +4307,9 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                                 <child>
                                   <object class="GtkImage" id="image286">
                                     <property name="visible">True</property>
@@ -4291,9 +4320,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="right-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -4301,6 +4328,9 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                                 <child>
                                   <object class="GtkImage" id="image287">
                                     <property name="visible">True</property>
@@ -4311,11 +4341,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="right-attach">3</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4325,12 +4351,13 @@
                                 <property name="label" translatable="yes">Grep:</property>
                                 <property name="mnemonic-widget">entry_grep</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4339,13 +4366,13 @@
                                 <property name="can-focus">True</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4353,6 +4380,9 @@
                                 <property name="visible">True</property>
                                 <property name="can-focus">True</property>
                                 <property name="receives-default">False</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                                 <child>
                                   <object class="GtkImage" id="image808">
                                     <property name="visible">True</property>
@@ -4363,11 +4393,7 @@
                               </object>
                               <packing>
                                 <property name="left-attach">2</property>
-                                <property name="right-attach">3</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                           </object>
@@ -4392,10 +4418,9 @@
                     <property name="shadow-type">none</property>
                     <property name="vexpand">False</property>
                     <child>
-                      <object class="GtkTable" id="table12">
+                      <object class="GtkGrid" id="table12">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="n-columns">3</property>
                         <property name="column-spacing">6</property>
                         <property name="row-spacing">3</property>
                         <property name="margin-start">12</property>
@@ -4405,10 +4430,13 @@
                             <property name="can-focus">False</property>
                             <property name="label" translatable="yes">Context action:</property>
                             <property name="mnemonic-widget">entry_contextaction</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -4419,11 +4447,13 @@
                             <property name="invisible-char">●</property>
                             <property name="primary-icon-activatable">False</property>
                             <property name="secondary-icon-activatable">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">2</property>
-                            <property name="y-options"/>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -4431,6 +4461,9 @@
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">False</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                             <child>
                               <object class="GtkImage" id="image1919">
                                 <property name="visible">True</property>
@@ -4441,9 +4474,7 @@
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
-                            <property name="right-attach">3</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                       </object>
@@ -4507,11 +4538,9 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkTable" id="table6">
+                          <object class="GtkGrid" id="table6">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
-                            <property name="n-rows">8</property>
-                            <property name="n-columns">2</property>
                             <property name="column-spacing">6</property>
                             <property name="row-spacing">6</property>
                             <property name="vexpand">False</property>
@@ -4522,13 +4551,13 @@
                                 <property name="tooltip-text" translatable="yes">Email address of the developer</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4538,13 +4567,13 @@
                                 <property name="tooltip-text" translatable="yes">Initials of the developer name</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4554,12 +4583,13 @@
                                 <property name="label" translatable="yes">Initial version:</property>
                                 <property name="mnemonic-widget">entry_template_version</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">4</property>
-                                <property name="bottom-attach">5</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4569,13 +4599,13 @@
                                 <property name="tooltip-text" translatable="yes">Version number, which a new file initially has</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">4</property>
-                                <property name="bottom-attach">5</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4585,13 +4615,13 @@
                                 <property name="tooltip-text" translatable="yes">Company name</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">3</property>
-                                <property name="bottom-attach">4</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4601,10 +4631,13 @@
                                 <property name="label" translatable="yes">Developer:</property>
                                 <property name="mnemonic-widget">entry_template_developer</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
+                                <property name="left-attach">0</property>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -4614,12 +4647,13 @@
                                 <property name="label" translatable="yes">Company:</property>
                                 <property name="mnemonic-widget">entry_template_company</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">3</property>
-                                <property name="bottom-attach">4</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4629,12 +4663,13 @@
                                 <property name="label" translatable="yes">Mail address:</property>
                                 <property name="mnemonic-widget">entry_template_mail</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">2</property>
-                                <property name="bottom-attach">3</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4644,12 +4679,13 @@
                                 <property name="label" translatable="yes">Initials:</property>
                                 <property name="mnemonic-widget">entry_template_initial</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">1</property>
-                                <property name="bottom-attach">2</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4659,11 +4695,13 @@
                                 <property name="tooltip-text" translatable="yes">The name of the developer</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
-                                <property name="y-options"/>
+                                <property name="top-attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -4673,12 +4711,13 @@
                                 <property name="label" translatable="yes">Year:</property>
                                 <property name="mnemonic-widget">entry_template_year</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">5</property>
-                                <property name="bottom-attach">6</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4688,12 +4727,13 @@
                                 <property name="label" translatable="yes">Date:</property>
                                 <property name="mnemonic-widget">entry_template_date</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">6</property>
-                                <property name="bottom-attach">7</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4703,12 +4743,13 @@
                                 <property name="label" translatable="yes">Date &amp; time:</property>
                                 <property name="mnemonic-widget">entry_template_datetime</property>
                                 <property name="xalign">0</property>
+                                <property name="hexpand">False</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
+                                <property name="left-attach">0</property>
                                 <property name="top-attach">7</property>
-                                <property name="bottom-attach">8</property>
-                                <property name="x-options">GTK_FILL</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4718,13 +4759,13 @@
                                 <property name="tooltip-text" translatable="yes">Specify a format for the {datetime} wildcard. For a list of available conversion specifiers see https://docs.gtk.org/glib/method.DateTime.format.html.</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">7</property>
-                                <property name="bottom-attach">8</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4734,13 +4775,13 @@
                                 <property name="tooltip-text" translatable="yes">Specify a format for the {year} wildcard. For a list of available conversion specifiers see https://docs.gtk.org/glib/method.DateTime.format.html.</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">5</property>
-                                <property name="bottom-attach">6</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                             <child>
@@ -4750,13 +4791,13 @@
                                 <property name="tooltip-text" translatable="yes">Specify a format for the {date} wildcard. For a list of available conversion specifiers see https://docs.gtk.org/glib/method.DateTime.format.html.</property>
                                 <property name="primary-icon-activatable">False</property>
                                 <property name="secondary-icon-activatable">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">False</property>
+                                <property name="valign">center</property>
                               </object>
                               <packing>
                                 <property name="left-attach">1</property>
-                                <property name="right-attach">2</property>
                                 <property name="top-attach">6</property>
-                                <property name="bottom-attach">7</property>
-                                <property name="y-options"/>
                               </packing>
                             </child>
                           </object>
@@ -5124,11 +5165,9 @@ Supported placeholders are:
                     <property name="spacing">12</property>
                     <property name="margin-start">12</property>
                     <child>
-                      <object class="GtkTable" id="table_terminal1">
+                      <object class="GtkGrid" id="table_terminal1">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="n-rows">5</property>
-                        <property name="n-columns">3</property>
                         <property name="column-spacing">6</property>
                         <property name="row-spacing">6</property>
                         <property name="vexpand">False</property>
@@ -5139,10 +5178,12 @@ Supported placeholders are:
                             <property name="label" translatable="yes">Font:</property>
                             <property name="mnemonic-widget">font_term</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options">GTK_FILL</property>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -5153,11 +5194,13 @@ Supported placeholders are:
                             <property name="tooltip-text" translatable="yes">Sets the font for the terminal widget</property>
                             <property name="font">Sans 12</property>
                             <property name="title" translatable="yes">Choose Terminal Font</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">3</property>
-                            <property name="y-options">GTK_FILL</property>
+                            <property name="top-attach">0</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -5167,12 +5210,12 @@ Supported placeholders are:
                             <property name="label" translatable="yes">Foreground color:</property>
                             <property name="mnemonic-widget">color_fore</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
+                            <property name="left-attach">0</property>
                             <property name="top-attach">1</property>
-                            <property name="bottom-attach">2</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options">GTK_FILL</property>
                           </packing>
                         </child>
                         <child>
@@ -5182,12 +5225,12 @@ Supported placeholders are:
                             <property name="label" translatable="yes">Background color:</property>
                             <property name="mnemonic-widget">color_back</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
+                            <property name="left-attach">0</property>
                             <property name="top-attach">2</property>
-                            <property name="bottom-attach">3</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options">GTK_FILL</property>
                           </packing>
                         </child>
                         <child>
@@ -5197,12 +5240,12 @@ Supported placeholders are:
                             <property name="label" translatable="yes">Scrollback lines:</property>
                             <property name="mnemonic-widget">spin_scrollback</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
+                            <property name="left-attach">0</property>
                             <property name="top-attach">3</property>
-                            <property name="bottom-attach">4</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options">GTK_FILL</property>
                           </packing>
                         </child>
                         <child>
@@ -5212,12 +5255,12 @@ Supported placeholders are:
                             <property name="label" translatable="yes">Shell:</property>
                             <property name="mnemonic-widget">entry_shell</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
+                            <property name="left-attach">0</property>
                             <property name="top-attach">4</property>
-                            <property name="bottom-attach">5</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options">GTK_FILL</property>
                           </packing>
                         </child>
                         <child>
@@ -5228,13 +5271,13 @@ Supported placeholders are:
                             <property name="tooltip-text" translatable="yes">Sets the foreground color of the text in the terminal widget</property>
                             <property name="title" translatable="yes">Color Chooser</property>
                             <property name="color">#000000000000</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">3</property>
                             <property name="top-attach">1</property>
-                            <property name="bottom-attach">2</property>
-                            <property name="y-options">GTK_FILL</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -5245,13 +5288,13 @@ Supported placeholders are:
                             <property name="tooltip-text" translatable="yes">Sets the background color of the text in the terminal widget</property>
                             <property name="title" translatable="yes">Color Chooser</property>
                             <property name="color">#000000000000</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">3</property>
                             <property name="top-attach">2</property>
-                            <property name="bottom-attach">3</property>
-                            <property name="y-options">GTK_FILL</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -5265,13 +5308,13 @@ Supported placeholders are:
                             <property name="adjustment">adjustment12</property>
                             <property name="numeric">True</property>
                             <property name="wrap">True</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">3</property>
                             <property name="top-attach">3</property>
-                            <property name="bottom-attach">4</property>
-                            <property name="y-options">GTK_FILL</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -5282,13 +5325,12 @@ Supported placeholders are:
                             <property name="invisible-char">•</property>
                             <property name="primary-icon-activatable">False</property>
                             <property name="secondary-icon-activatable">False</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">False</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">2</property>
                             <property name="top-attach">4</property>
-                            <property name="bottom-attach">5</property>
-                            <property name="y-options">GTK_FILL</property>
                           </packing>
                         </child>
                         <child>
@@ -5296,6 +5338,8 @@ Supported placeholders are:
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
                             <property name="receives-default">True</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
                             <child>
                               <object class="GtkImage" id="image1">
                                 <property name="visible">True</property>
@@ -5307,11 +5351,7 @@ Supported placeholders are:
                           </object>
                           <packing>
                             <property name="left-attach">2</property>
-                            <property name="right-attach">3</property>
                             <property name="top-attach">4</property>
-                            <property name="bottom-attach">5</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options">GTK_FILL</property>
                           </packing>
                         </child>
                       </object>
@@ -7787,12 +7827,10 @@ Supported placeholders are:
             <property name="border-width">6</property>
             <property name="vexpand">True</property>
             <child>
-              <object class="GtkTable" id="table_project_dialog_project">
+              <object class="GtkGrid" id="table_project_dialog_project">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="border-width">6</property>
-                <property name="n-rows">5</property>
-                <property name="n-columns">2</property>
                 <property name="column-spacing">6</property>
                 <property name="row-spacing">6</property>
                 <child>
@@ -7802,10 +7840,12 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Filename:</property>
                     <property name="mnemonic-widget">label_project_dialog_filename</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options">GTK_FILL</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -7816,12 +7856,12 @@ Supported placeholders are:
                     <property name="use-underline">True</property>
                     <property name="mnemonic-widget">entry_project_dialog_name</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7833,12 +7873,12 @@ Supported placeholders are:
                     <property name="mnemonic-widget">textview_project_dialog_description</property>
                     <property name="xalign">0</property>
                     <property name="yalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7849,12 +7889,12 @@ Supported placeholders are:
                     <property name="use-underline">True</property>
                     <property name="mnemonic-widget">entry_project_dialog_base_path</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7865,12 +7905,12 @@ Supported placeholders are:
                     <property name="use-underline">True</property>
                     <property name="mnemonic-widget">entry_project_dialog_file_patterns</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7879,13 +7919,12 @@ Supported placeholders are:
                     <property name="can-focus">True</property>
                     <property name="invisible-char">•</property>
                     <property name="primary-icon-activatable">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7895,6 +7934,8 @@ Supported placeholders are:
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="shadow-type">in</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
                     <child>
                       <object class="GtkViewport" id="viewport_project_dialog_description">
                         <property name="visible">True</property>
@@ -7912,10 +7953,7 @@ Supported placeholders are:
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7925,13 +7963,12 @@ Supported placeholders are:
                     <property name="tooltip-text" translatable="yes">Space separated list of file patterns used for the Find in Files dialog (e.g. *.c *.h)</property>
                     <property name="invisible-char">•</property>
                     <property name="primary-icon-activatable">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -7940,11 +7977,12 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
-                    <property name="y-options">GTK_FILL</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -7952,6 +7990,8 @@ Supported placeholders are:
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="spacing">6</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
                     <child>
                       <object class="GtkEntry" id="entry_project_dialog_base_path">
                         <property name="visible">True</property>
@@ -7980,10 +8020,7 @@ Supported placeholders are:
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
               </object>
@@ -7999,12 +8036,10 @@ Supported placeholders are:
               </packing>
             </child>
             <child>
-              <object class="GtkTable" id="table17">
+              <object class="GtkGrid" id="table17">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="border-width">6</property>
-                <property name="n-rows">8</property>
-                <property name="n-columns">2</property>
                 <property name="column-spacing">24</property>
                 <property name="row-spacing">3</property>
                 <child>
@@ -8028,11 +8063,15 @@ Supported placeholders are:
                     <property name="wrap">True</property>
                     <property name="width-chars">64</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="max-width-chars">64</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
-                    <property name="right-attach">2</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                    <property name="width">2</property>
                   </packing>
                 </child>
                 <child>
@@ -8043,12 +8082,13 @@ Supported placeholders are:
                     <property name="use-underline">True</property>
                     <property name="mnemonic-widget">spin_indent_width_project</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8063,13 +8103,13 @@ Supported placeholders are:
                     <property name="numeric">True</property>
                     <property name="wrap">True</property>
                     <property name="update-policy">if-valid</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8080,12 +8120,13 @@ Supported placeholders are:
                     <property name="use-underline">True</property>
                     <property name="mnemonic-widget">combo_auto_indent_mode_project</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">7</property>
-                    <property name="bottom-attach">8</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8093,6 +8134,8 @@ Supported placeholders are:
                     <property name="visible">True</property>
                     <property name="can-focus">False</property>
                     <property name="model">indent_mode_list</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
                     <child>
                       <object class="GtkCellRendererText" id="cellrenderertext1_project"/>
                       <attributes>
@@ -8102,11 +8145,7 @@ Supported placeholders are:
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">7</property>
-                    <property name="bottom-attach">8</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options">GTK_FILL</property>
                   </packing>
                 </child>
                 <child>
@@ -8118,14 +8157,13 @@ Supported placeholders are:
                     <property name="tooltip-text" translatable="yes">Whether to detect the indentation type from file contents when a file is opened</property>
                     <property name="use-underline">True</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">6</property>
-                    <property name="bottom-attach">7</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8137,14 +8175,13 @@ Supported placeholders are:
                     <property name="tooltip-text" translatable="yes">Use spaces if the total indent is less than the tab width, otherwise use both</property>
                     <property name="use-underline">True</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">5</property>
-                    <property name="bottom-attach">6</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8157,14 +8194,13 @@ Supported placeholders are:
                     <property name="use-underline">True</property>
                     <property name="draw-indicator">True</property>
                     <property name="group">radio_indent_both_project</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8177,14 +8213,13 @@ Supported placeholders are:
                     <property name="use-underline">True</property>
                     <property name="draw-indicator">True</property>
                     <property name="group">radio_indent_both_project</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8193,12 +8228,13 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Type:</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
                 <child>
@@ -8210,14 +8246,13 @@ Supported placeholders are:
                     <property name="tooltip-text" translatable="yes">Whether to detect the indentation width from file contents when a file is opened</property>
                     <property name="use-underline">True</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">False</property>
+                    <property name="vexpand">False</property>
+                    <property name="valign">center</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
-                    <property name="x-options">GTK_FILL</property>
-                    <property name="y-options"/>
                   </packing>
                 </child>
               </object>
@@ -8349,11 +8384,9 @@ Supported placeholders are:
                     <property name="shadow-type">none</property>
                     <property name="vexpand">False</property>
                     <child>
-                      <object class="GtkTable" id="table18">
+                      <object class="GtkGrid" id="table18">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="n-rows">4</property>
-                        <property name="n-columns">2</property>
                         <property name="column-spacing">12</property>
                         <property name="row-spacing">3</property>
                         <property name="margin-start">12</property>
@@ -8369,10 +8402,13 @@ Supported placeholders are:
                             <property name="can-focus">False</property>
                             <property name="label" translatable="yes">Display:</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
+                            <property name="left-attach">0</property>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -8382,12 +8418,13 @@ Supported placeholders are:
                             <property name="label" translatable="yes">Column:</property>
                             <property name="mnemonic-widget">spin_long_line_project</property>
                             <property name="xalign">0</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
+                            <property name="left-attach">0</property>
                             <property name="top-attach">3</property>
-                            <property name="bottom-attach">4</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
                           </packing>
                         </child>
                         <child>
@@ -8398,12 +8435,13 @@ Supported placeholders are:
                             <property name="receives-default">False</property>
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">2</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
+                            <property name="top-attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -8415,14 +8453,13 @@ Supported placeholders are:
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">radio_long_line_disabled_project</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">2</property>
                             <property name="top-attach">2</property>
-                            <property name="bottom-attach">3</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
                           </packing>
                         </child>
                         <child>
@@ -8434,14 +8471,13 @@ Supported placeholders are:
                             <property name="use-underline">True</property>
                             <property name="draw-indicator">True</property>
                             <property name="group">radio_long_line_disabled_project</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">2</property>
                             <property name="top-attach">1</property>
-                            <property name="bottom-attach">2</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
                           </packing>
                         </child>
                         <child>
@@ -8454,14 +8490,13 @@ Supported placeholders are:
                             <property name="climb-rate">1</property>
                             <property name="numeric">True</property>
                             <property name="wrap">True</property>
+                            <property name="hexpand">False</property>
+                            <property name="vexpand">False</property>
+                            <property name="valign">center</property>
                           </object>
                           <packing>
                             <property name="left-attach">1</property>
-                            <property name="right-attach">2</property>
                             <property name="top-attach">3</property>
-                            <property name="bottom-attach">4</property>
-                            <property name="x-options">GTK_FILL</property>
-                            <property name="y-options"/>
                           </packing>
                         </child>
                       </object>
@@ -8670,11 +8705,9 @@ Supported placeholders are:
               </object>
             </child>
             <child>
-              <object class="GtkTable" id="table3">
+              <object class="GtkGrid" id="table3">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="n-rows">8</property>
-                <property name="n-columns">2</property>
                 <property name="column-spacing">10</property>
                 <property name="row-spacing">10</property>
                 <property name="vexpand">True</property>
@@ -8686,10 +8719,16 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Type:</property>
                     <property name="mnemonic-widget">file_type_label</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
+                  <packing>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                  </packing>
                 </child>
                 <child>
                   <object class="GtkLabel" id="file_type_label">
@@ -8698,10 +8737,12 @@ Supported placeholders are:
                     <property name="label">file type</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
+                    <property name="top-attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -8711,13 +8752,15 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Size:</property>
                     <property name="mnemonic-widget">file_size_label</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -8727,13 +8770,15 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Location:</property>
                     <property name="mnemonic-widget">file_location_label</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -8743,13 +8788,15 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Read-only:</property>
                     <property name="mnemonic-widget">file_read_only_check</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -8759,13 +8806,15 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Encoding:</property>
                     <property name="mnemonic-widget">file_encoding_label</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -8775,13 +8824,15 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Modified:</property>
                     <property name="mnemonic-widget">file_modified_label</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">5</property>
-                    <property name="bottom-attach">6</property>
                   </packing>
                 </child>
                 <child>
@@ -8791,13 +8842,15 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Changed:</property>
                     <property name="mnemonic-widget">file_changed_label</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">6</property>
-                    <property name="bottom-attach">7</property>
                   </packing>
                 </child>
                 <child>
@@ -8807,13 +8860,15 @@ Supported placeholders are:
                     <property name="label" translatable="yes">Accessed:</property>
                     <property name="mnemonic-widget">file_accessed_label</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">7</property>
-                    <property name="bottom-attach">8</property>
                   </packing>
                 </child>
                 <child>
@@ -8823,12 +8878,12 @@ Supported placeholders are:
                     <property name="label">file size</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -8838,12 +8893,12 @@ Supported placeholders are:
                     <property name="label">file path</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -8856,12 +8911,12 @@ Supported placeholders are:
                     <property name="receives-default">False</property>
                     <property name="xalign">0</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -8871,12 +8926,12 @@ Supported placeholders are:
                     <property name="label">file encoding</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -8886,12 +8941,12 @@ Supported placeholders are:
                     <property name="label">file mdate</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">5</property>
-                    <property name="bottom-attach">6</property>
                   </packing>
                 </child>
                 <child>
@@ -8901,12 +8956,12 @@ Supported placeholders are:
                     <property name="label">file cdate</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">6</property>
-                    <property name="bottom-attach">7</property>
                   </packing>
                 </child>
                 <child>
@@ -8916,25 +8971,24 @@ Supported placeholders are:
                     <property name="label">file adate</property>
                     <property name="selectable">True</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">7</property>
-                    <property name="bottom-attach">8</property>
                   </packing>
                 </child>
               </object>
             </child>
             <child>
-              <object class="GtkTable" id="table5">
+              <object class="GtkGrid" id="table5">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="n-rows">5</property>
-                <property name="n-columns">4</property>
                 <property name="column-spacing">5</property>
                 <property name="row-spacing">5</property>
-                <property name="homogeneous">True</property>
+                <property name="row-homogeneous">True</property>
+                <property name="column-homogeneous">True</property>
                 <property name="vexpand">True</property>
                 <property name="valign">center</property>
                 <child>
@@ -8946,12 +9000,16 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Permissions:</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
                     </attributes>
                   </object>
                   <packing>
-                    <property name="right-attach">4</property>
+                    <property name="left-attach">0</property>
+                    <property name="top-attach">0</property>
+                    <property name="width">4</property>
                   </packing>
                 </child>
                 <child>
@@ -8960,12 +9018,12 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Read:</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -8974,12 +9032,12 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Write:</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
-                    <property name="right-attach">3</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -8988,12 +9046,12 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Execute:</property>
                     <property name="xalign">0</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
-                    <property name="right-attach">4</property>
                     <property name="top-attach">1</property>
-                    <property name="bottom-attach">2</property>
                   </packing>
                 </child>
                 <child>
@@ -9002,10 +9060,12 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Owner:</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -9014,10 +9074,12 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Group:</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -9026,10 +9088,12 @@ Supported placeholders are:
                     <property name="can-focus">False</property>
                     <property name="label" translatable="yes">Other:</property>
                     <property name="xalign">1</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
+                    <property name="left-attach">0</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -9040,12 +9104,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -9056,12 +9120,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
-                    <property name="right-attach">3</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -9072,12 +9136,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
-                    <property name="right-attach">4</property>
                     <property name="top-attach">2</property>
-                    <property name="bottom-attach">3</property>
                   </packing>
                 </child>
                 <child>
@@ -9088,12 +9152,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -9104,12 +9168,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
-                    <property name="right-attach">3</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -9120,12 +9184,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
-                    <property name="right-attach">4</property>
                     <property name="top-attach">3</property>
-                    <property name="bottom-attach">4</property>
                   </packing>
                 </child>
                 <child>
@@ -9136,12 +9200,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">1</property>
-                    <property name="right-attach">2</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -9152,12 +9216,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">2</property>
-                    <property name="right-attach">3</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
                   </packing>
                 </child>
                 <child>
@@ -9168,12 +9232,12 @@ Supported placeholders are:
                     <property name="focus-on-click">False</property>
                     <property name="receives-default">False</property>
                     <property name="draw-indicator">True</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
                   </object>
                   <packing>
                     <property name="left-attach">3</property>
-                    <property name="right-attach">4</property>
                     <property name="top-attach">4</property>
-                    <property name="bottom-attach">5</property>
                   </packing>
                 </child>
               </object>
