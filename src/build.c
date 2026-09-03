@@ -2184,8 +2184,8 @@ static void show_build_commands_dialog(void)
 		ft = doc->file_type;
 	dialog = gtk_dialog_new_with_buttons(title, GTK_WINDOW(main_widgets.window),
 										GTK_DIALOG_DESTROY_WITH_PARENT,
-										GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-										GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+										_("_Cancel"), GTK_RESPONSE_CANCEL,
+										_("_OK"), GTK_RESPONSE_ACCEPT, NULL);
 	table = build_commands_table(doc, GEANY_BCS_PREF, &table_data, ft);
 	vbox = ui_dialog_vbox_new(GTK_DIALOG(dialog));
 	gtk_box_pack_start(GTK_BOX(vbox), table, TRUE, TRUE, 0);

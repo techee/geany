@@ -184,8 +184,8 @@ static void kb_tree_view_change_button_clicked_cb(GtkWidget *button, KbData *kbd
 			dialog = gtk_dialog_new_with_buttons(_("Assign Keybinding"),
 					GTK_WINDOW(ui_widgets.prefs_dialog),
 					GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-					GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-					GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+					_("_Cancel"), GTK_RESPONSE_CANCEL,
+					_("_OK"), GTK_RESPONSE_ACCEPT, NULL);
 
 			str = g_strdup_printf(
 					_("Press the combination of the keys you want to use for \"%s\"."), name);
@@ -1586,7 +1586,7 @@ static gboolean kb_find_duplicate(GtkTreeStore *store, GtkWidget *parent, GtkTre
 				gtk_tree_model_get(model, &iter, KB_TREE_ACTION, &label, -1);
 				ret = dialogs_show_prompt(parent,
 					_("_Allow"), GTK_RESPONSE_APPLY,
-					GTK_STOCK_CANCEL, GTK_RESPONSE_NO,
+					_("_Cancel"), GTK_RESPONSE_NO,
 					_("_Override"), GTK_RESPONSE_YES,
 					_("Override that keybinding?"),
 					_("The combination '%s' is already used for \"%s\"."),

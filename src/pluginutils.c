@@ -428,9 +428,9 @@ static void configure_plugins(Plugin *current_plugin)
 
 	dialog = gtk_dialog_new_with_buttons(_("Configure Plugins"),
 		GTK_WINDOW(main_widgets.window), GTK_DIALOG_DESTROY_WITH_PARENT,
-		GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
-		GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-		GTK_STOCK_OK, GTK_RESPONSE_OK, NULL);
+		_("_Apply"), GTK_RESPONSE_APPLY,
+		_("_Cancel"), GTK_RESPONSE_CANCEL,
+		_("_OK"), GTK_RESPONSE_OK, NULL);
 	gtk_widget_set_name(dialog, "GeanyDialog");
 
 	vbox = ui_dialog_vbox_new(GTK_DIALOG(dialog));

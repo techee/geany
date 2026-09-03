@@ -1861,12 +1861,12 @@ static void pm_show_dialog(GtkMenuItem *menuitem, gpointer user_data)
 	gtk_window_set_default_size(GTK_WINDOW(pm_widgets.dialog), 500, 450);
 
 	pm_widgets.help_button = gtk_dialog_add_button(
-		GTK_DIALOG(pm_widgets.dialog), GTK_STOCK_HELP, PM_BUTTON_HELP);
+		GTK_DIALOG(pm_widgets.dialog), _("_Help"), PM_BUTTON_HELP);
 	pm_widgets.configure_button = gtk_dialog_add_button(
-		GTK_DIALOG(pm_widgets.dialog), GTK_STOCK_PREFERENCES, PM_BUTTON_CONFIGURE);
+		GTK_DIALOG(pm_widgets.dialog), _("_Preferences"), PM_BUTTON_CONFIGURE);
 	pm_widgets.keybindings_button = gtk_dialog_add_button(
 		GTK_DIALOG(pm_widgets.dialog), _("Keybindings"), PM_BUTTON_KEYBINDINGS);
-	gtk_dialog_add_button(GTK_DIALOG(pm_widgets.dialog), GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE);
+	gtk_dialog_add_button(GTK_DIALOG(pm_widgets.dialog), _("_Close"), GTK_RESPONSE_CLOSE);
 	gtk_dialog_set_default_response(GTK_DIALOG(pm_widgets.dialog), GTK_RESPONSE_CLOSE);
 
 	/* filter */

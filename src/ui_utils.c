@@ -2123,8 +2123,8 @@ static gchar *run_file_chooser(const gchar *title, GtkFileChooserAction action,
 	{
 		dialog = GTK_FILE_CHOOSER(gtk_file_chooser_dialog_new(title,
 			GTK_WINDOW(main_widgets.window), action,
-			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-			GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL));
+			_("_Cancel"), GTK_RESPONSE_CANCEL,
+			_("_Open"), GTK_RESPONSE_ACCEPT, NULL));
 		gtk_widget_set_name(GTK_WIDGET(dialog), "GeanyDialog");
 	}
 

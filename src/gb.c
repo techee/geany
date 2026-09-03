@@ -22,6 +22,7 @@
  * A small Pong-like.
  */
 
+#include "support.h"
 #include "utils.h"
 
 #include <gtk/gtk.h>
@@ -343,8 +344,8 @@ static void geany_pong_init(GeanyPong *self)
 	gtk_box_pack_start(GTK_BOX(vbox), self->area, TRUE, TRUE, 0);
 
 	gtk_dialog_add_buttons(GTK_DIALOG(self),
-		GTK_STOCK_HELP, GTK_RESPONSE_HELP,
-		GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
+		_("_Help"), GTK_RESPONSE_HELP,
+		_("_Close"), GTK_RESPONSE_CLOSE,
 		NULL);
 	gtk_dialog_set_default_response(GTK_DIALOG(self), GTK_RESPONSE_HELP);
 	gtk_widget_grab_focus(gtk_dialog_get_widget_for_response(GTK_DIALOG(self), GTK_RESPONSE_HELP));
@@ -374,7 +375,7 @@ static void geany_pong_help(GeanyPong *self)
 
 	dialog = gtk_dialog_new_with_buttons("Help", GTK_WINDOW(self),
 		GTK_DIALOG_DESTROY_WITH_PARENT | GTK_DIALOG_MODAL,
-		GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE, NULL);
+		_("_Close"), GTK_RESPONSE_CLOSE, NULL);
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_CLOSE);
 	gtk_container_set_border_width(GTK_CONTAINER(dialog), 1);
 	gtk_window_set_type_hint(GTK_WINDOW(dialog), GDK_WINDOW_TYPE_HINT_DIALOG);

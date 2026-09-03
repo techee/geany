@@ -430,8 +430,8 @@ static GtkFileChooser *create_open_file_dialog(void)
 			_("Opens the file in read-only mode. If you choose more than one file to open, all files will be opened read-only."));
 
 		gtk_dialog_add_buttons(GTK_DIALOG(dialog),
-			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-			GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL);
+			_("_Cancel"), GTK_RESPONSE_CANCEL,
+			_("_Open"), GTK_RESPONSE_ACCEPT, NULL);
 		gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
 
 		gtk_widget_set_size_request(GTK_WIDGET(dialog), -1, 460);
@@ -667,8 +667,8 @@ static GtkFileChooser *create_save_file_dialog(GeanyDocument *doc)
 		gtk_widget_set_sensitive(rename_btn, doc->real_path != NULL);
 
 		gtk_dialog_add_buttons(GTK_DIALOG(dialog),
-			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-			GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
+			_("_Cancel"), GTK_RESPONSE_CANCEL,
+			_("_Save"), GTK_RESPONSE_ACCEPT, NULL);
 		gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
 	}
 
@@ -843,13 +843,13 @@ static gint run_unsaved_dialog(const gchar *msg, const gchar *msg2)
 			GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", msg);
 	gtk_window_set_title(GTK_WINDOW(dialog), _("Question"));
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", msg2);
-	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), _("_Cancel"), GTK_RESPONSE_CANCEL);
 
 	button = ui_button_new_with_image(GTK_STOCK_CLEAR, _("_Don't save"));
 	gtk_dialog_add_action_widget(GTK_DIALOG(dialog), button, GTK_RESPONSE_NO);
 	gtk_widget_show(button);
 
-	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), _("_Save"), GTK_RESPONSE_YES);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_YES);
 	ret = gtk_dialog_run(GTK_DIALOG(dialog));
@@ -1021,8 +1021,8 @@ dialogs_show_input_full(const gchar *title, GtkWindow *parent,
 	InputDialogData *data = g_malloc(sizeof *data);
 
 	dialog = gtk_dialog_new_with_buttons(title, parent,
-		GTK_DIALOG_DESTROY_WITH_PARENT, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-		GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+		GTK_DIALOG_DESTROY_WITH_PARENT, _("_Cancel"), GTK_RESPONSE_CANCEL,
+		_("_OK"), GTK_RESPONSE_ACCEPT, NULL);
 	vbox = ui_dialog_vbox_new(GTK_DIALOG(dialog));
 	gtk_widget_set_name(dialog, "GeanyDialog");
 	gtk_box_set_spacing(GTK_BOX(vbox), 6);
@@ -1162,8 +1162,8 @@ gboolean dialogs_show_input_numeric(const gchar *title, const gchar *label_text,
 
 	dialog = gtk_dialog_new_with_buttons(title, GTK_WINDOW(main_widgets.window),
 										GTK_DIALOG_DESTROY_WITH_PARENT,
-										GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-										GTK_STOCK_OK, GTK_RESPONSE_ACCEPT, NULL);
+										_("_Cancel"), GTK_RESPONSE_CANCEL,
+										_("_OK"), GTK_RESPONSE_ACCEPT, NULL);
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_CANCEL);
 	vbox = ui_dialog_vbox_new(GTK_DIALOG(dialog));
 	gtk_widget_set_name(dialog, "GeanyDialog");
@@ -1348,12 +1348,12 @@ static gint show_prompt(GtkWidget *parent,
 
 	if (btn_2 == NULL)
 	{
-		btn_2 = GTK_STOCK_NO;
+		btn_2 = _("_No");
 		response_2 = GTK_RESPONSE_NO;
 	}
 	if (btn_3 == NULL)
 	{
-		btn_3 = GTK_STOCK_YES;
+		btn_3 = _("_Yes");
 		response_3 = GTK_RESPONSE_YES;
 	}
 
@@ -1408,8 +1408,8 @@ gboolean dialogs_show_question(const gchar *text, ...)
 	va_end(args);
 	result = show_prompt(parent,
 		NULL, GTK_RESPONSE_NONE,
-		GTK_STOCK_NO, GTK_RESPONSE_NO,
-		GTK_STOCK_YES, GTK_RESPONSE_YES,
+		_("_No"), GTK_RESPONSE_NO,
+		_("_Yes"), GTK_RESPONSE_YES,
 		string, NULL);
 	g_free(string);
 	return (result == GTK_RESPONSE_YES);

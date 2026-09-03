@@ -484,7 +484,7 @@ static void tools_show_dialog_insert_special_chars(void)
 
 		sc_dialog = gtk_dialog_new_with_buttons(
 					_("Special Characters"), GTK_WINDOW(geany->main_widgets->window),
-					GTK_DIALOG_DESTROY_WITH_PARENT, GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+					GTK_DIALOG_DESTROY_WITH_PARENT, _("_Cancel"), GTK_RESPONSE_CANCEL,
 					_("_Insert"), GTK_RESPONSE_OK, NULL);
 		vbox = ui_dialog_vbox_new(GTK_DIALOG(sc_dialog));
 		gtk_box_set_spacing(GTK_BOX(vbox), 6);

@@ -174,7 +174,7 @@ static void create_file_save_as_dialog(const gchar *extension, ExportFunc func,
 	gtk_widget_set_name(dialog, "GeanyExportDialog");
 
 	gtk_dialog_add_buttons(GTK_DIALOG(dialog),
-		GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL);
+		_("_Cancel"), GTK_RESPONSE_CANCEL, _("_Save"), GTK_RESPONSE_ACCEPT, NULL);
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
 
 	/* file chooser extra widget */

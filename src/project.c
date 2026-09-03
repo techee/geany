@@ -175,7 +175,7 @@ void project_new(gboolean from_folder)
 
 	e.dialog = gtk_dialog_new_with_buttons(_("New Project"), GTK_WINDOW(main_widgets.window),
 										 GTK_DIALOG_DESTROY_WITH_PARENT,
-										 GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL, NULL);
+										 _("_Cancel"), GTK_RESPONSE_CANCEL, NULL);
 
 	gtk_widget_set_name(e.dialog, "GeanyDialogProject");
 	button = ui_button_new_with_image(GTK_STOCK_NEW, _("C_reate"));
@@ -355,8 +355,8 @@ void project_open(void)
 	{
 		dialog = GTK_FILE_CHOOSER(gtk_file_chooser_dialog_new(_("Open Project"), GTK_WINDOW(main_widgets.window),
 				GTK_FILE_CHOOSER_ACTION_OPEN,
-				GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-				GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL));
+				_("_Cancel"), GTK_RESPONSE_CANCEL,
+				_("_Open"), GTK_RESPONSE_ACCEPT, NULL));
 		gtk_widget_set_name(GTK_WIDGET(dialog), "GeanyDialogProject");
 
 		/* set default Open, so pressing enter can open multiple files */
@@ -507,8 +507,8 @@ static void on_project_properties_base_path_button_clicked(GtkWidget *button,
 	else
 		dialog = GTK_FILE_CHOOSER(gtk_file_chooser_dialog_new(_("Choose Project Base Path"),
 			NULL, GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-			GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT,
+			_("_Cancel"), GTK_RESPONSE_CANCEL,
+			_("_Open"), GTK_RESPONSE_ACCEPT,
 			NULL));
 
 	if (dialogs_file_chooser_run(dialog) == GTK_RESPONSE_ACCEPT)
@@ -680,7 +680,7 @@ gboolean project_ask_close(void)
 	if (app->project != NULL)
 	{
 		if (!interface_prefs.warn_on_project_close ||
-			dialogs_show_question_full(NULL, GTK_STOCK_CLOSE, GTK_STOCK_CANCEL,
+			dialogs_show_question_full(NULL, _("_Close"), _("_Cancel"),
 			_("Do you want to close it before proceeding?"),
 			_("The '%s' project is open."), app->project->name))
 		{
@@ -771,7 +771,7 @@ static gboolean update_config(const PropertyDialogElements *e, gboolean new_proj
 		{
 			gboolean create_dir;
 
-			create_dir = dialogs_show_question_full(NULL, GTK_STOCK_OK, GTK_STOCK_CANCEL,
+			create_dir = dialogs_show_question_full(NULL, _("_OK"), _("_Cancel"),
 				_("Create the project's base path directory?"),
 				_("The path \"%s\" does not exist."),
 				base_path);
@@ -801,7 +801,7 @@ static gboolean update_config(const PropertyDialogElements *e, gboolean new_proj
 		return FALSE;
 	}
 	else if (new_project && g_file_test(locale_filename, G_FILE_TEST_EXISTS) &&
-			 ! dialogs_show_question_full(NULL, _("_Replace"), GTK_STOCK_CANCEL,
+			 ! dialogs_show_question_full(NULL, _("_Replace"), _("_Cancel"),
 				NULL,
 				_("The file '%s' already exists. Do you want to overwrite it?"),
 				file_name))
@@ -961,8 +961,8 @@ static void on_file_save_button_clicked(GtkButton *button, PropertyDialogElement
 	{
 		dialog = GTK_FILE_CHOOSER(gtk_file_chooser_dialog_new(_("Choose Project Filename"), NULL,
 						GTK_FILE_CHOOSER_ACTION_SAVE,
-						GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-						GTK_STOCK_SAVE, GTK_RESPONSE_ACCEPT, NULL));
+						_("_Cancel"), GTK_RESPONSE_CANCEL,
+						_("_Save"), GTK_RESPONSE_ACCEPT, NULL));
 		gtk_widget_set_name(GTK_WIDGET(dialog), "GeanyDialogProject");
 		gtk_window_set_destroy_with_parent(GTK_WINDOW(dialog), TRUE);
 		gtk_window_set_skip_taskbar_hint(GTK_WINDOW(dialog), TRUE);

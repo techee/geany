@@ -502,13 +502,13 @@ static gint run_dialog_for_persistent_doc_tab_closing(const gchar *msg, const gc
 			GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE, "%s", msg);
 	gtk_window_set_title(GTK_WINDOW(dialog), _("Question"));
 	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", msg2);
-	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), _("_Cancel"), GTK_RESPONSE_CANCEL);
 
 	button = ui_button_new_with_image(GTK_STOCK_CLEAR, _("_Don't save (discard)"));
 	gtk_dialog_add_action_widget(GTK_DIALOG(dialog), button, GTK_RESPONSE_NO);
 	gtk_widget_show(button);
 
-	gtk_dialog_add_button(GTK_DIALOG(dialog), GTK_STOCK_SAVE, GTK_RESPONSE_YES);
+	gtk_dialog_add_button(GTK_DIALOG(dialog), _("_Save"), GTK_RESPONSE_YES);
 
 	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_YES);
 	ret = gtk_dialog_run(GTK_DIALOG(dialog));
@@ -1080,8 +1080,8 @@ static void target_directory_button_clicked_cb(GtkButton *button, gpointer item)
 	else
 		dialog = GTK_FILE_CHOOSER(gtk_file_chooser_dialog_new(_("Select Directory"),
 						NULL, GTK_FILE_CHOOSER_ACTION_SELECT_FOLDER,
-						GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-						GTK_STOCK_OPEN, GTK_RESPONSE_ACCEPT, NULL));
+						_("_Cancel"), GTK_RESPONSE_CANCEL,
+						_("_Open"), GTK_RESPONSE_ACCEPT, NULL));
 
 	text = utils_get_locale_from_utf8(gtk_entry_get_text(GTK_ENTRY(item)));
 	if (!EMPTY(text))

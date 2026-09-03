@@ -1006,8 +1006,8 @@ static GtkWidget *create_dialog(void)
 
 	dialog = gtk_dialog_new_with_buttons(_("Keyboard Shortcuts"), GTK_WINDOW(main_widgets.window),
 				GTK_DIALOG_DESTROY_WITH_PARENT,
-				GTK_STOCK_EDIT, GTK_RESPONSE_APPLY,
-				GTK_STOCK_CLOSE, GTK_RESPONSE_CANCEL, NULL);
+				_("_Edit"), GTK_RESPONSE_APPLY,
+				_("_Close"), GTK_RESPONSE_CANCEL, NULL);
 	vbox = ui_dialog_vbox_new(GTK_DIALOG(dialog));
 	gtk_box_set_spacing(GTK_BOX(vbox), 6);
 	gtk_widget_set_name(dialog, "GeanyDialog");

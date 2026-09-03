@@ -420,8 +420,8 @@ static void show_dialog_create_class(gint type)
 	cc_dlg->dialog = gtk_dialog_new_with_buttons(_("Create Class"),
 			GTK_WINDOW(geany->main_widgets->window),
 			GTK_DIALOG_MODAL,
-			GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-			GTK_STOCK_OK, GTK_RESPONSE_OK,
+			_("_Cancel"), GTK_RESPONSE_CANCEL,
+			_("_OK"), GTK_RESPONSE_OK,
 			NULL);
 
 	switch (type)
