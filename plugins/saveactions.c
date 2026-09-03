@@ -1343,13 +1343,13 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 			notebook_vbox, gtk_label_new(_("Auto Save")), NOTEBOOK_PAGE_AUTOSAVE);
 
 		checkbox_enable_as_lf = gtk_check_button_new_with_mnemonic(_("Enable save when losing _focus"));
-		gtk_button_set_focus_on_click(GTK_BUTTON(checkbox_enable_as_lf), FALSE);
+		gtk_widget_set_focus_on_click(checkbox_enable_as_lf, FALSE);
 		pref_widgets.checkbox_enable_autosave_losing_focus = checkbox_enable_as_lf;
 		gtk_box_pack_start(GTK_BOX(inner_vbox), checkbox_enable_as_lf, FALSE, FALSE, 6);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox_enable_as_lf), enable_autosave_losing_focus);
 
 		checkbox_enable = gtk_check_button_new_with_mnemonic(_("_Enable"));
-		gtk_button_set_focus_on_click(GTK_BUTTON(checkbox_enable), FALSE);
+		gtk_widget_set_focus_on_click(checkbox_enable, FALSE);
 		pref_widgets.checkbox_enable_autosave = checkbox_enable;
 		gtk_box_pack_start(GTK_BOX(inner_vbox), checkbox_enable, FALSE, FALSE, 6);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox_enable), enable_autosave);
@@ -1374,7 +1374,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 		checkbox = gtk_check_button_new_with_mnemonic(
 			_("_Print status message if files have been automatically saved"));
-		gtk_button_set_focus_on_click(GTK_BUTTON(checkbox), FALSE);
+		gtk_widget_set_focus_on_click(checkbox, FALSE);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox), autosave_print_msg);
 		gtk_label_set_mnemonic_widget(GTK_LABEL(label), checkbox);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), checkbox, FALSE, FALSE, 5);
@@ -1384,14 +1384,14 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 			_("Save only current open _file"));
 		pref_widgets.autosave_save_all_radio1 = radio1;
 		gtk_label_set_mnemonic_widget(GTK_LABEL(label), radio1);
-		gtk_button_set_focus_on_click(GTK_BUTTON(radio1), FALSE);
+		gtk_widget_set_focus_on_click(radio1, FALSE);
 		gtk_container_add(GTK_CONTAINER(inner_vbox), radio1);
 
 		radio2 = gtk_radio_button_new_with_mnemonic_from_widget(
 			GTK_RADIO_BUTTON(radio1), _("Sa_ve all open files"));
 		pref_widgets.autosave_save_all_radio2 = radio2;
 		gtk_label_set_mnemonic_widget(GTK_LABEL(label), radio2);
-		gtk_button_set_focus_on_click(GTK_BUTTON(radio2), FALSE);
+		gtk_widget_set_focus_on_click(radio2, FALSE);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(radio2), autosave_save_all);
 		gtk_container_add(GTK_CONTAINER(inner_vbox), radio2);
 	}
@@ -1410,7 +1410,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 		checkbox_enable = gtk_check_button_new_with_mnemonic(_("_Enable"));
 		pref_widgets.checkbox_enable_backupcopy = checkbox_enable;
-		gtk_button_set_focus_on_click(GTK_BUTTON(checkbox_enable), FALSE);
+		gtk_widget_set_focus_on_click(checkbox_enable, FALSE);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox_enable), enable_backupcopy);
 		gtk_box_pack_start(GTK_BOX(inner_vbox), checkbox_enable, FALSE, FALSE, 6);
 		g_signal_connect(checkbox_enable, "toggled",
@@ -1484,7 +1484,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		disabled_radio = gtk_radio_button_new_with_mnemonic(NULL, _("Disabled"));
 		pref_widgets.untitled_doc_disabled_radio = disabled_radio;
 		gtk_label_set_mnemonic_widget(GTK_LABEL(label), disabled_radio);
-		gtk_button_set_focus_on_click(GTK_BUTTON(disabled_radio), FALSE);
+		gtk_widget_set_focus_on_click(disabled_radio, FALSE);
 		gtk_container_add(GTK_CONTAINER(inner_vbox), disabled_radio);
 		g_signal_connect(disabled_radio, "toggled",
 			G_CALLBACK(radio_toggled_cb), GINT_TO_POINTER(NOTEBOOK_UNTITLEDDOC_RADIO_DISABLED));
@@ -1495,7 +1495,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 			GTK_RADIO_BUTTON(disabled_radio), _("Instant Save After Creation"));
 		pref_widgets.untitled_doc_instantsave_radio = instantsave_radio;
 		gtk_label_set_mnemonic_widget(GTK_LABEL(label), instantsave_radio);
-		gtk_button_set_focus_on_click(GTK_BUTTON(instantsave_radio), FALSE);
+		gtk_widget_set_focus_on_click(instantsave_radio, FALSE);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(instantsave_radio), enable_instantsave);
 		gtk_container_add(GTK_CONTAINER(inner_vbox), instantsave_radio);
 		g_signal_connect(instantsave_radio, "toggled",
@@ -1540,7 +1540,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 		persistent_radio = gtk_radio_button_new_with_mnemonic_from_widget(
 			GTK_RADIO_BUTTON(disabled_radio), _("Persistent Untitled Documents"));
 		pref_widgets.untitled_doc_persistent_radio = persistent_radio;
-		gtk_button_set_focus_on_click(GTK_BUTTON(persistent_radio), FALSE);
+		gtk_widget_set_focus_on_click(persistent_radio, FALSE);
 		gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(persistent_radio), enable_persistent_docs);
 		gtk_container_add(GTK_CONTAINER(inner_vbox), persistent_radio);
 		g_signal_connect(persistent_radio, "toggled",

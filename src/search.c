@@ -313,7 +313,7 @@ static GtkWidget *add_find_checkboxes(GtkDialog *dialog)
 
 	check_regexp = gtk_check_button_new_with_mnemonic(_("_Use regular expressions"));
 	ui_hookup_widget(dialog, check_regexp, "check_regexp");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_regexp), FALSE);
+	gtk_widget_set_focus_on_click(check_regexp, FALSE);
 	gtk_widget_set_tooltip_text(check_regexp, _("Use Perl-like regular expressions. "
 		"For detailed information about using regular expressions, please refer to the manual."));
 	g_signal_connect(check_regexp, "toggled",
@@ -321,7 +321,7 @@ static GtkWidget *add_find_checkboxes(GtkDialog *dialog)
 
 	checkbox7 = gtk_check_button_new_with_mnemonic(_("Use _escape sequences"));
 	ui_hookup_widget(dialog, checkbox7, "check_escape");
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox7), FALSE);
+	gtk_widget_set_focus_on_click(checkbox7, FALSE);
 	gtk_widget_set_tooltip_text(checkbox7,
 		_("Replace \\\\, \\t, \\n, \\r and \\uXXXX (Unicode characters) with the "
 		  "corresponding control characters"));
@@ -330,7 +330,7 @@ static GtkWidget *add_find_checkboxes(GtkDialog *dialog)
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(check_multiline), FALSE);
 	gtk_widget_set_sensitive(check_multiline, FALSE);
 	ui_hookup_widget(dialog, check_multiline, "check_multiline");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_multiline), FALSE);
+	gtk_widget_set_focus_on_click(check_multiline, FALSE);
 	gtk_widget_set_tooltip_text(check_multiline, _("Perform regular expression "
 		"matching on the whole buffer at once rather than line by line, allowing "
 		"matches to span multiple lines. In this mode, newline characters are part "
@@ -346,21 +346,21 @@ static GtkWidget *add_find_checkboxes(GtkDialog *dialog)
 	{
 		GtkWidget *check_back = gtk_check_button_new_with_mnemonic(_("Search _backwards"));
 		ui_hookup_widget(dialog, check_back, "check_back");
-		gtk_button_set_focus_on_click(GTK_BUTTON(check_back), FALSE);
+		gtk_widget_set_focus_on_click(check_back, FALSE);
 		gtk_container_add(GTK_CONTAINER(fbox), check_back);
 	}
 
 	checkbox1 = gtk_check_button_new_with_mnemonic(_("C_ase sensitive"));
 	ui_hookup_widget(dialog, checkbox1, "check_case");
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox1), FALSE);
+	gtk_widget_set_focus_on_click(checkbox1, FALSE);
 
 	checkbox2 = gtk_check_button_new_with_mnemonic(_("Match only a _whole word"));
 	ui_hookup_widget(dialog, checkbox2, "check_word");
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox2), FALSE);
+	gtk_widget_set_focus_on_click(checkbox2, FALSE);
 
 	checkbox5 = gtk_check_button_new_with_mnemonic(_("Match from s_tart of word"));
 	ui_hookup_widget(dialog, checkbox5, "check_wordstart");
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox5), FALSE);
+	gtk_widget_set_focus_on_click(checkbox5, FALSE);
 
 	/* disable wordstart when wholeword is checked */
 	g_signal_connect(checkbox2, "toggled",
@@ -531,7 +531,7 @@ static void create_find_dialog(void)
 	/* close window checkbox */
 	check_close = gtk_check_button_new_with_mnemonic(_("Close _dialog"));
 	ui_hookup_widget(find_dlg.dialog, check_close, "check_close");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_close), FALSE);
+	gtk_widget_set_focus_on_click(check_close, FALSE);
 	gtk_widget_set_tooltip_text(check_close,
 			_("Disable this option to keep the dialog open"));
 	gtk_box_pack_start(GTK_BOX(bbox), check_close, TRUE, TRUE, 0);
@@ -729,7 +729,7 @@ static void create_replace_dialog(void)
 	/* close window checkbox */
 	check_close = gtk_check_button_new_with_mnemonic(_("Close _dialog"));
 	ui_hookup_widget(replace_dlg.dialog, check_close, "check_close");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_close), FALSE);
+	gtk_widget_set_focus_on_click(check_close, FALSE);
 	gtk_widget_set_tooltip_text(check_close,
 			_("Disable this option to keep the dialog open"));
 	gtk_box_pack_start(GTK_BOX(bbox), check_close, TRUE, TRUE, 0);
@@ -997,25 +997,25 @@ static void create_fif_dialog(void)
 
 	check_regexp = gtk_check_button_new_with_mnemonic(_("_Use regular expressions"));
 	ui_hookup_widget(fif_dlg.dialog, check_regexp, "check_regexp");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_regexp), FALSE);
+	gtk_widget_set_focus_on_click(check_regexp, FALSE);
 	gtk_widget_set_tooltip_text(check_regexp, _("See grep's manual page for more information"));
 
 	check_recursive = gtk_check_button_new_with_mnemonic(_("_Recurse in subfolders"));
 	ui_hookup_widget(fif_dlg.dialog, check_recursive, "check_recursive");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_recursive), FALSE);
+	gtk_widget_set_focus_on_click(check_recursive, FALSE);
 
 	checkbox1 = gtk_check_button_new_with_mnemonic(_("C_ase sensitive"));
 	ui_hookup_widget(fif_dlg.dialog, checkbox1, "check_case");
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox1), FALSE);
+	gtk_widget_set_focus_on_click(checkbox1, FALSE);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox1), TRUE);
 
 	check_wholeword = gtk_check_button_new_with_mnemonic(_("Match only a _whole word"));
 	ui_hookup_widget(fif_dlg.dialog, check_wholeword, "check_wholeword");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_wholeword), FALSE);
+	gtk_widget_set_focus_on_click(check_wholeword, FALSE);
 
 	checkbox2 = gtk_check_button_new_with_mnemonic(_("_Invert search results"));
 	ui_hookup_widget(fif_dlg.dialog, checkbox2, "check_invert");
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox2), FALSE);
+	gtk_widget_set_focus_on_click(checkbox2, FALSE);
 	gtk_widget_set_tooltip_text(checkbox2,
 			_("Invert the sense of matching, to select non-matching lines"));
 
@@ -1036,7 +1036,7 @@ static void create_fif_dialog(void)
 
 	check_extra = gtk_check_button_new_with_mnemonic(_("E_xtra options:"));
 	ui_hookup_widget(fif_dlg.dialog, check_extra, "check_extra");
-	gtk_button_set_focus_on_click(GTK_BUTTON(check_extra), FALSE);
+	gtk_widget_set_focus_on_click(check_extra, FALSE);
 
 	entry_extra = gtk_entry_new();
 	ui_entry_add_clear_icon(GTK_ENTRY(entry_extra));

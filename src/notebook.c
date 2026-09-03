@@ -741,7 +741,7 @@ gint notebook_new_tab(GeanyDocument *this)
 
 		btn = gtk_button_new();
 		gtk_button_set_relief(GTK_BUTTON(btn), GTK_RELIEF_NONE);
-		gtk_button_set_focus_on_click(GTK_BUTTON(btn), FALSE);
+		gtk_widget_set_focus_on_click(btn, FALSE);
 		gtk_widget_set_name(btn, "geany-close-tab-button");
 
 		image = gtk_image_new_from_stock(GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU);

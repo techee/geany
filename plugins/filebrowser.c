@@ -1277,7 +1277,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 	gtk_box_pack_start(GTK_BOX(vbox), box, FALSE, FALSE, 3);
 
 	checkbox_hf = gtk_check_button_new_with_label(_("Show hidden files"));
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox_hf), FALSE);
+	gtk_widget_set_focus_on_click(checkbox_hf, FALSE);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox_hf), show_hidden_files);
 	gtk_box_pack_start(GTK_BOX(vbox), checkbox_hf, FALSE, FALSE, 0);
 	pref_widgets.show_hidden_checkbox = checkbox_hf;
@@ -1285,7 +1285,7 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 
 	box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 3);
 	checkbox_of = gtk_check_button_new_with_label(_("Hide file extensions:"));
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox_of), FALSE);
+	gtk_widget_set_focus_on_click(checkbox_of, FALSE);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox_of), hide_object_files);
 	gtk_box_pack_start(GTK_BOX(box), checkbox_of, FALSE, FALSE, 0);
 	pref_widgets.hide_objects_checkbox = checkbox_of;
@@ -1304,13 +1304,13 @@ GtkWidget *plugin_configure(GtkDialog *dialog)
 	on_toggle_hidden();
 
 	checkbox_fp = gtk_check_button_new_with_label(_("Follow the path of the current file"));
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox_fp), FALSE);
+	gtk_widget_set_focus_on_click(checkbox_fp, FALSE);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox_fp), fb_follow_path);
 	gtk_box_pack_start(GTK_BOX(vbox), checkbox_fp, FALSE, FALSE, 0);
 	pref_widgets.follow_path_checkbox = checkbox_fp;
 
 	checkbox_pb = gtk_check_button_new_with_label(_("Use the project's base directory"));
-	gtk_button_set_focus_on_click(GTK_BUTTON(checkbox_pb), FALSE);
+	gtk_widget_set_focus_on_click(checkbox_pb, FALSE);
 	gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbox_pb), fb_set_project_base_path);
 	gtk_widget_set_tooltip_text(checkbox_pb,
 		_("Change the directory to the base directory of the currently opened project"));
