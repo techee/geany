@@ -1997,7 +1997,12 @@ static gchar *run_file_chooser(const gchar *title, GtkFileChooserAction action,
 	else if (action == GTK_FILE_CHOOSER_ACTION_OPEN)
 	{
 		if (g_path_is_absolute(locale_path))
-			gtk_file_chooser_set_filename(dialog, locale_path);
+		{
+			GFile *file = g_file_new_for_path(locale_path);
+
+			gtk_file_chooser_set_file(dialog, file, NULL);
+			g_object_unref(file);
+		}
 	}
 	g_free(locale_path);
 

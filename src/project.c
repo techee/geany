@@ -903,7 +903,12 @@ static void run_dialog(GtkFileChooser *dialog, GtkWidget *entry)
 			if (g_file_test(locale_filename, G_FILE_TEST_IS_DIR))
 				gtk_file_chooser_set_current_folder(dialog, locale_filename);
 			else
-				gtk_file_chooser_set_filename(dialog, utf8_filename);
+			{
+				GFile *file = g_file_new_for_path(locale_filename);
+
+				gtk_file_chooser_set_file(dialog, file, NULL);
+				g_object_unref(file);
+			}
 		}
 		else /* if the file doesn't yet exist, use at least the current directory */
 		{
