@@ -428,16 +428,16 @@ static void cc_show_dialog_custom_commands(void)
 	buttonbox = gtk_button_box_new(GTK_ORIENTATION_HORIZONTAL);
 	gtk_box_set_spacing(GTK_BOX(buttonbox), 6);
 	gtk_box_pack_start(GTK_BOX(vbox), buttonbox, FALSE, FALSE, 0);
-	cc.button_add = gtk_button_new_from_stock(GTK_STOCK_ADD);
+	cc.button_add = gtk_button_new_with_mnemonic(_("_Add"));
 	g_signal_connect(cc.button_add, "clicked", G_CALLBACK(cc_on_dialog_add_clicked), &cc);
 	gtk_container_add(GTK_CONTAINER(buttonbox), cc.button_add);
-	cc.button_remove = gtk_button_new_from_stock(GTK_STOCK_REMOVE);
+	cc.button_remove = gtk_button_new_with_mnemonic(_("_Remove"));
 	g_signal_connect(cc.button_remove, "clicked", G_CALLBACK(cc_on_dialog_remove_clicked), &cc);
 	gtk_container_add(GTK_CONTAINER(buttonbox), cc.button_remove);
-	cc.button_up = gtk_button_new_from_stock(GTK_STOCK_GO_UP);
+	cc.button_up = gtk_button_new_with_mnemonic(_("_Up"));
 	g_signal_connect(cc.button_up, "clicked", G_CALLBACK(cc_on_dialog_move_up_clicked), &cc);
 	gtk_container_add(GTK_CONTAINER(buttonbox), cc.button_up);
-	cc.button_down = gtk_button_new_from_stock(GTK_STOCK_GO_DOWN);
+	cc.button_down = gtk_button_new_with_mnemonic(_("_Down"));
 	g_signal_connect(cc.button_down, "clicked", G_CALLBACK(cc_on_dialog_move_down_clicked), &cc);
 	gtk_container_add(GTK_CONTAINER(buttonbox), cc.button_down);
 

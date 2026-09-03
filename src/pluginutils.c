@@ -403,7 +403,7 @@ static GtkWidget *create_pref_page(Plugin *p, GtkWidget *dialog)
 	}
 	else if (p->configure_single)
 	{
-		GtkWidget *btn = gtk_button_new_from_stock(GTK_STOCK_PREFERENCES);
+		GtkWidget *btn = gtk_button_new_with_mnemonic(_("_Preferences"));
 
 		gtk_widget_set_halign(btn, GTK_ALIGN_CENTER);
 		gtk_widget_set_valign(btn, GTK_ALIGN_CENTER);
